@@ -167,29 +167,73 @@
             justify-content: center;
             flex-wrap: wrap;
         }
-        /* Cards & Grids */
-        .work-cards, .value-grid, .steps, .stakeholder-options, .dashboard-cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-            margin: 2rem 0;
-        }
-        .card, .option, .value, .step, .dashboard-card {
-            background-color: hsl(var(--card));
-            padding: 1.75rem;
-            border-radius: var(--radius);
-            box-shadow: var(--shadow-card);
-            transition: var(--transition-smooth);
-            text-align: center;
-        }
-        .card:hover, .option:hover, .value:hover, .step:hover, .dashboard-card:hover {
-            box-shadow: var(--shadow-elevated);
-        }
-        .card-icon, .icon {
-            font-size: 1.75rem;
-            margin-bottom: 1rem;
-            color: hsl(var(--primary));
-        }
+        /* How PowerBack Works Cards */
+.work-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0;
+}
+
+.card {
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow-card);
+    transition: var(--transition-smooth);
+    background-color: hsl(var(--card));
+}
+
+.card-image {
+    height: 180px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: flex-end;
+    padding: 1rem;
+    color: white;
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.card-report {
+    background: linear-gradient(135deg, #FF6B35, #F7931E);
+}
+
+.card-police {
+    background: linear-gradient(135deg, #2E5BFF, #1A369C);
+}
+
+.card-community {
+    background: linear-gradient(135deg, #FFD93D, #FFB800);
+}
+
+.card-neighborhood {
+    background: linear-gradient(135deg, #6BCCF4, #4EA9D3);
+}
+
+.card-content {
+    padding: 1.5rem;
+    text-align: left;
+}
+
+.card-content .card-icon {
+    font-size: 1.75rem;
+    margin-bottom: 1rem;
+    color: hsl(var(--primary));
+}
+
+.card-content h4 {
+    margin-bottom: 0.75rem;
+    color: hsl(var(--secondary));
+    font-weight: 600;
+}
+
+.card-content p {
+    color: hsl(var(--muted-foreground));
+    line-height: 1.5;
+}
+
         .step-number {
             background-color: hsl(var(--secondary));
             color: hsl(var(--secondary-foreground));
@@ -330,30 +374,50 @@
                 </div>
             </div>
             <div class="how-powerback-works">
-                <h2>How PowerBack Works</h2>
-                <div class="work-cards">
-                    <div class="card">
-                        <div class="card-icon">⚠️</div>
-                        <h4>Report Incidents</h4>
-                        <p>Quickly report crimes and emergencies with photos, videos, and location data.</p>
-                    </div>
-                    <div class="card">
-                        <div class="card-icon">🛡️</div>
-                        <h4>Police Response</h4>
-                        <p>Law enforcement can view, assign, and track incidents in real-time.</p>
-                    </div>
-                    <div class="card">
-                        <div class="card-icon">👥</div>
-                        <h4>Community Support</h4>
-                        <p>NGOs provide victim support and resources with privacy protection.</p>
-                    </div>
-                    <div class="card">
-                        <div class="card-icon">👁️</div>
-                        <h4>Neighborhood Watch</h4>
-                        <p>Stay informed about local incidents and build safer communities.</p>
-                    </div>
-                </div>
+    <h2>How PowerBack Works</h2>
+    <div class="work-cards">
+        <div class="card">
+            <div class="card-image card-report">
+                <img src="https://via.placeholder.com/400x250/FF6B35/FFFFFF?text=Report+Incidents" alt="Report Incidents" style="width: 100%; height: 100%; object-fit: cover;">
             </div>
+            <div class="card-content">
+                <div class="card-icon">⚠️</div>
+                <h4>Report Incidents</h4>
+                <p>Quickly report crimes and emergencies with photos, videos, and location data.</p>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-image card-police">
+                <img src="https://via.placeholder.com/400x250/2E5BFF/FFFFFF?text=Police+Response" alt="Police Response" style="width: 100%; height: 100%; object-fit: cover;">
+            </div>
+            <div class="card-content">
+                <div class="card-icon">🛡️</div>
+                <h4>Police Response</h4>
+                <p>Law enforcement can view, assign, and track incidents in real-time.</p>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-image card-community">
+                <img src="https://via.placeholder.com/400x250/FFD93D/000000?text=Community+Support" alt="Community Support" style="width: 100%; height: 100%; object-fit: cover;">
+            </div>
+            <div class="card-content">
+                <div class="card-icon">👥</div>
+                <h4>Community Support</h4>
+                <p>NGOs provide victim support and resources with privacy protection.</p>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-image card-neighborhood">
+                <img src="https://via.placeholder.com/400x250/6BCCF4/FFFFFF?text=Neighborhood+Watch" alt="Neighborhood Watch" style="width: 100%; height: 100%; object-fit: cover;">
+            </div>
+            <div class="card-content">
+                <div class="card-icon">👁️</div>
+                <h4>Neighborhood Watch</h4>
+                <p>Stay informed about local incidents and build safer communities.</p>
+            </div>
+        </div>
+    </div>
+</div>
             <div class="stakeholder-options">
                 <h2>Join as a Stakeholder</h2>
                 <div class="stakeholder-options">
