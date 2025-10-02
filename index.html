@@ -8,18 +8,16 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            /* Brand Colors */
-            --primary: 26 83% 55%;        /* Vibrant Orange */
+            --primary: 26 83% 55%;
             --primary-color: #FF6B35;
             --primary-foreground: 0 0% 100%;
-            --secondary: 217 91% 25%;    /* Deep Blue */
+            --secondary: 217 91% 25%;
             --secondary-color: #2E5BFF;
             --secondary-foreground: 0 0% 100%;
-            --accent: 142 76% 36%;        /* Green */
+            --accent: 142 76% 36%;
             --accent-foreground: 0 0% 100%;
             --destructive: 0 84% 60%;
             --destructive-foreground: 0 0% 100%;
-            /* Grayscale */
             --background: 0 0% 100%;
             --foreground: 222 47% 11%;
             --foreground-color: #1A1B3A;
@@ -32,10 +30,8 @@
             --border: 214 32% 91%;
             --input: 214 32% 91%;
             --ring: 217 91% 25%;
-            /* Layout */
             --radius: 0.75rem;
-            --shadow-card: 0 4px 6px -1px hsl(217 91% 25% / 0.1);
-            --shadow-elevated: 0 10px 25px -5px hsl(217 91% 25% / 0.15);
+            --shadow-card: 0 4px 6px -1px rgba(46, 91, 255, 0.1);
             --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
@@ -53,7 +49,6 @@
             }
         }
 
-        /* Layout */
         .container {
             max-width: 1200px;
             margin: 0 auto;
@@ -61,7 +56,6 @@
             width: 100%;
         }
 
-        /* Header & Navigation */
         header {
             background-color: hsl(var(--card));
             padding: 1rem 2rem;
@@ -150,7 +144,6 @@
             border: 1px solid hsl(var(--border));
         }
 
-        /* Sections */
         section {
             display: none;
             padding: 3rem 0;
@@ -160,7 +153,6 @@
             display: block;
         }
 
-        /* Hero & Tagline */
         .hero {
             text-align: center;
             padding: 3rem 0;
@@ -205,7 +197,6 @@
             flex-wrap: wrap;
         }
 
-        /* How PowerBack Works Cards */
         .work-cards {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -285,7 +276,6 @@
             font-weight: 600;
         }
 
-        /* Stakeholder Cards */
         .stakeholder-section {
             text-align: center;
             padding: 3rem 0;
@@ -335,7 +325,6 @@
             color: hsl(var(--secondary));
         }
 
-        /* Forms */
         .login-form, .register-form, .report-form {
             background-color: hsl(var(--card));
             padding: 2rem;
@@ -372,7 +361,6 @@
             border-color: transparent;
         }
 
-        /* Dashboard */
         .incident-list {
             background-color: hsl(var(--card));
             border-radius: var(--radius);
@@ -401,7 +389,6 @@
             border-bottom: none;
         }
 
-        /* Footer */
         footer {
             background-color: hsl(var(--card));
             text-align: center;
@@ -441,21 +428,21 @@
 
         /* About Section */
         .about {
-            padding: 4rem 0;
+            padding: 2rem 0;
             text-align: center;
         }
 
         .about h2 {
-            font-size: 3rem;
+            font-size: 2.5rem;
             font-weight: 700;
             margin-bottom: 1rem;
             color: var(--foreground-color);
         }
 
         .about .subtitle {
-            font-size: 1.25rem;
+            font-size: 1.125rem;
             color: #6B7280;
-            margin-bottom: 3rem;
+            margin-bottom: 2rem;
             max-width: 600px;
             margin-left: auto;
             margin-right: auto;
@@ -464,32 +451,32 @@
         .mission {
             text-align: left;
             max-width: 800px;
-            margin: 0 auto 4rem;
+            margin: 0 auto 3rem;
         }
 
         .mission h3 {
-            font-size: 2rem;
+            font-size: 1.75rem;
             font-weight: 700;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.25rem;
             color: var(--foreground-color);
         }
 
         .mission p {
-            font-size: 1.125rem;
+            font-size: 1.0625rem;
             color: #6B7280;
             margin-bottom: 1rem;
-            line-height: 1.7;
+            line-height: 1.65;
         }
 
         .how-it-works {
             background: linear-gradient(135deg, #FEF3C7 0%, #F59E0B 100%);
             border-radius: var(--radius);
-            padding: 3rem;
-            margin: 3rem 0;
+            padding: 2rem;
+            margin: 2rem 0;
         }
 
         .how-it-works h3 {
-            font-size: 2.5rem;
+            font-size: 2rem;
             font-weight: 700;
             text-align: center;
             margin-bottom: 2rem;
@@ -503,27 +490,29 @@
 
         .step {
             display: flex;
-            gap: 1.5rem;
-            margin-bottom: 2rem;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
             text-align: left;
         }
 
         .step-number {
             background-color: var(--secondary-color);
             color: white;
-            width: 2.5rem;
-            height: 2.5rem;
+            width: 2rem;
+            height: 2rem;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: 700;
-            font-size: 1.25rem;
+            font-size: 1rem;
             flex-shrink: 0;
+            margin-top: 0.25rem;
         }
 
         .step-content h4 {
-            font-size: 1.5rem;
+            font-size: 1.25rem;
             font-weight: 600;
             margin-bottom: 0.5rem;
             color: var(--foreground-color);
@@ -531,57 +520,57 @@
 
         .step-content p {
             color: #6B7280;
-            line-height: 1.6;
+            line-height: 1.55;
+            margin: 0;
         }
 
         .values {
-            padding: 4rem 0;
+            padding: 2rem 0;
             text-align: center;
         }
 
         .values h3 {
-            font-size: 2.5rem;
+            font-size: 2rem;
             font-weight: 700;
-            margin-bottom: 3rem;
+            margin-bottom: 2rem;
             color: var(--foreground-color);
         }
 
         .value-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
         }
 
         .value {
             background-color: white;
             border: 1px solid #E5E7EB;
             border-radius: var(--radius);
-            padding: 2rem;
+            padding: 1.5rem;
             box-shadow: var(--shadow-card);
             text-align: center;
         }
 
         .value-icon {
-            width: 60px;
-            height: 60px;
-            margin: 0 auto 1.5rem;
+            width: 50px;
+            height: 50px;
+            margin: 0 auto 1rem;
             fill: var(--secondary-color);
         }
 
         .value h4 {
-            font-size: 1.5rem;
+            font-size: 1.25rem;
             font-weight: 600;
-            margin-bottom: 1rem;
+            margin-bottom: 0.75rem;
             color: var(--foreground-color);
         }
 
         .value p {
             color: #6B7280;
-            line-height: 1.6;
+            line-height: 1.55;
         }
 
-        /* Responsive Adjustments */
         @media (max-width: 768px) {
             .hero h1 {
                 font-size: 2rem;
@@ -591,14 +580,16 @@
                 font-size: 2rem;
             }
 
+            .mission h3 {
+                font-size: 1.5rem;
+            }
+
             .how-it-works {
-                padding: 2rem 1.5rem;
+                padding: 1.5rem;
             }
 
             .step {
-                flex-direction: column;
-                text-align: center;
-                align-items: center;
+                flex-direction: row;
             }
 
             .value-grid {
@@ -987,20 +978,18 @@
             <span>PowerBack</span>
         </div>
         <p>Empowering communities through transparent incident reporting</p>
-        <div class="footer-links">
+        <div class="footer-links" id="footerLinks">
             <a onclick="showSection('about')">About</a>
         </div>
         <p>© 2025 PowerBack. All rights reserved.</p>
     </footer>
     <script>
-        // Show the specified section and hide others
         function showSection(sectionId) {
             document.querySelectorAll('section').forEach(section => {
                 section.classList.remove('active');
             });
             document.getElementById(sectionId).classList.add('active');
 
-            // Toggle profile avatar based on login state
             const profileAvatar = document.getElementById('profileAvatar');
             if (sectionId === 'dashboard' || sectionId === 'report') {
                 profileAvatar.classList.add('logged-in');
@@ -1008,7 +997,6 @@
                 profileAvatar.classList.remove('logged-in');
             }
 
-            // Update navigation for protected routes
             const navIcons = document.querySelector('.nav-icons');
             if (sectionId === 'dashboard' || sectionId === 'report') {
                 navIcons.innerHTML = `
@@ -1022,18 +1010,23 @@
                     <div class="profile-avatar" id="profileAvatar"></div>
                 `;
             }
+
+            // Hide "About" link in footer if "About" section is active
+            const footerLinks = document.getElementById('footerLinks');
+            if (sectionId === 'about') {
+                footerLinks.style.display = 'none';
+            } else {
+                footerLinks.style.display = 'flex';
+            }
         }
 
-        // Handle form submissions
         document.querySelectorAll('form').forEach(form => {
             form.addEventListener('submit', function(e) {
                 e.preventDefault();
-                alert('Form submitted! This will connect to your backend.');
-                // Add your form submission logic here
+                alert('Form submitted!');
             });
         });
 
-        // Initialize with home section
         showSection('home');
     </script>
 </body>
