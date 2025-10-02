@@ -14,12 +14,6 @@
             --white: #ffffff;
             --shadow: 0 2px 4px rgba(0,0,0,0.1);
             --radius: 0.5rem;
-            --bg: #f6f8fb;
-            --card: #ffffff;
-            --muted: #6b7280;
-            --accent: #0d47a1;
-            --danger: #dc2626;
-            --success: #059669;
         }
         * {
             margin: 0;
@@ -74,11 +68,6 @@
             border-radius: var(--radius);
             text-decoration: none;
             cursor: pointer;
-        }
-        .btn.ghost {
-            background: transparent;
-            color: var(--accent);
-            border: 1px solid rgba(13, 71, 161, 0.08);
         }
         main {
             padding: 2rem 0;
@@ -357,157 +346,21 @@
             margin-bottom: 1rem;
             font-weight: 600;
         }
-        /* SafetyHub-specific styles */
-        .app-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 12px;
-            padding: 14px 16px;
-            background: var(--card);
-            border-radius: var(--radius);
-            box-shadow: 0 6px 20px rgba(2, 6, 23, 0.06);
-        }
-        .brand {
-            display: flex;
-            gap: 12px;
-            align-items: center;
-        }
-        .logo {
-            width: 48px;
-            height: 48px;
-            border-radius: 8px;
-            background: var(--accent);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: 700;
-            font-size: 18px;
-        }
-        .brand h1 {
-            margin: 0;
-            font-size: 18px;
-        }
-        .muted {
-            color: var(--muted);
-            font-size: 13px;
-        }
-        .top-actions {
-            display: flex;
-            gap: 8px;
-            align-items: center;
-        }
-        .badge {
-            background: #eef2ff;
-            color: var(--accent);
-            border-radius: 8px;
-            padding: 6px 8px;
-            font-size: 13px;
-        }
-        .tabs {
-            display: flex;
-            gap: 8px;
-            margin-bottom: 10px;
-        }
-        .tab {
-            padding: 6px 10px;
-            border-radius: 8px;
-            background: #f1f5f9;
-            cursor: pointer;
-            font-weight: 600;
-            color: #0f172a;
-        }
-        .tab.active {
-            background: var(--accent);
-            color: white;
-        }
-        .dashboard {
-            display: grid;
-            grid-template-columns: 1fr 360px;
-            gap: 16px;
-        }
-        .panel {
-            padding: 12px;
-            border-radius: 10px;
-            background: var(--card);
-            border: 1px solid rgba(2, 6, 23, 0.03);
-        }
-        .section-title {
-            font-weight: 700;
-            margin: 0 0 8px 0;
-        }
-        ul.list {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-        li.item {
-            display: flex;
-            justify-content: space-between;
-            gap: 12px;
-            padding: 10px;
-            border-radius: 8px;
-            background: #fbfdff;
-            border: 1px solid #eef2ff;
-        }
-        .row {
-            display: flex;
-            gap: 8px;
-            align-items: center;
-        }
-        .small {
-            font-size: 13px;
-            color: var(--muted);
-        }
-        .sos {
-            background: var(--danger);
-            color: white;
-            padding: 12px;
-            border-radius: 10px;
-            text-align: center;
-            font-weight: 800;
-        }
-        .map {
-            height: 220px;
-            border-radius: 8px;
-            background: linear-gradient(180deg, #e6eefc, #f8fbff);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--muted);
-        }
-        @media (max-width: 980px) {
-            .dashboard {
-                grid-template-columns: 1fr;
-            }
-            header.app-header {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 8px;
-            }
-        }
-        .hidden {
-            display: none !important;
-        }
     </style>
 </head>
 <body>
-    <header class="app-header">
-        <div class="brand">
-            <div class="logo">PB</div>
-            <div>
-                <h1>PowerBack</h1>
-                <div class="muted">Empowering Communities, Supporting Justice</div>
+    <header>
+        <nav class="container">
+            <div class="logo">
+                <img src="placeholder.img" alt="PowerBack Logo placeholder" style="width: 24px; height: 24px;">
+                <span>PowerBack</span>
             </div>
-        </div>
-        <nav class="top-actions">
-            <div id="user-info" class="muted">Not signed in</div>
-            <button id="btn-logout" class="btn ghost hidden" onclick="logout()">Logout</button>
-            <button id="btn-profile" class="btn ghost hidden" onclick="openProfile()">Profile</button>
+            <ul>
+                <li><a onclick="showSection('home')">Home</a></li>
+                <li><a onclick="showSection('about')">About</a></li>
+                <li><a onclick="showSection('login')">Login</a></li>
+                <li><a onclick="showSection('register')" class="btn">Get Started</a></li>
+            </ul>
         </nav>
     </header>
 
@@ -652,10 +505,6 @@
                         <button type="submit" class="btn-primary">Sign In</button>
                     </form>
                     <p>Don't have an account? <a onclick="showSection('register')">Sign up</a></p>
-                    <div style="margin-top: 12px; display: flex; gap: 8px; justify-content: center;">
-                        <button class="btn ghost" onclick="demoLogin('citizen')">Demo Citizen</button>
-                        <button class="btn ghost" onclick="demoLogin('police')">Demo Police</button>
-                    </div>
                 </div>
             </div>
         </section>
@@ -677,9 +526,6 @@
                             <option value="ngo">NGO</option>
                             <option value="watch">Community Watch</option>
                         </select>
-                        <div style="margin-top: 6px;">
-                            <label><input type="checkbox" required> I accept Terms, Privacy & POPIA consent</label>
-                        </div>
                         <button type="submit" class="btn-primary">Register</button>
                     </form>
                     <p>Already have an account? <a onclick="showSection('login')">Sign in</a></p>
@@ -726,11 +572,11 @@
         </section>
 
         <!-- Dashboard Section -->
-        <section id="dashboard" class="hidden">
+        <section id="dashboard">
             <div class="dashboard">
                 <div class="dashboard-content">
                     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
-                        <h2 id="dash-title">Dashboard</h2>
+                        <h2>Dashboard</h2>
                         <button onclick="showSection('report')" class="btn-primary">Report New Incident</button>
                     </div>
                     <div class="dashboard-cards">
@@ -751,252 +597,38 @@
                             <p>12</p>
                         </div>
                     </div>
-                    <!-- CITIZEN VIEW -->
-                    <div id="view-citizen" class="panel">
-                        <h3 class="section-title">Citizen — Home / Safety Feed</h3>
-                        <div style="margin-top:8px;">
-                            <div class="small">Safety Feed (local incidents & alerts)</div>
-                            <ul id="cit-feed" class="list" style="margin-top:8px">
-                                <li class="item">
-                                    <div>
-                                        <strong>Example: Robbery</strong>
-                                        <div class="small">Main st — 2 mins ago</div>
-                                    </div>
-                                    <div class="small">Unverified</div>
-                                </li>
-                            </ul>
+                    <div class="incident-list">
+                        <div class="incident-header">
+                            <div>Incident</div>
+                            <div>Category</div>
+                            <div>Status</div>
+                            <div>Date</div>
                         </div>
-                        <div style="margin-top:12px;">
-                            <div class="sos" onclick="triggerSOS()">🚨 ONE-TAP SOS</div>
+                        <div class="incident-item">
+                            <div>Theft on Main St</div>
+                            <div>Theft</div>
+                            <div>Open</div>
+                            <div>2025-09-28</div>
                         </div>
-                        <div style="margin-top:14px;">
-                            <h4 class="small">Full Report Crime Form</h4>
-                            <div style="display:grid; gap:8px; margin-top:8px;">
-                                <label class="small">Category</label>
-                                <select id="cit-category" class="input">
-                                    <option>GBV</option>
-                                    <option>Rape</option>
-                                    <option>Robbery</option>
-                                    <option>Hostage</option>
-                                    <option>Theft</option>
-                                    <option>Assault</option>
-                                    <option>Other</option>
-                                </select>
-                                <label class="small">Description</label>
-                                <textarea id="cit-description" class="input" placeholder="Detailed description..."></textarea>
-                                <label class="small">Tags (comma separated)</label>
-                                <input id="cit-tags" class="input" placeholder="e.g., evening, suspect-white-shirt">
-                                <label class="small">Attach media (photo/video/audio)</label>
-                                <input id="cit-media" type="file" accept="image/*,video/*,audio/*" class="input">
-                                <div class="row">
-                                    <button class="btn" onclick="submitCitizenReport()">Submit report</button>
-                                    <button class="btn ghost" onclick="saveCitizenDraft()">Save draft</button>
-                                </div>
-                            </div>
+                        <div class="incident-item">
+                            <div>Vandalism at Park</div>
+                            <div>Vandalism</div>
+                            <div>Resolved</div>
+                            <div>2025-09-27</div>
                         </div>
-                        <div style="margin-top:14px;">
-                            <h4 class="small">Map view</h4>
-                            <div class="map" id="cit-map">Map placeholder (auto GPS + manual pin drop)</div>
+                        <div class="incident-item">
+                            <div>Suspicious Activity</div>
+                            <div>Other</div>
+                            <div>Open</div>
+                            <div>2025-09-26</div>
                         </div>
-                        <div style="margin-top:14px;">
-                            <h4 class="small">My Reports (history & status)</h4>
-                            <ul id="cit-reports" class="list" style="margin-top:8px">
-                                <li class="item">
-                                    <div>
-                                        <strong>Example: Theft</strong>
-                                        <div class="small">Park — Submitted</div>
-                                    </div>
-                                    <div class="small">View</div>
-                                </li>
-                            </ul>
-                        </div>
-                        <div style="margin-top:14px;">
-                            <h4 class="small">Notifications</h4>
-                            <ul id="cit-notifications" class="list" style="margin-top:8px">
-                                <li class="item">
-                                    <div>
-                                        <div class="small">Nearby alert: Robbery on Main St</div>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                        <div style="margin-top:14px;">
-                            <h4 class="small">Profile & Verification Status</h4>
-                            <div class="small">Verification: <span id="cit-verify-status">Not verified</span></div>
-                            <div style="margin-top:8px;">
-                                <button class="btn ghost" onclick="openProfile()">Open profile</button>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- POLICE VIEW -->
-                    <div id="view-police" class="panel hidden">
-                        <h3 class="section-title">Police — Live Incident Feed & Case Management</h3>
-                        <div style="margin-top:8px;">
-                            <div class="small">Live Incident Feed</div>
-                            <ul id="pol-feed" class="list" style="margin-top:8px">
-                                <li class="item">
-                                    <div>
-                                        <strong>Robbery — Main St</strong>
-                                        <div class="small">time, severity</div>
-                                    </div>
-                                    <div class="small">New</div>
-                                </li>
-                            </ul>
-                        </div>
-                        <div style="margin-top:12px;">
-                            <h4 class="small">Interactive Map</h4>
-                            <div class="map" id="pol-map">Map placeholder (filters by precinct/time/type)</div>
-                        </div>
-                        <div style="margin-top:12px;">
-                            <h4 class="small">Case Detail Panel</h4>
-                            <div class="small">Select a case to see metadata and evidence viewer (placeholder)</div>
-                        </div>
-                        <div style="margin-top:12px;">
-                            <h4 class="small">Case Management Workflow</h4>
-                            <div style="display:flex; gap:8px; margin-top:8px; overflow:auto">
-                                <div style="min-width:140px; padding:8px; border-radius:8px; background:#fbfdff">New</div>
-                                <div style="min-width:140px; padding:8px; border-radius:8px; background:#fbfdff">Assigned</div>
-                                <div style="min-width:140px; padding:8px; border-radius:8px; background:#fbfdff">En Route</div>
-                                <div style="min-width:140px; padding:8px; border-radius:8px; background:#fbfdff">On Scene</div>
-                                <div style="min-width:140px; padding:8px; border-radius:8px; background:#fbfdff">Investigating</div>
-                                <div style="min-width:140px; padding:8px; border-radius:8px; background:#fbfdff">Closed</div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- NGO VIEW -->
-                    <div id="view-ngo" class="panel hidden">
-                        <h3 class="section-title">NGO — Victim Support & Case Management</h3>
-                        <div style="margin-top:8px;">
-                            <div class="small">Filtered Case Feed (e.g., GBV)</div>
-                            <ul id="ngo-feed" class="list" style="margin-top:8px">
-                                <li class="item">
-                                    <div>
-                                        <strong>GBV case</strong>
-                                        <div class="small">time & short summary</div>
-                                    </div>
-                                    <div class="small">Consent: No</div>
-                                </li>
-                            </ul>
-                        </div>
-                        <div style="margin-top:12px;">
-                            <h4 class="small">Victim Support Tools</h4>
-                            <div class="small">Secure chat placeholder, private notes, helpline dialing, referral list</div>
-                            <div style="margin-top:6px;">
-                                <button class="btn ghost" onclick="alert('Open secure chat (implement backend / websocket)')">Open secure chat</button>
-                            </div>
-                        </div>
-                        <div style="margin-top:12px;">
-                            <h4 class="small">Consent Management</h4>
-                            <div class="small">Show which victims consented to NGO contact</div>
-                        </div>
-                    </div>
-                    <!-- WATCH VIEW -->
-                    <div id="view-watch" class="panel hidden">
-                        <h3 class="section-title">Neighborhood Watch — Local Coordination</h3>
-                        <div style="margin-top:8px;">
-                            <div class="small">Local Alerts Feed (verified only)</div>
-                            <ul id="watch-feed" class="list" style="margin-top:8px">
-                                <li class="item">
-                                    <div>
-                                        <strong>Verified alert</strong>
-                                        <div class="small">street • time</div>
-                                    </div>
-                                    <div class="small">Verified</div>
-                                </li>
-                            </ul>
-                        </div>
-                        <div style="margin-top:12px;">
-                            <h4 class="small">Patrol Scheduler & Check-in</h4>
-                            <div class="small">Schedule placeholder — allow volunteers to check in</div>
-                        </div>
-                        <div style="margin-top:12px;">
-                            <h4 class="small">Group Chat & Member Roster</h4>
-                            <div class="small">Group chat placeholder & member roles</div>
-                        </div>
-                    </div>
-                </div>
-                <!-- RIGHT-SIDE (context / quick actions / map) -->
-                <aside>
-                    <div class="panel">
-                        <div class="small">Search & Filter</div>
-                        <div style="margin-top:6px;">
-                            <input id="search-q" class="input" placeholder="Search by date, type, location..." oninput="console.log('search: ', this.value)">
-                        </div>
-                    </div>
-                    <div class="panel" style="margin-top:12px;">
-                        <div class="small">Nearby / Hotspots</div>
-                        <div id="nearby" style="margin-top:8px;">
-                            <div class="small">Hotspot heatmap placeholder</div>
-                            <div class="map" style="height:120px;">Hotspot Heatmap Placeholder</div>
-                        </div>
-                    </div>
-                    <div class="panel" style="margin-top:12px;">
-                        <div class="small">Quick Actions</div>
-                        <div style="display:flex; flex-direction:column; gap:8px; margin-top:8px;">
-                            <button class="btn" onclick="triggerSOS()">One-tap SOS</button>
-                            <button class="btn ghost" onclick="openDrafts()">Open drafts</button>
-                            <button class="btn ghost" onclick="openExports()">Export (PDF)</button>
-                        </div>
-                    </div>
-                    <div class="panel" style="margin-top:12px;">
-                        <div class="small">Notifications</div>
-                        <ul id="global-notifs" class="list" style="margin-top:8px;">
-                            <li class="item">
-                                <div>
-                                    <div class="small">Example notification</div>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </aside>
-            </div>
-        </section>
-
-        <!-- Profile Section -->
-        <section id="profile" class="hidden">
-            <div class="panel">
-                <h3>Profile & Verification</h3>
-                <div style="display:grid; gap:8px; margin-top:8px;">
-                    <div>
-                        <label class="small">Full name</label>
-                        <input id="profile-fullname" class="input" type="text">
-                    </div>
-                    <div>
-                        <label class="small">ID / Passport</label>
-                        <input id="profile-id" class="input" type="text" placeholder="ID or passport number">
-                    </div>
-                    <div style="display:flex; gap:8px;">
-                        <div style="flex:1;">
-                            <label class="small">Phone (OTP)</label>
-                            <input id="profile-phone" class="input" type="text" placeholder="+27...">
-                        </div>
-                        <div style="width:140px;">
-                            <label class="small">DOB</label>
-                            <input id="profile-dob" class="input" type="date">
-                        </div>
-                    </div>
-                    <div>
-                        <label class="small">Address</label>
-                        <input id="profile-address" class="input" type="text">
-                    </div>
-                    <div>
-                        <label class="small">Upload Government ID</label>
-                        <input id="profile-id-file" class="input" type="file" accept="image/*,application/pdf">
-                    </div>
-                    <div>
-                        <label class="small">Upload Selfie for face-match</label>
-                        <input id="profile-selfie-file" class="input" type="file" accept="image/*">
-                    </div>
-                    <div style="display:flex; gap:8px;">
-                        <button class="btn" onclick="saveProfile()">Save Profile</button>
-                        <button class="btn ghost" onclick="closeProfile()">Close</button>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- Logout Section -->
-        <section id="logout" class="hidden">
+        <section id="logout">
             <div style="display: flex; justify-content: center; padding: 3rem 0;">
                 <div class="logout-message">
                     <h2>You have been logged out</h2>
@@ -1021,14 +653,12 @@
         function showSection(sectionId) {
             document.querySelectorAll('section').forEach(section => {
                 section.classList.remove('active');
-                section.classList.add('hidden');
             });
-            document.getElementById(sectionId).classList.remove('hidden');
             document.getElementById(sectionId).classList.add('active');
 
             // Update navigation for protected routes
             const nav = document.querySelector('nav ul');
-            if (sectionId === 'dashboard' || sectionId === 'report' || sectionId === 'profile') {
+            if (sectionId === 'dashboard' || sectionId === 'report') {
                 nav.innerHTML = `
                     <li><a onclick="showSection('home')">Home</a></li>
                     <li><a onclick="showSection('dashboard')">Dashboard</a></li>
@@ -1049,133 +679,12 @@
             form.addEventListener('submit', function(e) {
                 e.preventDefault();
                 alert('Form submitted! This will connect to your backend.');
+                // Add your form submission logic here
             });
         });
 
         // Initialize with home section
         showSection('home');
-
-        // ========== STATE ==========
-        let state = {
-            user: null,
-            token: null,
-            draftsKey: "sh_drafts_v1",
-            offlineQKey: "sh_offline_v1",
-            currentLocation: null
-        };
-
-        // ========== AUTH UI ==========
-        function showAuth(mode) {
-            showSection(mode);
-        }
-
-        // ========== DEMO LOGIN (work offline for front-end dev) ==========
-        function demoLogin(role) {
-            const user = { id: "demo-"+role, name: "Demo "+role.charAt(0).toUpperCase()+role.slice(1), role, verified: false };
-            state.user = user;
-            state.token = "demo-"+Date.now();
-            localStorage.setItem("sh_demo_user", JSON.stringify(user));
-            showDashboardFor(role);
-        }
-
-        // ========== LOGIN / SIGNUP (placeholders) ==========
-        async function handleLogin() {
-            const email = document.querySelector("#login-panel input[type='email']").value.trim();
-            const password = document.querySelector("#login-panel input[type='password']").value;
-            if (!email || !password) return alert("Enter email & password");
-            alert("Login placeholder — implement backend call.");
-            demoLogin("citizen");
-        }
-
-        async function handleSignup() {
-            const name = document.querySelector("#signup-panel input[type='text']").value.trim();
-            const email = document.querySelector("#signup-panel input[type='email']").value.trim();
-            const pass = document.querySelector("#signup-panel input[type='password']").value;
-            const role = document.querySelector("#signup-panel select").value;
-            const consent = document.querySelector("#signup-panel input[type='checkbox']").checked;
-            if (!name || !email || !pass) return alert("Complete signup fields");
-            if (!consent) return alert("You must accept terms & privacy (POPIA)");
-            alert("Signup placeholder — implement backend call.");
-            demoLogin(role);
-        }
-
-        function logout() {
-            state.user = null;
-            state.token = null;
-            localStorage.removeItem("sh_demo_user");
-            showSection('home');
-            alert("Logged out (frontend only).");
-        }
-
-        // ========== DASHBOARD ROUTING ==========
-        function showDashboardFor(role) {
-            showSection('dashboard');
-            document.getElementById("dash-title").textContent = role.charAt(0).toUpperCase() + role.slice(1) + " Dashboard";
-            document.querySelector("#user-info").textContent = state.user ? (state.user.name + " • " + role) : ("Demo • " + role);
-            document.querySelector("#btn-logout").classList.remove("hidden");
-            document.querySelector("#btn-profile").classList.remove("hidden");
-            ["view-citizen", "view-police", "view-ngo", "view-watch"].forEach(id => document.getElementById(id).classList.add("hidden"));
-            document.getElementById("view-" + role).classList.remove("hidden");
-            hide(document.querySelector("#profile"));
-            seedRoleData(role);
-        }
-
-        // ========== SEED / PLACEHOLDER DATA ==========
-        function seedRoleData(role) {
-            if (role === "citizen") {
-                document.querySelector("#cit-feed").innerHTML = `
-                    <li class="item">
-                        <div>
-                            <strong>Robbery</strong>
-                            <div class="small">Main St • 5m ago</div>
-                        </div>
-                        <div class="small">Unverified</div>
-                    </li>
-                `;
-            }
-        }
-
-        // ========== PROFILE PANEL ==========
-        function openProfile() {
-            showSection('profile');
-            const demo = JSON.parse(localStorage.getItem("sh_demo_user") || "null");
-            if (demo) {
-                document.querySelector("#profile-fullname").value = demo.name || "";
-            }
-        }
-
-        function closeProfile() {
-            showSection('dashboard');
-        }
-
-        function saveProfile() {
-            alert("Save profile placeholder (implement POST/PUT to backend).");
-            closeProfile();
-        }
-
-        // ========== CITIZEN ACTIONS ==========
-        function submitCitizenReport() {
-            const desc = document.querySelector("#cit-description").value.trim();
-            if (!desc) return alert("Please add a description.");
-            alert("Report saved locally (scaffold). Replace with fetch() to backend when ready.");
-        }
-
-        function saveCitizenDraft() {
-            alert("Draft saved locally.");
-        }
-
-        function openDrafts() {
-            alert("Open drafts placeholder.");
-        }
-
-        // ========== POLICE ACTIONS ==========
-        function triggerSOS() {
-            alert("SOS triggered (placeholder).");
-        }
-
-        function openExports() {
-            alert("Export placeholder — implement backend-side PDF generation.");
-        }
     </script>
 </body>
 </html>
