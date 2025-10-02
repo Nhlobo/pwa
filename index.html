@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PowerBack - Empowering Communities, Supporting Justice</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1e3a8a;
+            --secondary: #f97316;
+            --light: #f8f9fa;
+            --gray: #6b7280;
+            --white: #ffffff;
+            --shadow: 0 2px 4px rgba(0,0,0,0.1);
+            --radius: 0.5rem;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+        body {
+            background-color: var(--light);
+            color: #333;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+        header {
+            background: var(--white);
+            padding: 1rem 2rem;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 600;
+            font-size: 1.2rem;
+        }
+        nav ul {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+        }
+        nav a {
+            text-decoration: none;
+            color: #333;
+            cursor: pointer;
+        }
+        .btn {
+            background: var(--primary);
+            color: var(--white);
+            padding: 0.5rem 1rem;
+            border-radius: var(--radius);
+            text-decoration: none;
+            cursor: pointer;
+        }
+        main {
+            padding: 2rem 0;
+        }
+        section {
+            display: none;
+            padding: 2rem 0;
+        }
+        section.active {
+            display: block;
+        }
+        .hero {
+            text-align: center;
+        }
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        .tagline {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        .tag {
+            background: #e0f2fe;
+            color: #0369a1;
+            padding: 0.25rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.875rem;
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+        .tagline h2 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+        .tagline .description {
+            font-size: 1.125rem;
+            color: var(--gray);
+            margin-bottom: 2rem;
+        }
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
+        .btn-primary {
+            background: var(--secondary);
+            color: var(--white);
+            padding: 0.75rem 1.5rem;
+            border-radius: var(--radius);
+            text-decoration: none;
+            font-weight: 500;
+            cursor: pointer;
+        }
+        .btn-secondary {
+            background: var(--white);
+            color: #333;
+            padding: 0.75rem 1.5rem;
+            border-radius: var(--radius);
+            text-decoration: none;
+            border: 1px solid #d1d5db;
+            cursor: pointer;
+        }
+        .stakeholder-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        .option {
+            background: var(--white);
+            padding: 1.5rem;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            text-align: center;
+        }
+        .option h3 {
+            margin-bottom: 0.5rem;
+        }
+        .how-powerback-works h2 {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        .work-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+        .card {
+            background: var(--white);
+            padding: 1.5rem;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+        }
+        .card-icon {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        .login, .register {
+            display: flex;
+            justify-content: center;
+        }
+        .login-form, .register-form {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: var(--radius);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 400px;
+        }
+        .login-form h3, .register-form h3 {
+            margin-bottom: 0.5rem;
+        }
+        .login-form p, .register-form p {
+            color: var(--gray);
+            margin-bottom: 1.5rem;
+        }
+        .login-form input, .register-form input, .register-form select {
+            width: 100%;
+            padding: 0.75rem;
+            margin-bottom: 1rem;
+            border: 1px solid #d1d5db;
+            border-radius: var(--radius);
+        }
+        .about {
+            text-align: center;
+        }
+        .about h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        .mission {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: left;
+        }
+        .mission h3 {
+            margin-bottom: 1rem;
+        }
+        .values {
+            text-align: center;
+        }
+        .values h2 {
+            margin-bottom: 2rem;
+        }
+        .value-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+        .value {
+            background: var(--white);
+            padding: 1.5rem;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+        }
+        .value .icon {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        .how-it-works h2 {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+        .step {
+            background: var(--white);
+            padding: 1.5rem;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+        }
+        .step-number {
+            background: var(--primary);
+            color: var(--white);
+            width: 2rem;
+            height: 2rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+        }
+        .report, .dashboard {
+            display: flex;
+            justify-content: center;
+        }
+        .report-form, .dashboard-content {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            width: 100%;
+            max-width: 600px;
+        }
+        .report-form h2, .dashboard-content h2 {
+            margin-bottom: 1rem;
+        }
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+        .form-group input, .form-group textarea, .form-group select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #d1d5db;
+            border-radius: var(--radius);
+        }
+        .dashboard-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .dashboard-card {
+            background: var(--white);
+            padding: 1.5rem;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            text-align: center;
+        }
+        .incident-list {
+            background: var(--white);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            margin-top: 2rem;
+        }
+        .incident-header {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            padding: 1rem;
+            background: var(--primary);
+            color: var(--white);
+            font-weight: 600;
+        }
+        .incident-item {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            padding: 1rem;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        .incident-item:last-child {
+            border-bottom: none;
+        }
+        .logout-message {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            max-width: 500px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .logout-message h2 {
+            margin-bottom: 1rem;
+        }
+        footer {
+            background: var(--white);
+            text-align: center;
+            padding: 2rem;
+            border-top: 1px solid #e5e7eb;
+        }
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            justify-content: center;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">
+                <img src="placeholder.img" alt="PowerBack Logo placeholder" style="width: 24px; height: 24px;">
+                <span>PowerBack</span>
+            </div>
+            <ul>
+                <li><a onclick="showSection('home')">Home</a></li>
+                <li><a onclick="showSection('about')">About</a></li>
+                <li><a onclick="showSection('login')">Login</a></li>
+                <li><a onclick="showSection('register')" class="btn">Get Started</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container">
+        <!-- Home Section -->
+        <section id="home" class="active">
+            <div class="hero">
+                <p class="tag">Empowering Communities, Supporting Justice</p>
+                <h1>Your Voice for Safer Communities</h1>
+                <p class="description">
+                    PowerBack connects citizens, law enforcement, NGOs, and community watch groups to create a transparent, efficient system for reporting and responding to incidents.
+                </p>
+                <div class="cta-buttons">
+                    <a onclick="showSection('report')" class="btn-primary">Report an incident ↗</a>
+                    <a onclick="showSection('login')" class="btn-secondary">Sign In</a>
+                </div>
+            </div>
+
+            <div class="how-powerback-works">
+                <h2>How PowerBack Works</h2>
+                <div class="work-cards">
+                    <div class="card">
+                        <div class="card-icon">⚠️</div>
+                        <h4>Report Incidents</h4>
+                        <p>Quickly report crimes and emergencies with photos, videos, and location data.</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">🛡️</div>
+                        <h4>Police Response</h4>
+                        <p>Law enforcement can view, assign, and track incidents in real-time.</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">👥</div>
+                        <h4>Community Support</h4>
+                        <p>NGOs provide victim support and resources with privacy protection.</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">👁️</div>
+                        <h4>Neighborhood Watch</h4>
+                        <p>Stay informed about local incidents and build safer communities.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="stakeholder-options">
+                <h2>Join as a Stakeholder</h2>
+                <div class="stakeholder-options">
+                    <div class="option">
+                        <h3>Citizen</h3>
+                        <p>Report incidents and track your submissions</p>
+                    </div>
+                    <div class="option">
+                        <h3>Police</h3>
+                        <p>Manage and respond to incidents</p>
+                    </div>
+                    <div class="option">
+                        <h3>NGO</h3>
+                        <p>Provide support and resources to victims</p>
+                    </div>
+                    <div class="option">
+                        <h3>Watch</h3>
+                        <p>Monitor and share community safety updates</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about">
+            <div class="about">
+                <h2>About PowerBack</h2>
+                <p class="subtitle">A comprehensive platform connecting communities with safety and justice systems</p>
+                <div class="mission">
+                    <h3>Our Mission</h3>
+                    <p>PowerBack was created to bridge the gap between citizens and the institutions designed to protect them. We believe that effective public safety requires transparency, accountability, and seamless communication between all stakeholders.</p>
+                    <p>By providing a secure, efficient platform for incident reporting and response, we empower communities to take an active role in their own safety while ensuring law enforcement and support organizations have the tools they need to serve effectively.</p>
+                </div>
+            </div>
+
+            <div class="values">
+                <h2>Our Values</h2>
+                <div class="value-grid">
+                    <div class="value">
+                        <div class="icon">🛡️</div>
+                        <h4>Trust & Transparency</h4>
+                        <p>Building confidence through clear, accountable incident reporting and response systems.</p>
+                    </div>
+                    <div class="value">
+                        <div class="icon">🎯</div>
+                        <h4>Efficiency</h4>
+                        <p>Streamlining communication between citizens, law enforcement, and support organizations.</p>
+                    </div>
+                    <div class="value">
+                        <div class="icon">👥</div>
+                        <h4>Community First</h4>
+                        <p>Empowering communities to actively participate in creating safer neighborhoods.</p>
+                    </div>
+                    <div class="value">
+                        <div class="icon">❤️</div>
+                        <h4>Victim Support</h4>
+                        <p>Connecting those in need with resources and assistance through NGO partnerships.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="how-it-works">
+                <h2>How It Works</h2>
+                <div class="steps">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <h4>Report</h4>
+                        <p>Citizens report incidents with photos, videos, and location data through our secure platform.</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <h4>Respond</h4>
+                        <p>Law enforcement receives real-time alerts and can assign, track, and update incident status.</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <h4>Support</h4>
+                        <p>NGOs provide resources and assistance to victims with appropriate privacy protections.</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">4</div>
+                        <h4>Inform</h4>
+                        <p>Community watch groups keep neighborhoods informed and engaged in local safety efforts.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Login Section -->
+        <section id="login">
+            <div class="login">
+                <div class="login-form">
+                    <h3>Welcome Back</h3>
+                    <p>Sign in to your PowerBack account</p>
+                    <form>
+                        <input type="email" placeholder="your@email.com" required>
+                        <input type="password" placeholder="Password" required>
+                        <button type="submit" class="btn-primary">Sign In</button>
+                    </form>
+                    <p>Don't have an account? <a onclick="showSection('register')">Sign up</a></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Register Section -->
+        <section id="register">
+            <div class="register">
+                <div class="register-form">
+                    <h3>Create an Account</h3>
+                    <p>Join PowerBack as a stakeholder</p>
+                    <form>
+                        <input type="text" placeholder="Full Name" required>
+                        <input type="email" placeholder="your@email.com" required>
+                        <input type="password" placeholder="Password" required>
+                        <select required>
+                            <option value="" disabled selected>Select your role</option>
+                            <option value="citizen">Citizen</option>
+                            <option value="police">Police</option>
+                            <option value="ngo">NGO</option>
+                            <option value="watch">Community Watch</option>
+                        </select>
+                        <button type="submit" class="btn-primary">Register</button>
+                    </form>
+                    <p>Already have an account? <a onclick="showSection('login')">Sign in</a></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Report Incident Section -->
+        <section id="report">
+            <div class="report">
+                <div class="report-form">
+                    <h2>Report an Incident</h2>
+                    <form>
+                        <div class="form-group">
+                            <label for="title">Incident Title</label>
+                            <input type="text" id="title" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="description">Description</label>
+                            <textarea id="description" rows="4" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="location">Location</label>
+                            <input type="text" id="location" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="category">Category</label>
+                            <select id="category" required>
+                                <option value="" disabled selected>Select category</option>
+                                <option value="theft">Theft</option>
+                                <option value="violence">Violence</option>
+                                <option value="vandalism">Vandalism</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="media">Upload Media (Photos/Videos)</label>
+                            <input type="file" id="media" accept="image/*,video/*" multiple>
+                        </div>
+                        <button type="submit" class="btn-primary">Submit Report</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- Dashboard Section -->
+        <section id="dashboard">
+            <div class="dashboard">
+                <div class="dashboard-content">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+                        <h2>Dashboard</h2>
+                        <button onclick="showSection('report')" class="btn-primary">Report New Incident</button>
+                    </div>
+                    <div class="dashboard-cards">
+                        <div class="dashboard-card">
+                            <h4>Total Incidents</h4>
+                            <p>124</p>
+                        </div>
+                        <div class="dashboard-card">
+                            <h4>Open Cases</h4>
+                            <p>34</p>
+                        </div>
+                        <div class="dashboard-card">
+                            <h4>Resolved Cases</h4>
+                            <p>90</p>
+                        </div>
+                        <div class="dashboard-card">
+                            <h4>Your Reports</h4>
+                            <p>12</p>
+                        </div>
+                    </div>
+                    <div class="incident-list">
+                        <div class="incident-header">
+                            <div>Incident</div>
+                            <div>Category</div>
+                            <div>Status</div>
+                            <div>Date</div>
+                        </div>
+                        <div class="incident-item">
+                            <div>Theft on Main St</div>
+                            <div>Theft</div>
+                            <div>Open</div>
+                            <div>2025-09-28</div>
+                        </div>
+                        <div class="incident-item">
+                            <div>Vandalism at Park</div>
+                            <div>Vandalism</div>
+                            <div>Resolved</div>
+                            <div>2025-09-27</div>
+                        </div>
+                        <div class="incident-item">
+                            <div>Suspicious Activity</div>
+                            <div>Other</div>
+                            <div>Open</div>
+                            <div>2025-09-26</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Logout Section -->
+        <section id="logout">
+            <div style="display: flex; justify-content: center; padding: 3rem 0;">
+                <div class="logout-message">
+                    <h2>You have been logged out</h2>
+                    <p>Thank you for using PowerBack. You can always log back in to report or track incidents.</p>
+                    <button onclick="showSection('login')" class="btn-primary">Log In Again</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="container">
+        <div class="footer-logo">
+            <img src="placeholder.img" alt="PowerBack Logo placeholder" style="width: 24px; height: 24px;">
+            <span>PowerBack</span>
+        </div>
+        <p>Empowering communities through transparent incident reporting</p>
+        <p>© 2025 PowerBack. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Show the specified section and hide others
+        function showSection(sectionId) {
+            document.querySelectorAll('section').forEach(section => {
+                section.classList.remove('active');
+            });
+            document.getElementById(sectionId).classList.add('active');
+
+            // Update navigation for protected routes
+            const nav = document.querySelector('nav ul');
+            if (sectionId === 'dashboard' || sectionId === 'report') {
+                nav.innerHTML = `
+                    <li><a onclick="showSection('home')">Home</a></li>
+                    <li><a onclick="showSection('dashboard')">Dashboard</a></li>
+                    <li><a onclick="showSection('logout')">Logout</a></li>
+                `;
+            } else {
+                nav.innerHTML = `
+                    <li><a onclick="showSection('home')">Home</a></li>
+                    <li><a onclick="showSection('about')">About</a></li>
+                    <li><a onclick="showSection('login')">Login</a></li>
+                    <li><a onclick="showSection('register')" class="btn">Get Started</a></li>
+                `;
+            }
+        }
+
+        // Handle form submissions
+        document.querySelectorAll('form').forEach(form => {
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert('Form submitted! This will connect to your backend.');
+                // Add your form submission logic here
+            });
+        });
+
+        // Initialize with home section
+        showSection('home');
+    </script>
+</body>
+</html>
