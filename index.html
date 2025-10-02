@@ -1,3 +1,6 @@
+Here is your entire updated HTML with the "Join as a Stakeholder" section styled to match the image you provided:
+
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -34,6 +37,7 @@
             --shadow-elevated: 0 10px 25px -5px hsl(217 91% 25% / 0.15);
             --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
+
         @layer base {
             * {
                 border-color: hsl(var(--border));
@@ -47,6 +51,7 @@
                 padding: 0;
             }
         }
+
         /* Layout */
         .container {
             max-width: 1200px;
@@ -54,6 +59,7 @@
             padding: 0 1rem;
             width: 100%;
         }
+
         /* Header & Navigation */
         header {
             background-color: hsl(var(--card));
@@ -63,11 +69,13 @@
             top: 0;
             z-index: 100;
         }
+
         nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
+
         .logo {
             display: flex;
             align-items: center;
@@ -76,17 +84,20 @@
             font-size: 1.25rem;
             color: hsl(var(--secondary));
         }
+
         .logo-icon {
             width: 24px;
             height: 24px;
             fill: hsl(var(--primary));
         }
+
         nav ul {
             display: flex;
             gap: 1.5rem;
             align-items: center;
             list-style: none;
         }
+
         nav a {
             text-decoration: none;
             color: hsl(var(--foreground));
@@ -94,9 +105,11 @@
             transition: var(--transition-smooth);
             font-weight: 500;
         }
+
         nav a:hover {
             color: hsl(var(--primary));
         }
+
         .btn {
             background-color: hsl(var(--secondary));
             color: hsl(var(--secondary-foreground));
@@ -108,31 +121,38 @@
             font-weight: 500;
             transition: var(--transition-smooth);
         }
+
         .btn:hover {
             background-color: hsl(var(--primary));
         }
+
         .btn-primary {
             background-color: hsl(var(--primary));
             color: hsl(var(--primary-foreground));
         }
+
         .btn-secondary {
             background-color: hsl(var(--card));
             color: hsl(var(--foreground));
             border: 1px solid hsl(var(--border));
         }
+
         /* Sections */
         section {
             display: none;
             padding: 3rem 0;
         }
+
         section.active {
             display: block;
         }
+
         /* Hero & Tagline */
         .hero {
             text-align: center;
             padding: 3rem 0;
         }
+
         .tag {
             background-color: hsl(var(--muted));
             color: hsl(var(--accent));
@@ -142,17 +162,20 @@
             display: inline-block;
             margin-bottom: 1rem;
         }
+
         .hero h1 {
             font-size: clamp(2rem, 5vw, 3rem);
             margin-bottom: 1rem;
             color: hsl(var(--secondary));
             font-weight: 700;
         }
+
         .hero .gradient-text {
             background: linear-gradient(135deg, hsl(var(--secondary)), hsl(var(--primary)));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
+
         .description {
             font-size: 1.125rem;
             color: hsl(var(--muted-foreground));
@@ -161,78 +184,80 @@
             margin-left: auto;
             margin-right: auto;
         }
+
         .cta-buttons {
             display: flex;
             gap: 1rem;
             justify-content: center;
             flex-wrap: wrap;
         }
+
         /* How PowerBack Works Cards */
-.work-cards {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 1.5rem;
-    margin: 2rem 0;
-}
+        .work-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
 
-.card {
-    border-radius: var(--radius);
-    overflow: hidden;
-    box-shadow: var(--shadow-card);
-    transition: var(--transition-smooth);
-    background-color: hsl(var(--card));
-}
+        .card {
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow-card);
+            transition: var(--transition-smooth);
+            background-color: hsl(var(--card));
+        }
 
-.card-image {
-    height: 180px;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    display: flex;
-    align-items: flex-end;
-    padding: 1rem;
-    color: white;
-    font-size: 1.5rem;
-    font-weight: 600;
-}
+        .card-image {
+            height: 180px;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            display: flex;
+            align-items: flex-end;
+            padding: 1rem;
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
 
-.card-report {
-    background: linear-gradient(135deg, #FF6B35, #F7931E);
-}
+        .card-report {
+            background: linear-gradient(135deg, #FF6B35, #F7931E);
+        }
 
-.card-police {
-    background: linear-gradient(135deg, #2E5BFF, #1A369C);
-}
+        .card-police {
+            background: linear-gradient(135deg, #2E5BFF, #1A369C);
+        }
 
-.card-community {
-    background: linear-gradient(135deg, #FFD93D, #FFB800);
-}
+        .card-community {
+            background: linear-gradient(135deg, #FFD93D, #FFB800);
+        }
 
-.card-neighborhood {
-    background: linear-gradient(135deg, #6BCCF4, #4EA9D3);
-}
+        .card-neighborhood {
+            background: linear-gradient(135deg, #6BCCF4, #4EA9D3);
+        }
 
-.card-content {
-    padding: 1.5rem;
-    text-align: left;
-}
+        .card-content {
+            padding: 1.5rem;
+            text-align: left;
+        }
 
-.card-content .card-icon {
-    font-size: 1.75rem;
-    margin-bottom: 1rem;
-    color: hsl(var(--primary));
-}
+        .card-content .card-icon {
+            font-size: 1.75rem;
+            margin-bottom: 1rem;
+            color: hsl(var(--primary));
+        }
 
-.card-content h4 {
-    margin-bottom: 0.75rem;
-    color: hsl(var(--secondary));
-    font-weight: 600;
-}
+        .card-content h4 {
+            margin-bottom: 0.75rem;
+            color: hsl(var(--secondary));
+            font-weight: 600;
+        }
 
-.card-content p {
-    color: hsl(var(--muted-foreground));
-    line-height: 1.5;
-}
+        .card-content p {
+            color: hsl(var(--muted-foreground));
+            line-height: 1.5;
+        }
 
         .step-number {
             background-color: hsl(var(--secondary));
@@ -246,6 +271,57 @@
             margin: 0 auto 1rem;
             font-weight: 600;
         }
+
+        /* Stakeholder Cards */
+        .stakeholder-section {
+            text-align: center;
+            padding: 3rem 0;
+        }
+
+        .stakeholder-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .stakeholder-card {
+            background: white;
+            border: 1px solid hsl(var(--border));
+            border-radius: var(--radius);
+            padding: 2rem;
+            text-align: left;
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition-smooth);
+            position: relative;
+            box-shadow: var(--shadow-card);
+        }
+
+        .stakeholder-card:hover {
+            box-shadow: var(--shadow-elevated);
+            transform: translateY(-2px);
+        }
+
+        .stakeholder-card h3 {
+            color: hsl(var(--secondary));
+            margin-bottom: 0.75rem;
+            font-weight: 600;
+        }
+
+        .stakeholder-card p {
+            color: hsl(var(--muted-foreground));
+            margin-bottom: 1.5rem;
+        }
+
+        .stakeholder-card .arrow {
+            position: absolute;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            font-size: 1.25rem;
+            color: hsl(var(--secondary));
+        }
+
         /* Forms */
         .login-form, .register-form, .report-form {
             background-color: hsl(var(--card));
@@ -256,15 +332,18 @@
             max-width: 450px;
             margin: 0 auto;
         }
+
         .form-group {
             margin-bottom: 1.25rem;
         }
+
         .form-group label {
             display: block;
             margin-bottom: 0.5rem;
             font-weight: 500;
             color: hsl(var(--foreground));
         }
+
         .form-group input, .form-group textarea, .form-group select {
             width: 100%;
             padding: 0.875rem;
@@ -274,10 +353,12 @@
             font-size: 1rem;
             transition: var(--transition-smooth);
         }
+
         .form-group input:focus, .form-group textarea:focus, .form-group select:focus {
             outline: 2px solid hsl(var(--primary));
             border-color: transparent;
         }
+
         /* Dashboard */
         .incident-list {
             background-color: hsl(var(--card));
@@ -286,6 +367,7 @@
             overflow: hidden;
             margin-top: 2rem;
         }
+
         .incident-header {
             display: grid;
             grid-template-columns: 2fr 1fr 1fr 1fr;
@@ -294,15 +376,18 @@
             color: hsl(var(--secondary-foreground));
             font-weight: 600;
         }
+
         .incident-item {
             display: grid;
             grid-template-columns: 2fr 1fr 1fr 1fr;
             padding: 1rem;
             border-bottom: 1px solid hsl(var(--border));
         }
+
         .incident-item:last-child {
             border-bottom: none;
         }
+
         /* Footer */
         footer {
             background-color: hsl(var(--card));
@@ -311,6 +396,7 @@
             border-top: 1px solid hsl(var(--border));
             margin-top: 3rem;
         }
+
         .footer-logo {
             display: flex;
             align-items: center;
@@ -320,22 +406,27 @@
             font-weight: 600;
             color: hsl(var(--secondary));
         }
+
         /* Responsive Adjustments */
         @media (max-width: 768px) {
             .hero h1 {
                 font-size: 2rem;
             }
+
             .tagline h2 {
                 font-size: 2rem;
             }
+
             .cta-buttons {
                 flex-direction: column;
                 align-items: center;
             }
+
             .incident-header, .incident-item {
                 grid-template-columns: 1fr;
                 gap: 0.5rem;
             }
+
             nav ul {
                 gap: 1rem;
             }
@@ -374,68 +465,73 @@
                 </div>
             </div>
             <div class="how-powerback-works">
-    <h2>How PowerBack Works</h2>
-    <div class="work-cards">
-        <div class="card">
-            <div class="card-image card-report">
-                <img src="report-incidents.jpg" alt="Report Incidents" style="width: 100%; height: 100%; object-fit: cover;">
-            </div>
-            <div class="card-content">
-                <h4>Report Incidents</h4>
-                <p>Quickly report crimes and emergencies with photos, videos, and location data.</p>
-            </div>
-        </div>
-        <div class="card">
-            <div class="card-image card-police">
-                <img src="police-response.jpg" alt="Police Response" style="width: 100%; height: 100%; object-fit: cover;">
-            </div>
-            <div class="card-content">
-                <h4>Police Response</h4>
-                <p>Law enforcement can view, assign, and track incidents in real-time.</p>
-            </div>
-        </div>
-        <div class="card">
-            <div class="card-image card-community">
-                <img src="community-support (1).jpg" alt="Community Support" style="width: 100%; height: 100%; object-fit: cover;">
-            </div>
-            <div class="card-content">
-                <h4>Community Support</h4>
-                <p>NGOs provide victim support and resources with privacy protection.</p>
-            </div>
-        </div>
-        <div class="card">
-            <div class="card-image card-neighborhood">
-                <img src="neighborhood-watch.jpg" alt="Neighborhood Watch" style="width: 100%; height: 100%; object-fit: cover;">
-            </div>
-            <div class="card-content">
-                <h4>Neighborhood Watch</h4>
-                <p>Stay informed about local incidents and build safer communities.</p>
-            </div>
-        </div>
-    </div>
-</div>
-            <div class="stakeholder-options">
-                <h2>Join as a Stakeholder</h2>
-                <div class="stakeholder-options">
-                    <div class="option">
-                        <h3>Citizen</h3>
-                        <p>Report incidents and track your submissions</p>
+                <h2>How PowerBack Works</h2>
+                <div class="work-cards">
+                    <div class="card">
+                        <div class="card-image card-report">
+                            <img src="report-incidents.jpg" alt="Report Incidents" style="width: 100%; height: 100%; object-fit: cover;">
+                        </div>
+                        <div class="card-content">
+                            <h4>Report Incidents</h4>
+                            <p>Quickly report crimes and emergencies with photos, videos, and location data.</p>
+                        </div>
                     </div>
-                    <div class="option">
-                        <h3>Police</h3>
-                        <p>Manage and respond to incidents</p>
+                    <div class="card">
+                        <div class="card-image card-police">
+                            <img src="police-response.jpg" alt="Police Response" style="width: 100%; height: 100%; object-fit: cover;">
+                        </div>
+                        <div class="card-content">
+                            <h4>Police Response</h4>
+                            <p>Law enforcement can view, assign, and track incidents in real-time.</p>
+                        </div>
                     </div>
-                    <div class="option">
-                        <h3>NGO</h3>
-                        <p>Provide support and resources to victims</p>
+                    <div class="card">
+                        <div class="card-image card-community">
+                            <img src="community-support (1).jpg" alt="Community Support" style="width: 100%; height: 100%; object-fit: cover;">
+                        </div>
+                        <div class="card-content">
+                            <h4>Community Support</h4>
+                            <p>NGOs provide victim support and resources with privacy protection.</p>
+                        </div>
                     </div>
-                    <div class="option">
-                        <h3>Watch</h3>
-                        <p>Monitor and share community safety updates</p>
+                    <div class="card">
+                        <div class="card-image card-neighborhood">
+                            <img src="neighborhood-watch.jpg" alt="Neighborhood Watch" style="width: 100%; height: 100%; object-fit: cover;">
+                        </div>
+                        <div class="card-content">
+                            <h4>Neighborhood Watch</h4>
+                            <p>Stay informed about local incidents and build safer communities.</p>
+                        </div>
                     </div>
                 </div>
             </div>
+            <div class="stakeholder-section">
+                <h2>Join as a Stakeholder</h2>
+                <div class="stakeholder-cards">
+                    <a href="#" onclick="showSection('register')" class="stakeholder-card">
+                        <h3>Citizen</h3>
+                        <p>Report incidents and track your submissions</p>
+                        <span class="arrow">→</span>
+                    </a>
+                    <a href="#" onclick="showSection('register')" class="stakeholder-card">
+                        <h3>Police</h3>
+                        <p>Manage and respond to incidents</p>
+                        <span class="arrow">→</span>
+                    </a>
+                    <a href="#" onclick="showSection('register')" class="stakeholder-card">
+                        <h3>NGO</h3>
+                        <p>Provide support and resources to victims</p>
+                        <span class="arrow">→</span>
+                    </a>
+                    <a href="#" onclick="showSection('register')" class="stakeholder-card">
+                        <h3>Watch</h3>
+                        <p>Monitor and share community safety updates</p>
+                        <span class="arrow">→</span>
+                    </a>
+                </div>
+            </div>
         </section>
+
         <!-- About Section -->
         <section id="about">
             <div class="about">
@@ -498,6 +594,7 @@
                 </div>
             </div>
         </section>
+
         <!-- Login Section -->
         <section id="login">
             <div class="login">
@@ -524,6 +621,7 @@
                 </div>
             </div>
         </section>
+
         <!-- Register Section -->
         <section id="register">
             <div class="register">
@@ -568,6 +666,7 @@
                 </div>
             </div>
         </section>
+
         <!-- Report Incident Section -->
         <section id="report">
             <div class="report">
@@ -605,6 +704,7 @@
                 </div>
             </div>
         </section>
+
         <!-- Dashboard Section -->
         <section id="dashboard">
             <div class="dashboard">
@@ -660,6 +760,7 @@
                 </div>
             </div>
         </section>
+
         <!-- Logout Section -->
         <section id="logout">
             <div style="display: flex; justify-content: center; padding: 3rem 0;">
@@ -710,6 +811,7 @@
                 `;
             }
         }
+
         // Handle form submissions
         document.querySelectorAll('form').forEach(form => {
             form.addEventListener('submit', function(e) {
@@ -718,8 +820,10 @@
                 // Add your form submission logic here
             });
         });
+
         // Initialize with home section
         showSection('home');
     </script>
 </body>
 </html>
+```
