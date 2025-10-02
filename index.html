@@ -10,8 +10,10 @@
         :root {
             /* Brand Colors */
             --primary: 26 83% 55%;        /* Vibrant Orange */
+            --primary-color: #FF6B35;
             --primary-foreground: 0 0% 100%;
             --secondary: 217 91% 25%;    /* Deep Blue */
+            --secondary-color: #2E5BFF;
             --secondary-foreground: 0 0% 100%;
             --accent: 142 76% 36%;        /* Green */
             --accent-foreground: 0 0% 100%;
@@ -20,6 +22,7 @@
             /* Grayscale */
             --background: 0 0% 100%;
             --foreground: 222 47% 11%;
+            --foreground-color: #1A1B3A;
             --card: 0 0% 100%;
             --card-foreground: 222 47% 11%;
             --popover: 0 0% 100%;
@@ -436,14 +439,170 @@
             color: hsl(var(--primary));
         }
 
+        /* About Section */
+        .about {
+            padding: 4rem 0;
+            text-align: center;
+        }
+
+        .about h2 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--foreground-color);
+        }
+
+        .about .subtitle {
+            font-size: 1.25rem;
+            color: #6B7280;
+            margin-bottom: 3rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .mission {
+            text-align: left;
+            max-width: 800px;
+            margin: 0 auto 4rem;
+        }
+
+        .mission h3 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: var(--foreground-color);
+        }
+
+        .mission p {
+            font-size: 1.125rem;
+            color: #6B7280;
+            margin-bottom: 1rem;
+            line-height: 1.7;
+        }
+
+        .how-it-works {
+            background: linear-gradient(135deg, #FEF3C7 0%, #F59E0B 100%);
+            border-radius: var(--radius);
+            padding: 3rem;
+            margin: 3rem 0;
+        }
+
+        .how-it-works h3 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 2rem;
+            color: var(--foreground-color);
+        }
+
+        .steps {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .step {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+            text-align: left;
+        }
+
+        .step-number {
+            background-color: var(--secondary-color);
+            color: white;
+            width: 2.5rem;
+            height: 2.5rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.25rem;
+            flex-shrink: 0;
+        }
+
+        .step-content h4 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--foreground-color);
+        }
+
+        .step-content p {
+            color: #6B7280;
+            line-height: 1.6;
+        }
+
+        .values {
+            padding: 4rem 0;
+            text-align: center;
+        }
+
+        .values h3 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 3rem;
+            color: var(--foreground-color);
+        }
+
+        .value-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .value {
+            background-color: white;
+            border: 1px solid #E5E7EB;
+            border-radius: var(--radius);
+            padding: 2rem;
+            box-shadow: var(--shadow-card);
+            text-align: center;
+        }
+
+        .value-icon {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 1.5rem;
+            fill: var(--secondary-color);
+        }
+
+        .value h4 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--foreground-color);
+        }
+
+        .value p {
+            color: #6B7280;
+            line-height: 1.6;
+        }
+
         /* Responsive Adjustments */
         @media (max-width: 768px) {
             .hero h1 {
                 font-size: 2rem;
             }
 
-            .tagline h2 {
+            .about h2 {
                 font-size: 2rem;
+            }
+
+            .how-it-works {
+                padding: 2rem 1.5rem;
+            }
+
+            .step {
+                flex-direction: column;
+                text-align: center;
+                align-items: center;
+            }
+
+            .value-grid {
+                grid-template-columns: 1fr;
             }
 
             .cta-buttons {
@@ -561,59 +720,78 @@
             <div class="about">
                 <h2>About PowerBack</h2>
                 <p class="subtitle">A comprehensive platform connecting communities with safety and justice systems</p>
+
                 <div class="mission">
                     <h3>Our Mission</h3>
                     <p>PowerBack was created to bridge the gap between citizens and the institutions designed to protect them. We believe that effective public safety requires transparency, accountability, and seamless communication between all stakeholders.</p>
                     <p>By providing a secure, efficient platform for incident reporting and response, we empower communities to take an active role in their own safety while ensuring law enforcement and support organizations have the tools they need to serve effectively.</p>
                 </div>
             </div>
+
+            <div class="how-it-works">
+                <h3>How It Works</h3>
+                <div class="steps">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h4>Report</h4>
+                            <p>Citizens report incidents with photos, videos, and location data through our secure platform.</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h4>Respond</h4>
+                            <p>Law enforcement receives real-time alerts and can assign, track, and update incident status.</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h4>Support</h4>
+                            <p>NGOs provide resources and assistance to victims with appropriate privacy protections.</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <h4>Inform</h4>
+                            <p>Community watch groups keep neighborhoods informed and engaged in local safety efforts.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <div class="values">
-                <h2>Our Values</h2>
+                <h3>Our Values</h3>
                 <div class="value-grid">
                     <div class="value">
-                        <div class="icon">🛡️</div>
+                        <svg class="value-icon" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.21 7 3.21v4.59c0 1.72-1.38 3.21-3 3.35v-2.15c1.53-.15 2.75-1.52 2.75-3.25 0-2.26-1.93-4.14-4.5-4.34V6.2L7.5 9.32h4.5v2.47z"/>
+                        </svg>
                         <h4>Trust & Transparency</h4>
                         <p>Building confidence through clear, accountable incident reporting and response systems.</p>
                     </div>
                     <div class="value">
-                        <div class="icon">🎯</div>
+                        <svg class="value-icon" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M11 17H7v-6h4v6zm4-11.24A6.96 6.96 0 0 1 18 11c0 1.93-.64 3.73-1.76 5.17l3.34 2.67c.77-.58 1.38-1.4 1.7-2.33C22.5 12.18 23 10.17 23 8c0-2.17-.6-4.14-1.67-5.78L19.6 2.17C18.57 3.43 17 5.57 17 8h-1c0-1.66-.83-3.19-2.07-4.1L15 2h-1l-.93 1.9C12.81 4.81 12 6.34 12 8s.81 3.19 2.07 4.1l1.93-3.86L15 5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5z"/>
+                        </svg>
                         <h4>Efficiency</h4>
                         <p>Streamlining communication between citizens, law enforcement, and support organizations.</p>
                     </div>
                     <div class="value">
-                        <div class="icon">👥</div>
+                        <svg class="value-icon" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm7-7H5c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zM5 8h2v2H5V8zm12 0h2v2h-2V8zM5 12h2v2H5v-2zm12 0h2v2h-2v-2zM5 16h2v2H5v-2zm12 0h2v2h-2v-2z"/>
+                        </svg>
                         <h4>Community First</h4>
                         <p>Empowering communities to actively participate in creating safer neighborhoods.</p>
                     </div>
                     <div class="value">
-                        <div class="icon">❤️</div>
+                        <svg class="value-icon" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                        </svg>
                         <h4>Victim Support</h4>
                         <p>Connecting those in need with resources and assistance through NGO partnerships.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="how-it-works">
-                <h2>How It Works</h2>
-                <div class="steps">
-                    <div class="step">
-                        <div class="step-number">1</div>
-                        <h4>Report</h4>
-                        <p>Citizens report incidents with photos, videos, and location data through our secure platform.</p>
-                    </div>
-                    <div class="step">
-                        <div class="step-number">2</div>
-                        <h4>Respond</h4>
-                        <p>Law enforcement receives real-time alerts and can assign, track, and update incident status.</p>
-                    </div>
-                    <div class="step">
-                        <div class="step-number">3</div>
-                        <h4>Support</h4>
-                        <p>NGOs provide resources and assistance to victims with appropriate privacy protections.</p>
-                    </div>
-                    <div class="step">
-                        <div class="step-number">4</div>
-                        <h4>Inform</h4>
-                        <p>Community watch groups keep neighborhoods informed and engaged in local safety efforts.</p>
                     </div>
                 </div>
             </div>
