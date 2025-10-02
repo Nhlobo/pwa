@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>PowerBack - Empowering Communities, Supporting Justice</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -417,6 +417,25 @@
             color: hsl(var(--secondary));
         }
 
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: hsl(var(--muted-foreground));
+            text-decoration: none;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+        }
+
+        .footer-links a:hover {
+            color: hsl(var(--primary));
+        }
+
         /* Responsive Adjustments */
         @media (max-width: 768px) {
             .hero h1 {
@@ -435,10 +454,6 @@
             .incident-header, .incident-item {
                 grid-template-columns: 1fr;
                 gap: 0.5rem;
-            }
-
-            nav ul {
-                gap: 1rem;
             }
         }
     </style>
@@ -794,6 +809,9 @@
             <span>PowerBack</span>
         </div>
         <p>Empowering communities through transparent incident reporting</p>
+        <div class="footer-links">
+            <a onclick="showSection('about')">About</a>
+        </div>
         <p>© 2025 PowerBack. All rights reserved.</p>
     </footer>
     <script>
