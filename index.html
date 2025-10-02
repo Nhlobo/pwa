@@ -6,315 +6,305 @@
     <title>PowerBack - Empowering Communities, Supporting Justice</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-    :root {
-        /* Brand Colors */
-        --primary: 26 83% 55%;        /* Vibrant Orange */
-        --primary-foreground: 0 0% 100%;
-        --secondary: 217 91% 25%;    /* Deep Blue */
-        --secondary-foreground: 0 0% 100%;
-        --accent: 142 76% 36%;        /* Green */
-        --accent-foreground: 0 0% 100%;
-        --destructive: 0 84% 60%;
-        --destructive-foreground: 0 0% 100%;
-
-        /* Grayscale */
-        --background: 0 0% 100%;
-        --foreground: 222 47% 11%;
-        --card: 0 0% 100%;
-        --card-foreground: 222 47% 11%;
-        --popover: 0 0% 100%;
-        --popover-foreground: 222 47% 11%;
-        --muted: 210 40% 96%;
-        --muted-foreground: 215 16% 47%;
-        --border: 214 32% 91%;
-        --input: 214 32% 91%;
-        --ring: 217 91% 25%;
-
+        :root {
+            /* Brand Colors */
+            --primary: 26 83% 55%;        /* Vibrant Orange */
+            --primary-foreground: 0 0% 100%;
+            --secondary: 217 91% 25%;    /* Deep Blue */
+            --secondary-foreground: 0 0% 100%;
+            --accent: 142 76% 36%;        /* Green */
+            --accent-foreground: 0 0% 100%;
+            --destructive: 0 84% 60%;
+            --destructive-foreground: 0 0% 100%;
+            /* Grayscale */
+            --background: 0 0% 100%;
+            --foreground: 222 47% 11%;
+            --card: 0 0% 100%;
+            --card-foreground: 222 47% 11%;
+            --popover: 0 0% 100%;
+            --popover-foreground: 222 47% 11%;
+            --muted: 210 40% 96%;
+            --muted-foreground: 215 16% 47%;
+            --border: 214 32% 91%;
+            --input: 214 32% 91%;
+            --ring: 217 91% 25%;
+            /* Layout */
+            --radius: 0.75rem;
+            --shadow-card: 0 4px 6px -1px hsl(217 91% 25% / 0.1);
+            --shadow-elevated: 0 10px 25px -5px hsl(217 91% 25% / 0.15);
+            --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        @layer base {
+            * {
+                border-color: hsl(var(--border));
+            }
+            body {
+                background-color: hsl(var(--background));
+                color: hsl(var(--foreground));
+                font-family: 'Inter', sans-serif;
+                line-height: 1.6;
+                margin: 0;
+                padding: 0;
+            }
+        }
         /* Layout */
-        --radius: 0.75rem;
-        --shadow-card: 0 4px 6px -1px hsl(217 91% 25% / 0.1);
-        --shadow-elevated: 0 10px 25px -5px hsl(217 91% 25% / 0.15);
-        --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    @layer base {
-        * {
-            border-color: hsl(var(--border));
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+            width: 100%;
         }
-        body {
-            background-color: hsl(var(--background));
-            color: hsl(var(--foreground));
-            font-family: 'Inter', sans-serif;
-            line-height: 1.6;
-            margin: 0;
-            padding: 0;
+        /* Header & Navigation */
+        header {
+            background-color: hsl(var(--card));
+            padding: 1rem 2rem;
+            box-shadow: var(--shadow-card);
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
-    }
-
-    /* Layout */
-    .container {
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 0 1rem;
-        width: 100%;
-    }
-
-    /* Header & Navigation */
-    header {
-        background-color: hsl(var(--card));
-        padding: 1rem 2rem;
-        box-shadow: var(--shadow-card);
-        position: sticky;
-        top: 0;
-        z-index: 100;
-    }
-    nav {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
-    .logo {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        font-weight: 700;
-        font-size: 1.25rem;
-        color: hsl(var(--secondary));
-    }
-    .logo-icon {
-        width: 24px;
-        height: 24px;
-        fill: hsl(var(--primary));
-    }
-    nav ul {
-        display: flex;
-        gap: 1.5rem;
-        align-items: center;
-        list-style: none;
-    }
-    nav a {
-        text-decoration: none;
-        color: hsl(var(--foreground));
-        cursor: pointer;
-        transition: var(--transition-smooth);
-        font-weight: 500;
-    }
-    nav a:hover {
-        color: hsl(var(--primary));
-    }
-    .btn {
-        background-color: hsl(var(--secondary));
-        color: hsl(var(--secondary-foreground));
-        padding: 0.625rem 1.25rem;
-        border-radius: var(--radius);
-        text-decoration: none;
-        cursor: pointer;
-        border: none;
-        font-weight: 500;
-        transition: var(--transition-smooth);
-    }
-    .btn:hover {
-        background-color: hsl(var(--primary));
-    }
-    .btn-primary {
-        background-color: hsl(var(--primary));
-        color: hsl(var(--primary-foreground));
-    }
-    .btn-secondary {
-        background-color: hsl(var(--card));
-        color: hsl(var(--foreground));
-        border: 1px solid hsl(var(--border));
-    }
-
-    /* Sections */
-    section {
-        display: none;
-        padding: 3rem 0;
-    }
-    section.active {
-        display: block;
-    }
-
-    /* Hero & Tagline */
-    .hero {
-        text-align: center;
-        padding: 3rem 0;
-    }
-    .tag {
-        background-color: hsl(var(--muted));
-        color: hsl(var(--accent));
-        padding: 0.25rem 0.75rem;
-        border-radius: 1rem;
-        font-size: 0.875rem;
-        display: inline-block;
-        margin-bottom: 1rem;
-    }
-    .hero h1 {
-        font-size: clamp(2rem, 5vw, 3rem);
-        margin-bottom: 1rem;
-        color: hsl(var(--secondary));
-        font-weight: 700;
-    }
-    .hero .gradient-text {
-        background: linear-gradient(135deg, hsl(var(--secondary)), hsl(var(--primary)));
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-    }
-    .description {
-        font-size: 1.125rem;
-        color: hsl(var(--muted-foreground));
-        margin-bottom: 2rem;
-        max-width: 800px;
-        margin-left: auto;
-        margin-right: auto;
-    }
-    .cta-buttons {
-        display: flex;
-        gap: 1rem;
-        justify-content: center;
-        flex-wrap: wrap;
-    }
-
-    /* Cards & Grids */
-    .work-cards, .value-grid, .steps, .stakeholder-options, .dashboard-cards {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 1.5rem;
-        margin: 2rem 0;
-    }
-    .card, .option, .value, .step, .dashboard-card {
-        background-color: hsl(var(--card));
-        padding: 1.75rem;
-        border-radius: var(--radius);
-        box-shadow: var(--shadow-card);
-        transition: var(--transition-smooth);
-        text-align: center;
-    }
-    .card:hover, .option:hover, .value:hover, .step:hover, .dashboard-card:hover {
-        box-shadow: var(--shadow-elevated);
-    }
-    .card-icon, .icon {
-        font-size: 1.75rem;
-        margin-bottom: 1rem;
-        color: hsl(var(--primary));
-    }
-    .step-number {
-        background-color: hsl(var(--secondary));
-        color: hsl(var(--secondary-foreground));
-        width: 2.25rem;
-        height: 2.25rem;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin: 0 auto 1rem;
-        font-weight: 600;
-    }
-
-    /* Forms */
-    .login-form, .register-form, .report-form {
-        background-color: hsl(var(--card));
-        padding: 2rem;
-        border-radius: var(--radius);
-        box-shadow: var(--shadow-card);
-        width: 100%;
-        max-width: 450px;
-        margin: 0 auto;
-    }
-    .form-group {
-        margin-bottom: 1.25rem;
-    }
-    .form-group label {
-        display: block;
-        margin-bottom: 0.5rem;
-        font-weight: 500;
-        color: hsl(var(--foreground));
-    }
-    .form-group input, .form-group textarea, .form-group select {
-        width: 100%;
-        padding: 0.875rem;
-        border: 1px solid hsl(var(--border));
-        border-radius: var(--radius);
-        font-family: inherit;
-        font-size: 1rem;
-        transition: var(--transition-smooth);
-    }
-    .form-group input:focus, .form-group textarea:focus, .form-group select:focus {
-        outline: 2px solid hsl(var(--primary));
-        border-color: transparent;
-    }
-
-    /* Dashboard */
-    .incident-list {
-        background-color: hsl(var(--card));
-        border-radius: var(--radius);
-        box-shadow: var(--shadow-card);
-        overflow: hidden;
-        margin-top: 2rem;
-    }
-    .incident-header {
-        display: grid;
-        grid-template-columns: 2fr 1fr 1fr 1fr;
-        padding: 1rem;
-        background-color: hsl(var(--secondary));
-        color: hsl(var(--secondary-foreground));
-        font-weight: 600;
-    }
-    .incident-item {
-        display: grid;
-        grid-template-columns: 2fr 1fr 1fr 1fr;
-        padding: 1rem;
-        border-bottom: 1px solid hsl(var(--border));
-    }
-    .incident-item:last-child {
-        border-bottom: none;
-    }
-
-    /* Footer */
-    footer {
-        background-color: hsl(var(--card));
-        text-align: center;
-        padding: 2rem;
-        border-top: 1px solid hsl(var(--border));
-        margin-top: 3rem;
-    }
-    .footer-logo {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        justify-content: center;
-        margin-bottom: 1rem;
-        font-weight: 600;
-        color: hsl(var(--secondary));
-    }
-
-    /* Responsive Adjustments */
-    @media (max-width: 768px) {
-        .hero h1 {
-            font-size: 2rem;
-        }
-        .tagline h2 {
-            font-size: 2rem;
-        }
-        .cta-buttons {
-            flex-direction: column;
+        nav {
+            display: flex;
+            justify-content: space-between;
             align-items: center;
         }
-        .incident-header, .incident-item {
-            grid-template-columns: 1fr;
+        .logo {
+            display: flex;
+            align-items: center;
             gap: 0.5rem;
+            font-weight: 700;
+            font-size: 1.25rem;
+            color: hsl(var(--secondary));
+        }
+        .logo-icon {
+            width: 24px;
+            height: 24px;
+            fill: hsl(var(--primary));
         }
         nav ul {
-            gap: 1rem;
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+            list-style: none;
         }
-    }
-</style>
+        nav a {
+            text-decoration: none;
+            color: hsl(var(--foreground));
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            font-weight: 500;
+        }
+        nav a:hover {
+            color: hsl(var(--primary));
+        }
+        .btn {
+            background-color: hsl(var(--secondary));
+            color: hsl(var(--secondary-foreground));
+            padding: 0.625rem 1.25rem;
+            border-radius: var(--radius);
+            text-decoration: none;
+            cursor: pointer;
+            border: none;
+            font-weight: 500;
+            transition: var(--transition-smooth);
+        }
+        .btn:hover {
+            background-color: hsl(var(--primary));
+        }
+        .btn-primary {
+            background-color: hsl(var(--primary));
+            color: hsl(var(--primary-foreground));
+        }
+        .btn-secondary {
+            background-color: hsl(var(--card));
+            color: hsl(var(--foreground));
+            border: 1px solid hsl(var(--border));
+        }
+        /* Sections */
+        section {
+            display: none;
+            padding: 3rem 0;
+        }
+        section.active {
+            display: block;
+        }
+        /* Hero & Tagline */
+        .hero {
+            text-align: center;
+            padding: 3rem 0;
+        }
+        .tag {
+            background-color: hsl(var(--muted));
+            color: hsl(var(--accent));
+            padding: 0.25rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.875rem;
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+        .hero h1 {
+            font-size: clamp(2rem, 5vw, 3rem);
+            margin-bottom: 1rem;
+            color: hsl(var(--secondary));
+            font-weight: 700;
+        }
+        .hero .gradient-text {
+            background: linear-gradient(135deg, hsl(var(--secondary)), hsl(var(--primary)));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .description {
+            font-size: 1.125rem;
+            color: hsl(var(--muted-foreground));
+            margin-bottom: 2rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        /* Cards & Grids */
+        .work-cards, .value-grid, .steps, .stakeholder-options, .dashboard-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        .card, .option, .value, .step, .dashboard-card {
+            background-color: hsl(var(--card));
+            padding: 1.75rem;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-card);
+            transition: var(--transition-smooth);
+            text-align: center;
+        }
+        .card:hover, .option:hover, .value:hover, .step:hover, .dashboard-card:hover {
+            box-shadow: var(--shadow-elevated);
+        }
+        .card-icon, .icon {
+            font-size: 1.75rem;
+            margin-bottom: 1rem;
+            color: hsl(var(--primary));
+        }
+        .step-number {
+            background-color: hsl(var(--secondary));
+            color: hsl(var(--secondary-foreground));
+            width: 2.25rem;
+            height: 2.25rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            font-weight: 600;
+        }
+        /* Forms */
+        .login-form, .register-form, .report-form {
+            background-color: hsl(var(--card));
+            padding: 2rem;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-card);
+            width: 100%;
+            max-width: 450px;
+            margin: 0 auto;
+        }
+        .form-group {
+            margin-bottom: 1.25rem;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: hsl(var(--foreground));
+        }
+        .form-group input, .form-group textarea, .form-group select {
+            width: 100%;
+            padding: 0.875rem;
+            border: 1px solid hsl(var(--border));
+            border-radius: var(--radius);
+            font-family: inherit;
+            font-size: 1rem;
+            transition: var(--transition-smooth);
+        }
+        .form-group input:focus, .form-group textarea:focus, .form-group select:focus {
+            outline: 2px solid hsl(var(--primary));
+            border-color: transparent;
+        }
+        /* Dashboard */
+        .incident-list {
+            background-color: hsl(var(--card));
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-card);
+            overflow: hidden;
+            margin-top: 2rem;
+        }
+        .incident-header {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            padding: 1rem;
+            background-color: hsl(var(--secondary));
+            color: hsl(var(--secondary-foreground));
+            font-weight: 600;
+        }
+        .incident-item {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            padding: 1rem;
+            border-bottom: 1px solid hsl(var(--border));
+        }
+        .incident-item:last-child {
+            border-bottom: none;
+        }
+        /* Footer */
+        footer {
+            background-color: hsl(var(--card));
+            text-align: center;
+            padding: 2rem;
+            border-top: 1px solid hsl(var(--border));
+            margin-top: 3rem;
+        }
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            justify-content: center;
+            margin-bottom: 1rem;
+            font-weight: 600;
+            color: hsl(var(--secondary));
+        }
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            .tagline h2 {
+                font-size: 2rem;
+            }
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            .incident-header, .incident-item {
+                grid-template-columns: 1fr;
+                gap: 0.5rem;
+            }
+            nav ul {
+                gap: 1rem;
+            }
+        }
+    </style>
 </head>
 <body>
     <header>
         <nav class="container">
             <div class="logo">
-                <img src="placeholder.img" alt="PowerBack Logo placeholder" style="width: 24px; height: 24px;">
+                <svg class="logo-icon" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 2L4 5v6.09c0 5.05 3.41 9.76 8 10.91 4.59-1.15 8-5.86 8-10.91V5l-8-3z"/>
+                </svg>
                 <span>PowerBack</span>
             </div>
             <ul>
@@ -325,22 +315,20 @@
             </ul>
         </nav>
     </header>
-
     <main class="container">
         <!-- Home Section -->
         <section id="home" class="active">
             <div class="hero">
                 <p class="tag">Empowering Communities, Supporting Justice</p>
-                <h1>Your Voice for Safer Communities</h1>
+                <h1>Your Voice for <span class="gradient-text">Safer Communities</span></h1>
                 <p class="description">
                     PowerBack connects citizens, law enforcement, NGOs, and community watch groups to create a transparent, efficient system for reporting and responding to incidents.
                 </p>
                 <div class="cta-buttons">
-                    <a onclick="showSection('report')" class="btn-primary">Report an incident ↗</a>
-                    <a onclick="showSection('login')" class="btn-secondary">Sign In</a>
+                    <a onclick="showSection('report')" class="btn btn-primary">Report an incident ↗</a>
+                    <a onclick="showSection('login')" class="btn btn-secondary">Sign In</a>
                 </div>
             </div>
-
             <div class="how-powerback-works">
                 <h2>How PowerBack Works</h2>
                 <div class="work-cards">
@@ -366,7 +354,6 @@
                     </div>
                 </div>
             </div>
-
             <div class="stakeholder-options">
                 <h2>Join as a Stakeholder</h2>
                 <div class="stakeholder-options">
@@ -389,7 +376,6 @@
                 </div>
             </div>
         </section>
-
         <!-- About Section -->
         <section id="about">
             <div class="about">
@@ -401,7 +387,6 @@
                     <p>By providing a secure, efficient platform for incident reporting and response, we empower communities to take an active role in their own safety while ensuring law enforcement and support organizations have the tools they need to serve effectively.</p>
                 </div>
             </div>
-
             <div class="values">
                 <h2>Our Values</h2>
                 <div class="value-grid">
@@ -427,7 +412,6 @@
                     </div>
                 </div>
             </div>
-
             <div class="how-it-works">
                 <h2>How It Works</h2>
                 <div class="steps">
@@ -454,47 +438,76 @@
                 </div>
             </div>
         </section>
-
         <!-- Login Section -->
         <section id="login">
             <div class="login">
                 <div class="login-form">
-                    <h3>Welcome Back</h3>
-                    <p>Sign in to your PowerBack account</p>
+                    <div style="text-align: center; margin-bottom: 1.5rem;">
+                        <svg style="width: 48px; height: 48px; fill: hsl(var(--primary)); margin-bottom: 0.5rem;" viewBox="0 0 24 24">
+                            <path d="M12 2L4 5v6.09c0 5.05 3.41 9.76 8 10.91 4.59-1.15 8-5.86 8-10.91V5l-8-3z"/>
+                        </svg>
+                        <h3>Welcome Back</h3>
+                        <p>Sign in to your PowerBack account</p>
+                    </div>
                     <form>
-                        <input type="email" placeholder="your@email.com" required>
-                        <input type="password" placeholder="Password" required>
-                        <button type="submit" class="btn-primary">Sign In</button>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" placeholder="your@email.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input type="password" id="password" placeholder="Password" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="width: 100%;">Sign In</button>
                     </form>
-                    <p>Don't have an account? <a onclick="showSection('register')">Sign up</a></p>
+                    <p style="text-align: center; margin-top: 1rem;">Don't have an account? <a onclick="showSection('register')" style="color: hsl(var(--primary)); cursor: pointer;">Sign up</a></p>
                 </div>
             </div>
         </section>
-
         <!-- Register Section -->
         <section id="register">
             <div class="register">
                 <div class="register-form">
-                    <h3>Create an Account</h3>
-                    <p>Join PowerBack as a stakeholder</p>
+                    <div style="text-align: center; margin-bottom: 1.5rem;">
+                        <svg style="width: 48px; height: 48px; fill: hsl(var(--primary)); margin-bottom: 0.5rem;" viewBox="0 0 24 24">
+                            <path d="M12 2L4 5v6.09c0 5.05 3.41 9.76 8 10.91 4.59-1.15 8-5.86 8-10.91V5l-8-3z"/>
+                        </svg>
+                        <h3>Create an Account</h3>
+                        <p>Join PowerBack as a stakeholder</p>
+                    </div>
                     <form>
-                        <input type="text" placeholder="Full Name" required>
-                        <input type="email" placeholder="your@email.com" required>
-                        <input type="password" placeholder="Password" required>
-                        <select required>
-                            <option value="" disabled selected>Select your role</option>
-                            <option value="citizen">Citizen</option>
-                            <option value="police">Police</option>
-                            <option value="ngo">NGO</option>
-                            <option value="watch">Community Watch</option>
-                        </select>
-                        <button type="submit" class="btn-primary">Register</button>
+                        <div class="form-group">
+                            <label for="fullname">Full Name</label>
+                            <input type="text" id="fullname" placeholder="Full Name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="regemail">Email</label>
+                            <input type="email" id="regemail" placeholder="your@email.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="regpassword">Password</label>
+                            <input type="password" id="regpassword" placeholder="Password" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone (Optional)</label>
+                            <input type="tel" id="phone" placeholder="+1 (555) 000-0000">
+                        </div>
+                        <div class="form-group">
+                            <label for="role">Role</label>
+                            <select id="role" required>
+                                <option value="" disabled selected>Select your role</option>
+                                <option value="citizen">Citizen</option>
+                                <option value="police">Police</option>
+                                <option value="ngo">NGO</option>
+                                <option value="watch">Community Watch</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="width: 100%;">Create Account</button>
                     </form>
-                    <p>Already have an account? <a onclick="showSection('login')">Sign in</a></p>
+                    <p style="text-align: center; margin-top: 1rem;">Already have an account? <a onclick="showSection('login')" style="color: hsl(var(--primary)); cursor: pointer;">Sign in</a></p>
                 </div>
             </div>
         </section>
-
         <!-- Report Incident Section -->
         <section id="report">
             <div class="report">
@@ -527,19 +540,18 @@
                             <label for="media">Upload Media (Photos/Videos)</label>
                             <input type="file" id="media" accept="image/*,video/*" multiple>
                         </div>
-                        <button type="submit" class="btn-primary">Submit Report</button>
+                        <button type="submit" class="btn btn-primary" style="width: 100%;">Submit Report</button>
                     </form>
                 </div>
             </div>
         </section>
-
         <!-- Dashboard Section -->
         <section id="dashboard">
             <div class="dashboard">
                 <div class="dashboard-content">
                     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
                         <h2>Dashboard</h2>
-                        <button onclick="showSection('report')" class="btn-primary">Report New Incident</button>
+                        <button onclick="showSection('report')" class="btn btn-primary">Report New Incident</button>
                     </div>
                     <div class="dashboard-cards">
                         <div class="dashboard-card">
@@ -588,28 +600,32 @@
                 </div>
             </div>
         </section>
-
         <!-- Logout Section -->
         <section id="logout">
             <div style="display: flex; justify-content: center; padding: 3rem 0;">
                 <div class="logout-message">
-                    <h2>You have been logged out</h2>
-                    <p>Thank you for using PowerBack. You can always log back in to report or track incidents.</p>
-                    <button onclick="showSection('login')" class="btn-primary">Log In Again</button>
+                    <div style="text-align: center; margin-bottom: 1.5rem;">
+                        <svg style="width: 48px; height: 48px; fill: hsl(var(--primary)); margin-bottom: 0.5rem;" viewBox="0 0 24 24">
+                            <path d="M12 2L4 5v6.09c0 5.05 3.41 9.76 8 10.91 4.59-1.15 8-5.86 8-10.91V5l-8-3z"/>
+                        </svg>
+                        <h2>You have been logged out</h2>
+                        <p>Thank you for using PowerBack. You can always log back in to report or track incidents.</p>
+                        <button onclick="showSection('login')" class="btn btn-primary">Log In Again</button>
+                    </div>
                 </div>
             </div>
         </section>
     </main>
-
     <footer class="container">
         <div class="footer-logo">
-            <img src="placeholder.img" alt="PowerBack Logo placeholder" style="width: 24px; height: 24px;">
+            <svg class="logo-icon" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2L4 5v6.09c0 5.05 3.41 9.76 8 10.91 4.59-1.15 8-5.86 8-10.91V5l-8-3z"/>
+            </svg>
             <span>PowerBack</span>
         </div>
         <p>Empowering communities through transparent incident reporting</p>
         <p>© 2025 PowerBack. All rights reserved.</p>
     </footer>
-
     <script>
         // Show the specified section and hide others
         function showSection(sectionId) {
@@ -617,7 +633,6 @@
                 section.classList.remove('active');
             });
             document.getElementById(sectionId).classList.add('active');
-
             // Update navigation for protected routes
             const nav = document.querySelector('nav ul');
             if (sectionId === 'dashboard' || sectionId === 'report') {
@@ -635,7 +650,6 @@
                 `;
             }
         }
-
         // Handle form submissions
         document.querySelectorAll('form').forEach(form => {
             form.addEventListener('submit', function(e) {
@@ -644,7 +658,6 @@
                 // Add your form submission logic here
             });
         });
-
         // Initialize with home section
         showSection('home');
     </script>
