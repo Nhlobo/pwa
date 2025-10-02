@@ -35,18 +35,19 @@
             --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        @layer base {
-            * {
-                border-color: hsl(var(--border));
-            }
-            body {
-                background-color: hsl(var(--background));
-                color: hsl(var(--foreground));
-                font-family: 'Inter', sans-serif;
-                line-height: 1.6;
-                margin: 0;
-                padding: 0;
-            }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--foreground-color);
+            background-color: hsl(var(--background));
+            overflow-x: hidden;
+            width: 100%;
         }
 
         .container {
@@ -146,7 +147,8 @@
 
         section {
             display: none;
-            padding: 3rem 0;
+            padding: 2rem 0;
+            width: 100%;
         }
 
         section.active {
@@ -155,7 +157,7 @@
 
         .hero {
             text-align: center;
-            padding: 3rem 0;
+            padding: 2rem 0;
         }
 
         .tag {
@@ -169,7 +171,7 @@
         }
 
         .hero h1 {
-            font-size: clamp(2rem, 5vw, 3rem);
+            font-size: clamp(1.75rem, 4vw, 2.5rem);
             margin-bottom: 1rem;
             color: hsl(var(--secondary));
             font-weight: 700;
@@ -182,9 +184,9 @@
         }
 
         .description {
-            font-size: 1.125rem;
+            font-size: 1rem;
             color: hsl(var(--muted-foreground));
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
             max-width: 800px;
             margin-left: auto;
             margin-right: auto;
@@ -199,8 +201,8 @@
 
         .work-cards {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.25rem;
             margin: 2rem 0;
         }
 
@@ -213,7 +215,7 @@
         }
 
         .card-image {
-            height: 180px;
+            height: 150px;
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -221,7 +223,7 @@
             align-items: flex-end;
             padding: 1rem;
             color: white;
-            font-size: 1.5rem;
+            font-size: 1.25rem;
             font-weight: 600;
         }
 
@@ -242,18 +244,12 @@
         }
 
         .card-content {
-            padding: 1.5rem;
+            padding: 1.25rem;
             text-align: left;
         }
 
-        .card-content .card-icon {
-            font-size: 1.75rem;
-            margin-bottom: 1rem;
-            color: hsl(var(--primary));
-        }
-
         .card-content h4 {
-            margin-bottom: 0.75rem;
+            margin-bottom: 0.625rem;
             color: hsl(var(--secondary));
             font-weight: 600;
         }
@@ -261,38 +257,41 @@
         .card-content p {
             color: hsl(var(--muted-foreground));
             line-height: 1.5;
+            font-size: 0.9rem;
         }
 
         .step-number {
             background-color: hsl(var(--secondary));
             color: hsl(var(--secondary-foreground));
-            width: 2.25rem;
-            height: 2.25rem;
+            width: 2rem;
+            height: 2rem;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 1rem;
+            margin: 0 0.75rem 0 0;
             font-weight: 600;
+            font-size: 0.9rem;
+            flex-shrink: 0;
         }
 
         .stakeholder-section {
             text-align: center;
-            padding: 3rem 0;
+            padding: 2rem 0;
         }
 
         .stakeholder-cards {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-            margin-top: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.25rem;
+            margin-top: 1.5rem;
         }
 
         .stakeholder-card {
             background: white;
             border: 1px solid hsl(var(--border));
             border-radius: var(--radius);
-            padding: 2rem;
+            padding: 1.5rem;
             text-align: left;
             text-decoration: none;
             color: inherit;
@@ -302,32 +301,34 @@
         }
 
         .stakeholder-card:hover {
-            box-shadow: var(--shadow-elevated);
+            box-shadow: 0 6px 12px rgba(46, 91, 255, 0.15);
             transform: translateY(-2px);
         }
 
         .stakeholder-card h3 {
             color: hsl(var(--secondary));
-            margin-bottom: 0.75rem;
+            margin-bottom: 0.625rem;
             font-weight: 600;
+            font-size: 1.1rem;
         }
 
         .stakeholder-card p {
             color: hsl(var(--muted-foreground));
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
         }
 
         .stakeholder-card .arrow {
             position: absolute;
-            bottom: 1.5rem;
-            right: 1.5rem;
+            bottom: 1rem;
+            right: 1rem;
             font-size: 1.25rem;
             color: hsl(var(--secondary));
         }
 
         .login-form, .register-form, .report-form {
             background-color: hsl(var(--card));
-            padding: 2rem;
+            padding: 1.5rem;
             border-radius: var(--radius);
             box-shadow: var(--shadow-card);
             width: 100%;
@@ -344,15 +345,16 @@
             margin-bottom: 0.5rem;
             font-weight: 500;
             color: hsl(var(--foreground));
+            font-size: 0.9rem;
         }
 
         .form-group input, .form-group textarea, .form-group select {
             width: 100%;
-            padding: 0.875rem;
+            padding: 0.75rem;
             border: 1px solid hsl(var(--border));
             border-radius: var(--radius);
             font-family: inherit;
-            font-size: 1rem;
+            font-size: 0.9rem;
             transition: var(--transition-smooth);
         }
 
@@ -366,7 +368,7 @@
             border-radius: var(--radius);
             box-shadow: var(--shadow-card);
             overflow: hidden;
-            margin-top: 2rem;
+            margin-top: 1.5rem;
         }
 
         .incident-header {
@@ -376,6 +378,7 @@
             background-color: hsl(var(--secondary));
             color: hsl(var(--secondary-foreground));
             font-weight: 600;
+            font-size: 0.9rem;
         }
 
         .incident-item {
@@ -383,6 +386,7 @@
             grid-template-columns: 2fr 1fr 1fr 1fr;
             padding: 1rem;
             border-bottom: 1px solid hsl(var(--border));
+            font-size: 0.9rem;
         }
 
         .incident-item:last-child {
@@ -392,9 +396,9 @@
         footer {
             background-color: hsl(var(--card));
             text-align: center;
-            padding: 2rem;
+            padding: 1.5rem;
             border-top: 1px solid hsl(var(--border));
-            margin-top: 3rem;
+            margin-top: 2rem;
         }
 
         .footer-logo {
@@ -410,7 +414,7 @@
         .footer-links {
             display: flex;
             justify-content: center;
-            gap: 1.5rem;
+            gap: 1.25rem;
             margin-bottom: 1rem;
             flex-wrap: wrap;
         }
@@ -420,6 +424,7 @@
             text-decoration: none;
             cursor: pointer;
             transition: var(--transition-smooth);
+            font-size: 0.9rem;
         }
 
         .footer-links a:hover {
@@ -428,19 +433,19 @@
 
         /* About Section */
         .about {
-            padding: 2rem 0;
+            padding: 1.5rem 0;
             text-align: center;
         }
 
         .about h2 {
-            font-size: 2.5rem;
+            font-size: clamp(1.75rem, 5vw, 2.25rem);
             font-weight: 700;
             margin-bottom: 1rem;
             color: var(--foreground-color);
         }
 
         .about .subtitle {
-            font-size: 1.125rem;
+            font-size: 1rem;
             color: #6B7280;
             margin-bottom: 2rem;
             max-width: 600px;
@@ -451,18 +456,18 @@
         .mission {
             text-align: left;
             max-width: 800px;
-            margin: 0 auto 3rem;
+            margin: 0 auto 2rem;
         }
 
         .mission h3 {
-            font-size: 1.75rem;
+            font-size: clamp(1.25rem, 4vw, 1.75rem);
             font-weight: 700;
-            margin-bottom: 1.25rem;
+            margin-bottom: 1rem;
             color: var(--foreground-color);
         }
 
         .mission p {
-            font-size: 1.0625rem;
+            font-size: 0.95rem;
             color: #6B7280;
             margin-bottom: 1rem;
             line-height: 1.65;
@@ -471,48 +476,32 @@
         .how-it-works {
             background: linear-gradient(135deg, #FEF3C7 0%, #F59E0B 100%);
             border-radius: var(--radius);
-            padding: 2rem;
+            padding: 1.5rem;
             margin: 2rem 0;
         }
 
         .how-it-works h3 {
-            font-size: 2rem;
+            font-size: clamp(1.5rem, 4vw, 2rem);
             font-weight: 700;
             text-align: center;
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
             color: var(--foreground-color);
         }
 
         .steps {
-            max-width: 800px;
+            max-width: 100%;
             margin: 0 auto;
         }
 
         .step {
             display: flex;
-            align-items: flex-start;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
+            gap: 0.75rem;
+            margin-bottom: 1.25rem;
             text-align: left;
         }
 
-        .step-number {
-            background-color: var(--secondary-color);
-            color: white;
-            width: 2rem;
-            height: 2rem;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            font-size: 1rem;
-            flex-shrink: 0;
-            margin-top: 0.25rem;
-        }
-
         .step-content h4 {
-            font-size: 1.25rem;
+            font-size: 1.1rem;
             font-weight: 600;
             margin-bottom: 0.5rem;
             color: var(--foreground-color);
@@ -522,45 +511,46 @@
             color: #6B7280;
             line-height: 1.55;
             margin: 0;
+            font-size: 0.9rem;
         }
 
         .values {
-            padding: 2rem 0;
+            padding: 1.5rem 0;
             text-align: center;
         }
 
         .values h3 {
-            font-size: 2rem;
+            font-size: clamp(1.5rem, 4vw, 2rem);
             font-weight: 700;
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
             color: var(--foreground-color);
         }
 
         .value-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
-            margin-top: 1.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.25rem;
+            margin-top: 1rem;
         }
 
         .value {
             background-color: white;
             border: 1px solid #E5E7EB;
             border-radius: var(--radius);
-            padding: 1.5rem;
+            padding: 1.25rem;
             box-shadow: var(--shadow-card);
             text-align: center;
         }
 
         .value-icon {
-            width: 50px;
-            height: 50px;
+            width: 40px;
+            height: 40px;
             margin: 0 auto 1rem;
             fill: var(--secondary-color);
         }
 
         .value h4 {
-            font-size: 1.25rem;
+            font-size: 1.1rem;
             font-weight: 600;
             margin-bottom: 0.75rem;
             color: var(--foreground-color);
@@ -569,27 +559,29 @@
         .value p {
             color: #6B7280;
             line-height: 1.55;
+            font-size: 0.9rem;
         }
 
         @media (max-width: 768px) {
             .hero h1 {
-                font-size: 2rem;
+                font-size: 1.75rem;
             }
 
             .about h2 {
-                font-size: 2rem;
+                font-size: 1.75rem;
             }
 
             .mission h3 {
-                font-size: 1.5rem;
+                font-size: 1.25rem;
             }
 
             .how-it-works {
-                padding: 1.5rem;
+                padding: 1rem;
             }
 
             .step {
                 flex-direction: row;
+                align-items: flex-start;
             }
 
             .value-grid {
@@ -1011,7 +1003,6 @@
                 `;
             }
 
-            // Hide "About" link in footer if "About" section is active
             const footerLinks = document.getElementById('footerLinks');
             if (sectionId === 'about') {
                 footerLinks.style.display = 'none';
