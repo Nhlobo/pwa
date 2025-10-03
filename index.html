@@ -7,7 +7,6 @@
     <link rel="manifest" href="manifest.json">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="assets/css/style.css">
     <style>
         :root {
             --primary: 26 83% 55%;
@@ -146,6 +145,18 @@
             color: hsl(var(--foreground));
             border: 1px solid hsl(var(--border));
         }
+        .go-back-btn {
+            background-color: hsl(var(--secondary));
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: var(--radius);
+            border: none;
+            cursor: pointer;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
         section {
             display: none;
             padding: 2rem 0;
@@ -191,6 +202,13 @@
             gap: 1rem;
             justify-content: center;
             flex-wrap: wrap;
+        }
+        .section-heading {
+            font-size: clamp(1.75rem, 4vw, 2.25rem);
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: var(--foreground-color);
+            text-align: center;
         }
         .work-cards {
             display: grid;
@@ -242,20 +260,6 @@
             color: hsl(var(--muted-foreground));
             line-height: 1.5;
             font-size: 0.9rem;
-        }
-        .step-number {
-            background-color: hsl(var(--secondary));
-            color: hsl(var(--secondary-foreground));
-            width: 2rem;
-            height: 2rem;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 0.75rem 0 0;
-            font-weight: 600;
-            font-size: 0.9rem;
-            flex-shrink: 0;
         }
         .stakeholder-section {
             text-align: center;
@@ -393,117 +397,6 @@
         .footer-links a:hover {
             color: hsl(var(--primary));
         }
-        .about {
-            padding: 1.5rem 0;
-            text-align: center;
-        }
-        .about h2 {
-            font-size: clamp(1.75rem, 5vw, 2.25rem);
-            font-weight: 700;
-            margin-bottom: 1rem;
-            color: var(--foreground-color);
-        }
-        .about .subtitle {
-            font-size: 1rem;
-            color: #6B7280;
-            margin-bottom: 2rem;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        .mission {
-            text-align: left;
-            max-width: 800px;
-            margin: 0 auto 2rem;
-        }
-        .mission h3 {
-            font-size: clamp(1.25rem, 4vw, 1.75rem);
-            font-weight: 700;
-            margin-bottom: 1rem;
-            color: var(--foreground-color);
-        }
-        .mission p {
-            font-size: 0.95rem;
-            color: #6B7280;
-            margin-bottom: 1rem;
-            line-height: 1.65;
-        }
-        .how-it-works {
-            background: linear-gradient(135deg, #FEF3C7 0%, #F59E0B 100%);
-            border-radius: var(--radius);
-            padding: 1.5rem;
-            margin: 2rem 0;
-        }
-        .how-it-works h3 {
-            font-size: clamp(1.5rem, 4vw, 2rem);
-            font-weight: 700;
-            text-align: center;
-            margin-bottom: 1.5rem;
-            color: var(--foreground-color);
-        }
-        .steps {
-            max-width: 100%;
-            margin: 0 auto;
-        }
-        .step {
-            display: flex;
-            gap: 0.75rem;
-            margin-bottom: 1.25rem;
-            text-align: left;
-        }
-        .step-content h4 {
-            font-size: 1.1rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-            color: var(--foreground-color);
-        }
-        .step-content p {
-            color: #6B7280;
-            line-height: 1.55;
-            margin: 0;
-            font-size: 0.9rem;
-        }
-        .values {
-            padding: 1.5rem 0;
-            text-align: center;
-        }
-        .values h3 {
-            font-size: clamp(1.5rem, 4vw, 2rem);
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-            color: var(--foreground-color);
-        }
-        .value-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.25rem;
-            margin-top: 1rem;
-        }
-        .value {
-            background-color: white;
-            border: 1px solid #E5E7EB;
-            border-radius: var(--radius);
-            padding: 1.25rem;
-            box-shadow: var(--shadow-card);
-            text-align: center;
-        }
-        .value-icon {
-            width: 40px;
-            height: 40px;
-            margin: 0 auto 1rem;
-            fill: var(--secondary-color);
-        }
-        .value h4 {
-            font-size: 1.1rem;
-            font-weight: 600;
-            margin-bottom: 0.75rem;
-            color: var(--foreground-color);
-        }
-        .value p {
-            color: #6B7280;
-            line-height: 1.55;
-            font-size: 0.9rem;
-        }
         .install-prompt {
             position: fixed;
             bottom: 1rem;
@@ -521,21 +414,8 @@
             .hero h1 {
                 font-size: 1.75rem;
             }
-            .about h2 {
+            .section-heading {
                 font-size: 1.75rem;
-            }
-            .mission h3 {
-                font-size: 1.25rem;
-            }
-            .how-it-works {
-                padding: 1rem;
-            }
-            .step {
-                flex-direction: row;
-                align-items: flex-start;
-            }
-            .value-grid {
-                grid-template-columns: 1fr;
             }
             .cta-buttons {
                 flex-direction: column;
@@ -560,8 +440,8 @@
             <button class="dark-mode-toggle" aria-label="Toggle dark mode">
                 <i class="fas fa-moon"></i>
             </button>
-            <i class="fas fa-bell icon"></i>
-            <i class="fas fa-user icon" onclick="showSection('login')"></i>
+            <i class="fas fa-bell icon" id="notificationBell" style="display: none;"></i>
+            <i class="fas fa-user icon" onclick="showSection('login')" id="userIcon"></i>
             <div class="profile-avatar" id="profileAvatar"></div>
         </div>
     </header>
@@ -580,11 +460,11 @@
                 </div>
             </div>
             <div class="how-powerback-works">
-                <h2>How PowerBack Works</h2>
+                <h2 class="section-heading">How PowerBack Works</h2>
                 <div class="work-cards">
                     <div class="card">
                         <div class="card-image card-report">
-                            <img src="report-incidents.jpg" alt="Report Incidents" style="width: 100%; height: 100%; object-fit: cover;">
+                            <img src="assets/images/report-incidents.jpg" alt="Report Incidents" style="width: 100%; height: 100%; object-fit: cover;">
                         </div>
                         <div class="card-content">
                             <h4>Report Incidents</h4>
@@ -593,7 +473,7 @@
                     </div>
                     <div class="card">
                         <div class="card-image card-police">
-                            <img src="police-response.jpg" alt="Police Response" style="width: 100%; height: 100%; object-fit: cover;">
+                            <img src="assets/images/police-response.jpg" alt="Police Response" style="width: 100%; height: 100%; object-fit: cover;">
                         </div>
                         <div class="card-content">
                             <h4>Police Response</h4>
@@ -602,7 +482,7 @@
                     </div>
                     <div class="card">
                         <div class="card-image card-community">
-                            <img src="community-support (1).jpg" alt="Community Support" style="width: 100%; height: 100%; object-fit: cover;">
+                            <img src="assets/images/community-support.jpg" alt="Community Support" style="width: 100%; height: 100%; object-fit: cover;">
                         </div>
                         <div class="card-content">
                             <h4>Community Support</h4>
@@ -611,7 +491,7 @@
                     </div>
                     <div class="card">
                         <div class="card-image card-neighborhood">
-                            <img src="neighborhood-watch.jpg" alt="Neighborhood Watch" style="width: 100%; height: 100%; object-fit: cover;">
+                            <img src="assets/images/neighborhood-watch.jpg" alt="Neighborhood Watch" style="width: 100%; height: 100%; object-fit: cover;">
                         </div>
                         <div class="card-content">
                             <h4>Neighborhood Watch</h4>
@@ -621,7 +501,7 @@
                 </div>
             </div>
             <div class="stakeholder-section">
-                <h2>Join as a Stakeholder</h2>
+                <h2 class="section-heading">Join as a Stakeholder</h2>
                 <div class="stakeholder-cards">
                     <a href="#" onclick="showSection('register')" class="stakeholder-card">
                         <h3>Citizen</h3>
@@ -649,7 +529,7 @@
         <!-- About Section -->
         <section id="about">
             <div class="about">
-                <h2>About PowerBack</h2>
+                <h2 class="section-heading">About PowerBack</h2>
                 <p class="subtitle">A comprehensive platform connecting communities with safety and justice systems</p>
                 <div class="mission">
                     <h3>Our Mission</h3>
@@ -657,41 +537,8 @@
                     <p>By providing a secure, efficient platform for incident reporting and response, we empower communities to take an active role in their own safety while ensuring law enforcement and support organizations have the tools they need to serve effectively.</p>
                 </div>
             </div>
-            <div class="values">
-                <h3>Our Values</h3>
-                <div class="value-grid">
-                    <div class="value">
-                        <svg class="value-icon" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.21 7 3.21v4.59c0 1.72-1.38 3.21-3 3.35v-2.15c1.53-.15 2.75-1.52 2.75-3.25 0-2.26-1.93-4.14-4.5-4.34V6.2L7.5 9.32h4.5v2.47z"/>
-                        </svg>
-                        <h4>Trust & Transparency</h4>
-                        <p>Building confidence through clear, accountable incident reporting and response systems.</p>
-                    </div>
-                    <div class="value">
-                        <svg class="value-icon" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M11 17H7v-6h4v6zm4-11.24A6.96 6.96 0 0 1 18 11c0 1.93-.64 3.73-1.76 5.17l3.34 2.67c.77-.58 1.38-1.4 1.7-2.33C22.5 12.18 23 10.17 23 8c0-2.17-.6-4.14-1.67-5.78L19.6 2.17C18.57 3.43 17 5.57 17 8h-1c0-1.66-.83-3.19-2.07-4.1L15 2h-1l-.93 1.9C12.81 4.81 12 6.34 12 8s.81 3.19 2.07 4.1l1.93-3.86L15 5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5z"/>
-                        </svg>
-                        <h4>Efficiency</h4>
-                        <p>Streamlining communication between citizens, law enforcement, and support organizations.</p>
-                    </div>
-                    <div class="value">
-                        <svg class="value-icon" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm7-7H5c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zM5 8h2v2H5V8zm12 0h2v2h-2V8zM5 12h2v2H5v-2zm12 0h2v2h-2v-2zM5 16h2v2H5v-2zm12 0h2v2h-2v-2z"/>
-                        </svg>
-                        <h4>Community First</h4>
-                        <p>Empowering communities to actively participate in creating safer neighborhoods.</p>
-                    </div>
-                    <div class="value">
-                        <svg class="value-icon" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
-                        </svg>
-                        <h4>Victim Support</h4>
-                        <p>Connecting those in need with resources and assistance through NGO partnerships.</p>
-                    </div>
-                </div>
-            </div>
             <div class="how-it-works">
-                <h3>How It Works</h3>
+                <h3 class="section-heading">How It Works</h3>
                 <div class="steps">
                     <div class="step">
                         <div class="step-number">1</div>
@@ -723,9 +570,45 @@
                     </div>
                 </div>
             </div>
+            <div class="values">
+                <h3 class="section-heading">Our Values</h3>
+                <div class="value-grid">
+                    <div class="value">
+                        <svg class="value-icon" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.21 7 3.21v4.59c0 1.72-1.38 3.21-3 3.35v-2.15c1.53-.15 2.75-1.52 2.75-3.25 0-2.26-1.93-4.14-4.5-4.34V6.2L7.5 9.32h4.5v2.47z"/>
+                        </svg>
+                        <h4>Trust & Transparency</h4>
+                        <p>Building confidence through clear, accountable incident reporting and response systems.</p>
+                    </div>
+                    <div class="value">
+                        <svg class="value-icon" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M11 17H7v-6h4v6zm4-11.24A6.96 6.96 0 0 1 18 11c0 1.93-.64 3.73-1.76 5.17l3.34 2.67c.77-.58 1.38-1.4 1.7-2.33C22.5 12.18 23 10.17 23 8c0-2.17-.6-4.14-1.67-5.78L19.6 2.17C18.57 3.43 17 5.57 17 8h-1c0-1.66-.83-3.19-2.07-4.1L15 2h-1l-.93 1.9C12.81 4.81 12 6.34 12 8s.81 3.19 2.07 4.1l1.93-3.86L15 5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5z"/>
+                        </svg>
+                        <h4>Efficiency</h4>
+                        <p>Streamlining communication between citizens, law enforcement, and support organizations.</p>
+                    </div>
+                    <div class="value">
+                        <svg class="value-icon" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm7-7H5c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zM5 8h2v2H5V8zm12 0h2v2h-2V8zM5 12h2v2H5v-2zm12 0h2v2h-2v-2zM5 16h2v2H5v-2zm12 0h2v2h-2v-2z"/>
+                        </svg>
+                        <h4>Community First</h4>
+                        <p>Empowering communities to actively participate in creating safer neighborhoods.</p>
+                    </div>
+                    <div class="value">
+                        <svg class="value-icon" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                        </svg>
+                        <h4>Victim Support</h4>
+                        <p>Connecting those in need with resources and assistance through NGO partnerships.</p>
+                    </div>
+                </div>
+            </div>
         </section>
         <!-- Login Section -->
         <section id="login">
+            <button class="go-back-btn" onclick="showSection('home')">
+                <i class="fas fa-arrow-left"></i> Go Back
+            </button>
             <div class="login">
                 <div class="login-form">
                     <div style="text-align: center; margin-bottom: 1.5rem;">
@@ -752,6 +635,9 @@
         </section>
         <!-- Register Section -->
         <section id="register">
+            <button class="go-back-btn" onclick="showSection('home')">
+                <i class="fas fa-arrow-left"></i> Go Back
+            </button>
             <div class="register">
                 <div class="register-form">
                     <div style="text-align: center; margin-bottom: 1.5rem;">
@@ -796,6 +682,9 @@
         </section>
         <!-- Report Incident Section -->
         <section id="report">
+            <button class="go-back-btn" onclick="showSection('home')">
+                <i class="fas fa-arrow-left"></i> Go Back
+            </button>
             <div class="report">
                 <div class="report-form">
                     <h2>Report an Incident</h2>
@@ -863,6 +752,92 @@
     <div class="install-prompt" id="installPrompt">
         <i class="fas fa-download"></i> Install PowerBack
     </div>
-    <script src="assets/js/app.js"></script>
+    <script>
+        // Dark Mode Toggle
+        document.querySelector('.dark-mode-toggle').addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            localStorage.setItem('darkMode', document.body.classList.contains('dark-mode'));
+        });
+
+        // Check for saved dark mode preference
+        if (localStorage.getItem('darkMode') === 'true') {
+            document.body.classList.add('dark-mode');
+        }
+
+        // Section Navigation with Smooth Scroll
+        function showSection(sectionId) {
+            document.querySelectorAll('section').forEach(section => {
+                section.classList.remove('active');
+            });
+            document.getElementById(sectionId).classList.add('active');
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+            updateUIForSection(sectionId);
+        }
+
+        // Update UI based on active section
+        function updateUIForSection(sectionId) {
+            const profileAvatar = document.getElementById('profileAvatar');
+            const navIcons = document.querySelector('.nav-icons');
+            const footerLinks = document.getElementById('footerLinks');
+            const notificationBell = document.getElementById('notificationBell');
+            const userIcon = document.getElementById('userIcon');
+
+            if (sectionId === 'dashboard' || sectionId === 'report') {
+                profileAvatar.classList.add('logged-in');
+                notificationBell.style.display = 'block';
+                userIcon.style.display = 'none';
+            } else {
+                profileAvatar.classList.remove('logged-in');
+                notificationBell.style.display = 'none';
+                userIcon.style.display = 'block';
+            }
+
+            if (sectionId === 'about') {
+                footerLinks.style.display = 'none';
+            } else {
+                footerLinks.style.display = 'flex';
+            }
+        }
+
+        // Form Submission Handling
+        document.querySelectorAll('form').forEach(form => {
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert('Form submitted!');
+                // Redirect to dashboard based on role
+                const role = document.getElementById('role') ? document.getElementById('role').value : 'citizen';
+                if (sectionId === 'login' || sectionId === 'register') {
+                    window.location.href = `dashboard/${role}.html`;
+                }
+            });
+        });
+
+        // PWA Install Prompt
+        let deferredPrompt;
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            document.getElementById('installPrompt').style.display = 'block';
+        });
+
+        document.getElementById('installPrompt').addEventListener('click', () => {
+            deferredPrompt.prompt();
+            deferredPrompt.userChoice.then((choiceResult) => {
+                if (choiceResult.outcome === 'accepted') {
+                    console.log('User accepted the install prompt');
+                } else {
+                    console.log('User dismissed the install prompt');
+                }
+                deferredPrompt = null;
+                document.getElementById('installPrompt').style.display = 'none';
+            });
+        });
+
+        // Initialize
+        showSection('home');
+    </script>
 </body>
 </html>
