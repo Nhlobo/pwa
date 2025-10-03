@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>PowerBack - Empowering Communities, Supporting Justice</title>
-    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#2E5BFF">
+    <link rel="manifest" href="/manifest.json">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -749,10 +750,22 @@
         </div>
         <p>© 2025 PowerBack. All rights reserved.</p>
     </footer>
-    <div class="install-prompt" id="installPrompt">
+    <div class="install-prompt" id="installPrompt" style="display:none;">
         <i class="fas fa-download"></i> Install PowerBack
     </div>
     <script>
+        // Service Worker registration for PWA
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function() {
+                navigator.serviceWorker.register('/service-worker.js').then(function(reg) {
+                    // success
+                }, function(err) {
+                    // failure
+                    console.error('SW registration failed:', err);
+                });
+            });
+        }
+
         // Dark Mode Toggle
         document.querySelector('.dark-mode-toggle').addEventListener('click', () => {
             document.body.classList.toggle('dark-mode');
@@ -809,7 +822,7 @@
                 alert('Form submitted!');
                 // Redirect to dashboard based on role
                 const role = document.getElementById('role') ? document.getElementById('role').value : 'citizen';
-                if (sectionId === 'login' || sectionId === 'register') {
+                if (form.closest('section').id === 'login' || form.closest('section').id === 'register') {
                     window.location.href = `dashboard/${role}.html`;
                 }
             });
@@ -824,16 +837,13 @@
         });
 
         document.getElementById('installPrompt').addEventListener('click', () => {
-            deferredPrompt.prompt();
-            deferredPrompt.userChoice.then((choiceResult) => {
-                if (choiceResult.outcome === 'accepted') {
-                    console.log('User accepted the install prompt');
-                } else {
-                    console.log('User dismissed the install prompt');
-                }
-                deferredPrompt = null;
-                document.getElementById('installPrompt').style.display = 'none';
-            });
+            if (deferredPrompt) {
+                deferredPrompt.prompt();
+                deferredPrompt.userChoice.then((choiceResult) => {
+                    deferredPrompt = null;
+                    document.getElementById('installPrompt').style.display = 'none';
+                });
+            }
         });
 
         // Initialize
