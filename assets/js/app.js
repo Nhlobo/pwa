@@ -1,3 +1,29 @@
+// Register Service Worker (adjusted for GitHub Pages)
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register("/pwa/service-worker.js")
+    .then(() => console.log("Service Worker registered"));
+}
+
+// PWA Install Prompt
+let deferredPrompt;
+const installPrompt = document.getElementById("installPrompt");
+
+window.addEventListener("beforeinstallprompt", (e) => {
+  e.preventDefault();
+  deferredPrompt = e;
+  installPrompt.style.display = "block";
+});
+
+installPrompt.addEventListener("click", async () => {
+  installPrompt.style.display = "none";
+  deferredPrompt.prompt();
+  const { outcome } = await deferredPrompt.userChoice;
+  console.log("User choice:", outcome);
+  deferredPrompt = null;
+});
+
+const BACKEND_URL = "https://backend-note-pwa-1.onrender.com/";
+
 // Dark Mode Toggle
 document.querySelector('.dark-mode-toggle').addEventListener('click', () => {
     document.body.classList.toggle('dark-mode');
@@ -73,30 +99,9 @@ document.querySelectorAll('form').forEach(form => {
         alert('Form submitted!');
         // Redirect to dashboard based on role
         const role = document.getElementById('role') ? document.getElementById('role').value : 'citizen';
-        if (sectionId === 'login' || sectionId === 'register') {
+        if (form.closest('section').id === 'login' || form.closest('section').id === 'register') {
             window.location.href = `dashboard/${role}.html`;
         }
-    });
-});
-
-// PWA Install Prompt
-let deferredPrompt;
-window.addEventListener('beforeinstallprompt', (e) => {
-    e.preventDefault();
-    deferredPrompt = e;
-    document.getElementById('installPrompt').style.display = 'block';
-});
-
-document.getElementById('installPrompt').addEventListener('click', () => {
-    deferredPrompt.prompt();
-    deferredPrompt.userChoice.then((choiceResult) => {
-        if (choiceResult.outcome === 'accepted') {
-            console.log('User accepted the install prompt');
-        } else {
-            console.log('User dismissed the install prompt');
-        }
-        deferredPrompt = null;
-        document.getElementById('installPrompt').style.display = 'none';
     });
 });
 
