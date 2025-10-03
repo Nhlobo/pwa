@@ -4,13 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>PowerBack - Empowering Communities, Supporting Justice</title>
-    <meta name="theme-color" content="#2E5BFF">
-    <!-- Updated manifest path for GitHub Pages -->
-    <link rel="manifest" href="/pwa/manifest.json">
+    <link rel="manifest" href="manifest.json">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* ... your original CSS ... */
         :root {
             --primary: 26 83% 55%;
             --primary-color: #FF6B35;
@@ -400,117 +397,6 @@
         .footer-links a:hover {
             color: hsl(var(--primary));
         }
-        .about {
-            padding: 1.5rem 0;
-            text-align: center;
-        }
-        .about h2 {
-            font-size: clamp(1.75rem, 5vw, 2.25rem);
-            font-weight: 700;
-            margin-bottom: 1rem;
-            color: var(--foreground-color);
-        }
-        .about .subtitle {
-            font-size: 1rem;
-            color: #6B7280;
-            margin-bottom: 2rem;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        .mission {
-            text-align: left;
-            max-width: 800px;
-            margin: 0 auto 2rem;
-        }
-        .mission h3 {
-            font-size: clamp(1.25rem, 4vw, 1.75rem);
-            font-weight: 700;
-            margin-bottom: 1rem;
-            color: var(--foreground-color);
-        }
-        .mission p {
-            font-size: 0.95rem;
-            color: #6B7280;
-            margin-bottom: 1rem;
-            line-height: 1.65;
-        }
-        .how-it-works {
-            background: linear-gradient(135deg, #FEF3C7 0%, #F59E0B 100%);
-            border-radius: var(--radius);
-            padding: 1.5rem;
-            margin: 2rem 0;
-        }
-        .how-it-works h3 {
-            font-size: clamp(1.5rem, 4vw, 2rem);
-            font-weight: 700;
-            text-align: center;
-            margin-bottom: 1.5rem;
-            color: var(--foreground-color);
-        }
-        .steps {
-            max-width: 100%;
-            margin: 0 auto;
-        }
-        .step {
-            display: flex;
-            gap: 0.75rem;
-            margin-bottom: 1.25rem;
-            text-align: left;
-        }
-        .step-content h4 {
-            font-size: 1.1rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-            color: var(--foreground-color);
-        }
-        .step-content p {
-            color: #6B7280;
-            line-height: 1.55;
-            margin: 0;
-            font-size: 0.9rem;
-        }
-        .values {
-            padding: 1.5rem 0;
-            text-align: center;
-        }
-        .values h3 {
-            font-size: clamp(1.5rem, 4vw, 2rem);
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-            color: var(--foreground-color);
-        }
-        .value-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.25rem;
-            margin-top: 1rem;
-        }
-        .value {
-            background-color: white;
-            border: 1px solid #E5E7EB;
-            border-radius: var(--radius);
-            padding: 1.25rem;
-            box-shadow: var(--shadow-card);
-            text-align: center;
-        }
-        .value-icon {
-            width: 40px;
-            height: 40px;
-            margin: 0 auto 1rem;
-            fill: var(--secondary-color);
-        }
-        .value h4 {
-            font-size: 1.1rem;
-            font-weight: 600;
-            margin-bottom: 0.75rem;
-            color: var(--foreground-color);
-        }
-        .value p {
-            color: #6B7280;
-            line-height: 1.55;
-            font-size: 0.9rem;
-        }
         .install-prompt {
             position: fixed;
             bottom: 1rem;
@@ -524,7 +410,6 @@
             z-index: 1000;
             cursor: pointer;
         }
-        
         @media (max-width: 768px) {
             .hero h1 {
                 font-size: 1.75rem;
@@ -579,7 +464,7 @@
                 <div class="work-cards">
                     <div class="card">
                         <div class="card-image card-report">
-                            <img src="report-incidents.jpg" alt="Report Incidents" style="width: 100%; height: 100%; object-fit: cover;">
+                            <img src="assets/images/report-incidents.jpg" alt="Report Incidents" style="width: 100%; height: 100%; object-fit: cover;">
                         </div>
                         <div class="card-content">
                             <h4>Report Incidents</h4>
@@ -588,7 +473,7 @@
                     </div>
                     <div class="card">
                         <div class="card-image card-police">
-                            <img src="police-response.jpg" alt="Police Response" style="width: 100%; height: 100%; object-fit: cover;">
+                            <img src="assets/images/police-response.jpg" alt="Police Response" style="width: 100%; height: 100%; object-fit: cover;">
                         </div>
                         <div class="card-content">
                             <h4>Police Response</h4>
@@ -597,7 +482,7 @@
                     </div>
                     <div class="card">
                         <div class="card-image card-community">
-                            <img src="community-support.jpg" alt="Community Support" style="width: 100%; height: 100%; object-fit: cover;">
+                            <img src="assets/images/community-support.jpg" alt="Community Support" style="width: 100%; height: 100%; object-fit: cover;">
                         </div>
                         <div class="card-content">
                             <h4>Community Support</h4>
@@ -606,7 +491,7 @@
                     </div>
                     <div class="card">
                         <div class="card-image card-neighborhood">
-                            <img src="neighborhood-watch.jpg" alt="Neighborhood Watch" style="width: 100%; height: 100%; object-fit: cover;">
+                            <img src="assets/images/neighborhood-watch.jpg" alt="Neighborhood Watch" style="width: 100%; height: 100%; object-fit: cover;">
                         </div>
                         <div class="card-content">
                             <h4>Neighborhood Watch</h4>
@@ -643,9 +528,6 @@
         </section>
         <!-- About Section -->
         <section id="about">
-            <button class="go-back-btn" onclick="showSection('home')">
-                <i class="fas fa-arrow-left"></i> Go Back
-            </button>
             <div class="about">
                 <h2 class="section-heading">About PowerBack</h2>
                 <p class="subtitle">A comprehensive platform connecting communities with safety and justice systems</p>
@@ -853,7 +735,7 @@
                 </div>
             </div>
         </section>
-        </main>
+    </main>
     <footer class="container">
         <div class="footer-logo" onclick="window.location.reload(); showSection('home')">
             <svg class="logo-icon" viewBox="0 0 24 24" fill="currentColor">
@@ -864,15 +746,98 @@
         <p>Empowering communities through transparent incident reporting</p>
         <div class="footer-links" id="footerLinks">
             <a onclick="showSection('about')">About</a>
-            <!-- Removed installBtn button as discussed -->
         </div>
         <p>© 2025 PowerBack. All rights reserved.</p>
     </footer>
-    <!-- Single install prompt for PWA -->
-    <div class="install-prompt" id="installPrompt" style="display:none;">
+    <div class="install-prompt" id="installPrompt">
         <i class="fas fa-download"></i> Install PowerBack
     </div>
-    <!-- Updated script registration for GitHub Pages -->
-    <script src="/pwa/assets/js/app.js"></script>
+    <script>
+        // Dark Mode Toggle
+        document.querySelector('.dark-mode-toggle').addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            localStorage.setItem('darkMode', document.body.classList.contains('dark-mode'));
+        });
+
+        // Check for saved dark mode preference
+        if (localStorage.getItem('darkMode') === 'true') {
+            document.body.classList.add('dark-mode');
+        }
+
+        // Section Navigation with Smooth Scroll
+        function showSection(sectionId) {
+            document.querySelectorAll('section').forEach(section => {
+                section.classList.remove('active');
+            });
+            document.getElementById(sectionId).classList.add('active');
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+            updateUIForSection(sectionId);
+        }
+
+        // Update UI based on active section
+        function updateUIForSection(sectionId) {
+            const profileAvatar = document.getElementById('profileAvatar');
+            const navIcons = document.querySelector('.nav-icons');
+            const footerLinks = document.getElementById('footerLinks');
+            const notificationBell = document.getElementById('notificationBell');
+            const userIcon = document.getElementById('userIcon');
+
+            if (sectionId === 'dashboard' || sectionId === 'report') {
+                profileAvatar.classList.add('logged-in');
+                notificationBell.style.display = 'block';
+                userIcon.style.display = 'none';
+            } else {
+                profileAvatar.classList.remove('logged-in');
+                notificationBell.style.display = 'none';
+                userIcon.style.display = 'block';
+            }
+
+            if (sectionId === 'about') {
+                footerLinks.style.display = 'none';
+            } else {
+                footerLinks.style.display = 'flex';
+            }
+        }
+
+        // Form Submission Handling
+        document.querySelectorAll('form').forEach(form => {
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert('Form submitted!');
+                // Redirect to dashboard based on role
+                const role = document.getElementById('role') ? document.getElementById('role').value : 'citizen';
+                if (sectionId === 'login' || sectionId === 'register') {
+                    window.location.href = `dashboard/${role}.html`;
+                }
+            });
+        });
+
+        // PWA Install Prompt
+        let deferredPrompt;
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            document.getElementById('installPrompt').style.display = 'block';
+        });
+
+        document.getElementById('installPrompt').addEventListener('click', () => {
+            deferredPrompt.prompt();
+            deferredPrompt.userChoice.then((choiceResult) => {
+                if (choiceResult.outcome === 'accepted') {
+                    console.log('User accepted the install prompt');
+                } else {
+                    console.log('User dismissed the install prompt');
+                }
+                deferredPrompt = null;
+                document.getElementById('installPrompt').style.display = 'none';
+            });
+        });
+
+        // Initialize
+        showSection('home');
+    </script>
 </body>
 </html>
