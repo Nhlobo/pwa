@@ -356,6 +356,7 @@
             margin-bottom: 1rem;
             font-weight: 600;
             color: hsl(var(--secondary));
+            cursor: pointer;
         }
         .footer-links {
             display: flex;
@@ -616,46 +617,13 @@
         </section>
         <!-- About Section -->
         <section id="about">
-            <div class="about">
+            <div id="about-top" class="about">
                 <h2>About PowerBack</h2>
                 <p class="subtitle">A comprehensive platform connecting communities with safety and justice systems</p>
                 <div class="mission">
                     <h3>Our Mission</h3>
                     <p>PowerBack was created to bridge the gap between citizens and the institutions designed to protect them. We believe that effective public safety requires transparency, accountability, and seamless communication between all stakeholders.</p>
                     <p>By providing a secure, efficient platform for incident reporting and response, we empower communities to take an active role in their own safety while ensuring law enforcement and support organizations have the tools they need to serve effectively.</p>
-                </div>
-            </div>
-            <div class="how-it-works">
-                <h3>How It Works</h3>
-                <div class="steps">
-                    <div class="step">
-                        <div class="step-number">1</div>
-                        <div class="step-content">
-                            <h4>Report</h4>
-                            <p>Citizens report incidents with photos, videos, and location data through our secure platform.</p>
-                        </div>
-                    </div>
-                    <div class="step">
-                        <div class="step-number">2</div>
-                        <div class="step-content">
-                            <h4>Respond</h4>
-                            <p>Law enforcement receives real-time alerts and can assign, track, and update incident status.</p>
-                        </div>
-                    </div>
-                    <div class="step">
-                        <div class="step-number">3</div>
-                        <div class="step-content">
-                            <h4>Support</h4>
-                            <p>NGOs provide resources and assistance to victims with appropriate privacy protections.</p>
-                        </div>
-                    </div>
-                    <div class="step">
-                        <div class="step-number">4</div>
-                        <div class="step-content">
-                            <h4>Inform</h4>
-                            <p>Community watch groups keep neighborhoods informed and engaged in local safety efforts.</p>
-                        </div>
-                    </div>
                 </div>
             </div>
             <div class="values">
@@ -691,10 +659,43 @@
                     </div>
                 </div>
             </div>
+            <div class="how-it-works">
+                <h3>How It Works</h3>
+                <div class="steps">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h4>Report</h4>
+                            <p>Citizens report incidents with photos, videos, and location data through our secure platform.</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h4>Respond</h4>
+                            <p>Law enforcement receives real-time alerts and can assign, track, and update incident status.</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h4>Support</h4>
+                            <p>NGOs provide resources and assistance to victims with appropriate privacy protections.</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <h4>Inform</h4>
+                            <p>Community watch groups keep neighborhoods informed and engaged in local safety efforts.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </section>
         <!-- Login Section -->
         <section id="login">
-            <div class="login">
+            <div id="login-top" class="login">
                 <div class="login-form">
                     <div style="text-align: center; margin-bottom: 1.5rem;">
                         <svg style="width: 48px; height: 48px; fill: hsl(var(--primary)); margin-bottom: 0.5rem;" viewBox="0 0 24 24">
@@ -720,7 +721,7 @@
         </section>
         <!-- Register Section -->
         <section id="register">
-            <div class="register">
+            <div id="register-top" class="register">
                 <div class="register-form">
                     <div style="text-align: center; margin-bottom: 1.5rem;">
                         <svg style="width: 48px; height: 48px; fill: hsl(var(--primary)); margin-bottom: 0.5rem;" viewBox="0 0 24 24">
@@ -764,7 +765,7 @@
         </section>
         <!-- Report Incident Section -->
         <section id="report">
-            <div class="report">
+            <div id="report-top" class="report">
                 <div class="report-form">
                     <h2>Report an Incident</h2>
                     <form>
@@ -871,7 +872,7 @@
         </section>
     </main>
     <footer class="container">
-        <div class="footer-logo">
+        <div class="footer-logo" onclick="window.location.reload(); showSection('home')">
             <svg class="logo-icon" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M12 2L4 5v6.09c0 5.05 3.41 9.76 8 10.91 4.59-1.15 8-5.86 8-10.91V5l-8-3z"/>
             </svg>
@@ -888,7 +889,15 @@
             document.querySelectorAll('section').forEach(section => {
                 section.classList.remove('active');
             });
-            document.getElementById(sectionId).classList.add('active');
+            const section = document.getElementById(sectionId);
+            section.classList.add('active');
+            // Scroll to the top of the section
+            const sectionTop = document.getElementById(sectionId + "-top");
+            if (sectionTop) {
+                sectionTop.scrollIntoView({ behavior: 'smooth' });
+            } else {
+                section.scrollIntoView({ behavior: 'smooth' });
+            }
             const profileAvatar = document.getElementById('profileAvatar');
             if (sectionId === 'dashboard' || sectionId === 'report') {
                 profileAvatar.classList.add('logged-in');
