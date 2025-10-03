@@ -2,10 +2,6 @@ const CACHE_NAME = "powerback-v1";
 const urlsToCache = [
   '/',
   '/index.html',
-  '/dashboard/citizen.html',
-  '/dashboard/police.html',
-  '/dashboard/ngo.html',
-  '/dashboard/watch.html',
   '/assets/css/style.css',
   '/assets/js/app.js',
   '/manifest.json',
