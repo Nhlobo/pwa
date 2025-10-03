@@ -1,0 +1,32 @@
+# Render deployment configuration
+# Documentation: https://render.com/docs/yaml-spec
+
+services:
+  # Backend API Service
+  - type: web
+    name: powerback-backend
+    runtime: docker
+    dockerfilePath: ./backend/Dockerfile
+    dockerContext: ./backend
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: powerback-db
+          property: connectionString
+      - key: JWT_SECRET
+        generateValue: true
+        # IMPORTANT: After first deploy, replace with a secure secret key in Render dashboard
+      - key: CORS_ALLOWED_ORIGINS
+        value: https://nhlobo.github.io
+      - key: PORT
+        value: 8080
+    healthCheckPath: /actuator/health
+    
+  # PostgreSQL Database
+databases:
+  - name: powerback-db
+    databaseName: powerback
+    user: powerback
+    plan: free
+    # IMPORTANT: Free tier databases sleep after 90 days of inactivity
+    # Consider upgrading to a paid plan for production
