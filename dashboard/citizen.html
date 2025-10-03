@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Citizen Dashboard - PowerBack</title>
+    <link rel="manifest" href="../manifest.json">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../assets/css/dashboard.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-logo">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>PowerBack</span>
+                </div>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <a href="#" class="nav-item active" data-section="overview">
+                    <i class="fas fa-home"></i>
+                    <span>Overview</span>
+                </a>
+                <a href="#" class="nav-item" data-section="report">
+                    <i class="fas fa-plus-circle"></i>
+                    <span>Report Incident</span>
+                </a>
+                <a href="#" class="nav-item" data-section="my-incidents">
+                    <i class="fas fa-list"></i>
+                    <span>My Reports</span>
+                </a>
+                <a href="#" class="nav-item" data-section="community">
+                    <i class="fas fa-users"></i>
+                    <span>Community Updates</span>
+                </a>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <button class="btn btn-outline" style="width: 100%;" onclick="handleLogout()">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Logout</span>
+                </button>
+            </div>
+        </aside>
+        
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="dashboard-header">
+                <div class="header-search">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search incidents...">
+                </div>
+                
+                <div class="header-actions">
+                    <div class="header-icon" id="notificationIcon">
+                        <i class="fas fa-bell"></i>
+                        <span class="notification-badge" id="notificationBadge" style="display: none;">0</span>
+                    </div>
+                    
+                    <div class="user-menu">
+                        <div class="user-avatar" id="userAvatar">C</div>
+                        <div>
+                            <div style="font-weight: 600; font-size: 0.875rem;" id="userName">User</div>
+                            <div style="font-size: 0.75rem; color: #666;" id="userRole">Citizen</div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            
+            <!-- Content Area -->
+            <div class="content-area">
+                <!-- Overview Section -->
+                <section id="overview" class="section active">
+                    <div class="page-header">
+                        <h1 class="page-title">Dashboard Overview</h1>
+                        <p class="page-subtitle">Monitor your reported incidents and community safety</p>
+                    </div>
+                    
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-header">
+                                <div>
+                                    <div class="stat-value" id="totalIncidents">0</div>
+                                    <div class="stat-label">Total Reports</div>
+                                </div>
+                                <div class="stat-icon primary">
+                                    <i class="fas fa-file-alt"></i>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="stat-card">
+                            <div class="stat-header">
+                                <div>
+                                    <div class="stat-value" id="pendingIncidents">0</div>
+                                    <div class="stat-label">Pending</div>
+                                </div>
+                                <div class="stat-icon warning">
+                                    <i class="fas fa-clock"></i>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="stat-card">
+                            <div class="stat-header">
+                                <div>
+                                    <div class="stat-value" id="resolvedIncidents">0</div>
+                                    <div class="stat-label">Resolved</div>
+                                </div>
+                                <div class="stat-icon success">
+                                    <i class="fas fa-check-circle"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-header">
+                            <h2 class="card-title">Recent Incidents</h2>
+                            <button class="btn btn-primary" onclick="showSection('report')">
+                                <i class="fas fa-plus"></i>
+                                New Report
+                            </button>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-container">
+                                <table id="recentIncidentsTable">
+                                    <thead>
+                                        <tr>
+                                            <th>Type</th>
+                                            <th>Title</th>
+                                            <th>Status</th>
+                                            <th>Priority</th>
+                                            <th>Date</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="recentIncidentsBody">
+                                        <tr>
+                                            <td colspan="6" class="empty-state">
+                                                <i class="fas fa-inbox"></i>
+                                                <p>No incidents reported yet</p>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- Report Section -->
+                <section id="report" class="section" style="display: none;">
+                    <div class="page-header">
+                        <h1 class="page-title">Report Incident</h1>
+                        <p class="page-subtitle">Help keep your community safe by reporting incidents</p>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-body">
+                            <form id="reportForm">
+                                <div class="form-group">
+                                    <label class="form-label">Incident Type *</label>
+                                    <select class="form-select" id="incidentType" required>
+                                        <option value="">Select type</option>
+                                        <option value="THEFT">Theft</option>
+                                        <option value="ASSAULT">Assault</option>
+                                        <option value="VANDALISM">Vandalism</option>
+                                        <option value="SUSPICIOUS_ACTIVITY">Suspicious Activity</option>
+                                        <option value="DOMESTIC_VIOLENCE">Domestic Violence</option>
+                                        <option value="TRAFFIC">Traffic Incident</option>
+                                        <option value="FIRE">Fire</option>
+                                        <option value="MEDICAL">Medical Emergency</option>
+                                        <option value="OTHER">Other</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label class="form-label">Title *</label>
+                                    <input type="text" class="form-input" id="incidentTitle" 
+                                           placeholder="Brief description of the incident" required>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label class="form-label">Description *</label>
+                                    <textarea class="form-textarea" id="incidentDescription" 
+                                              placeholder="Provide detailed information about the incident" required></textarea>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label class="form-label">Location *</label>
+                                    <input type="text" class="form-input" id="incidentAddress" 
+                                           placeholder="Address or location details" required>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <button type="button" class="btn btn-outline" onclick="getCurrentLocation()">
+                                        <i class="fas fa-map-marker-alt"></i>
+                                        Use Current Location
+                                    </button>
+                                </div>
+                                
+                                <input type="hidden" id="latitude">
+                                <input type="hidden" id="longitude">
+                                
+                                <div class="form-group">
+                                    <label class="form-label">Media (Optional)</label>
+                                    <input type="file" class="form-input" id="incidentMedia" 
+                                           accept="image/*,video/*" multiple>
+                                    <small style="color: #666;">Upload photos or videos as evidence</small>
+                                </div>
+                                
+                                <div style="display: flex; gap: 1rem; margin-top: 2rem;">
+                                    <button type="submit" class="btn btn-primary">
+                                        <i class="fas fa-paper-plane"></i>
+                                        Submit Report
+                                    </button>
+                                    <button type="button" class="btn btn-outline" onclick="showSection('overview')">
+                                        Cancel
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- My Incidents Section -->
+                <section id="my-incidents" class="section" style="display: none;">
+                    <div class="page-header">
+                        <h1 class="page-title">My Reports</h1>
+                        <p class="page-subtitle">Track the status of your reported incidents</p>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="table-container">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Type</th>
+                                            <th>Title</th>
+                                            <th>Status</th>
+                                            <th>Priority</th>
+                                            <th>Date</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="myIncidentsBody">
+                                        <tr>
+                                            <td colspan="7" class="empty-state">Loading...</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- Community Section -->
+                <section id="community" class="section" style="display: none;">
+                    <div class="page-header">
+                        <h1 class="page-title">Community Updates</h1>
+                        <p class="page-subtitle">Stay informed about incidents in your area</p>
+                    </div>
+                    
+                    <div id="communityUpdatesContainer">
+                        <p class="empty-state">Community updates will appear here</p>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+    
+    <!-- Incident Detail Modal -->
+    <div id="incidentModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Incident Details</h2>
+                <button class="modal-close" onclick="closeIncidentModal()">&times;</button>
+            </div>
+            <div class="modal-body" id="incidentModalBody">
+                <!-- Details will be populated here -->
+            </div>
+        </div>
+    </div>
+    
+    <!-- External Libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/stompjs@2.3.3/lib/stomp.min.js"></script>
+    
+    <!-- App Scripts -->
+    <script src="../assets/js/dashboard-common.js"></script>
+    <script src="../assets/js/citizen-dashboard.js"></script>
+</body>
+</html>
