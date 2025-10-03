@@ -400,6 +400,117 @@
         .footer-links a:hover {
             color: hsl(var(--primary));
         }
+        .about {
+            padding: 1.5rem 0;
+            text-align: center;
+        }
+        .about h2 {
+            font-size: clamp(1.75rem, 5vw, 2.25rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--foreground-color);
+        }
+        .about .subtitle {
+            font-size: 1rem;
+            color: #6B7280;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .mission {
+            text-align: left;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+        }
+        .mission h3 {
+            font-size: clamp(1.25rem, 4vw, 1.75rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--foreground-color);
+        }
+        .mission p {
+            font-size: 0.95rem;
+            color: #6B7280;
+            margin-bottom: 1rem;
+            line-height: 1.65;
+        }
+        .how-it-works {
+            background: linear-gradient(135deg, #FEF3C7 0%, #F59E0B 100%);
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            margin: 2rem 0;
+        }
+        .how-it-works h3 {
+            font-size: clamp(1.5rem, 4vw, 2rem);
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 1.5rem;
+            color: var(--foreground-color);
+        }
+        .steps {
+            max-width: 100%;
+            margin: 0 auto;
+        }
+        .step {
+            display: flex;
+            gap: 0.75rem;
+            margin-bottom: 1.25rem;
+            text-align: left;
+        }
+        .step-content h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--foreground-color);
+        }
+        .step-content p {
+            color: #6B7280;
+            line-height: 1.55;
+            margin: 0;
+            font-size: 0.9rem;
+        }
+        .values {
+            padding: 1.5rem 0;
+            text-align: center;
+        }
+        .values h3 {
+            font-size: clamp(1.5rem, 4vw, 2rem);
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: var(--foreground-color);
+        }
+        .value-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.25rem;
+            margin-top: 1rem;
+        }
+        .value {
+            background-color: white;
+            border: 1px solid #E5E7EB;
+            border-radius: var(--radius);
+            padding: 1.25rem;
+            box-shadow: var(--shadow-card);
+            text-align: center;
+        }
+        .value-icon {
+            width: 40px;
+            height: 40px;
+            margin: 0 auto 1rem;
+            fill: var(--secondary-color);
+        }
+        .value h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            color: var(--foreground-color);
+        }
+        .value p {
+            color: #6B7280;
+            line-height: 1.55;
+            font-size: 0.9rem;
+        }
         .install-prompt {
             position: fixed;
             bottom: 1rem;
@@ -413,6 +524,7 @@
             z-index: 1000;
             cursor: pointer;
         }
+        
         @media (max-width: 768px) {
             .hero h1 {
                 font-size: 1.75rem;
@@ -467,7 +579,7 @@
                 <div class="work-cards">
                     <div class="card">
                         <div class="card-image card-report">
-                            <img src="assets/images/report-incidents.jpg" alt="Report Incidents" style="width: 100%; height: 100%; object-fit: cover;">
+                            <img src="report-incidents.jpg" alt="Report Incidents" style="width: 100%; height: 100%; object-fit: cover;">
                         </div>
                         <div class="card-content">
                             <h4>Report Incidents</h4>
@@ -476,7 +588,7 @@
                     </div>
                     <div class="card">
                         <div class="card-image card-police">
-                            <img src="assets/images/police-response.jpg" alt="Police Response" style="width: 100%; height: 100%; object-fit: cover;">
+                            <img src="police-response.jpg" alt="Police Response" style="width: 100%; height: 100%; object-fit: cover;">
                         </div>
                         <div class="card-content">
                             <h4>Police Response</h4>
@@ -485,7 +597,7 @@
                     </div>
                     <div class="card">
                         <div class="card-image card-community">
-                            <img src="assets/images/community-support.jpg" alt="Community Support" style="width: 100%; height: 100%; object-fit: cover;">
+                            <img src="community-support.jpg" alt="Community Support" style="width: 100%; height: 100%; object-fit: cover;">
                         </div>
                         <div class="card-content">
                             <h4>Community Support</h4>
@@ -494,7 +606,7 @@
                     </div>
                     <div class="card">
                         <div class="card-image card-neighborhood">
-                            <img src="assets/images/neighborhood-watch.jpg" alt="Neighborhood Watch" style="width: 100%; height: 100%; object-fit: cover;">
+                            <img src="neighborhood-watch.jpg" alt="Neighborhood Watch" style="width: 100%; height: 100%; object-fit: cover;">
                         </div>
                         <div class="card-content">
                             <h4>Neighborhood Watch</h4>
@@ -531,6 +643,9 @@
         </section>
         <!-- About Section -->
         <section id="about">
+            <button class="go-back-btn" onclick="showSection('home')">
+                <i class="fas fa-arrow-left"></i> Go Back
+            </button>
             <div class="about">
                 <h2 class="section-heading">About PowerBack</h2>
                 <p class="subtitle">A comprehensive platform connecting communities with safety and justice systems</p>
