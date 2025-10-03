@@ -34,13 +34,11 @@
             --shadow-card: 0 4px 6px -1px rgba(46, 91, 255, 0.1);
             --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
-
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
         }
-
         body {
             font-family: 'Inter', sans-serif;
             line-height: 1.6;
@@ -49,14 +47,12 @@
             overflow-x: hidden;
             width: 100%;
         }
-
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 1rem;
             width: 100%;
         }
-
         header {
             background-color: hsl(var(--card));
             padding: 1rem 2rem;
@@ -65,13 +61,11 @@
             top: 0;
             z-index: 100;
         }
-
         nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
-
         .logo {
             display: flex;
             align-items: center;
@@ -81,30 +75,25 @@
             color: hsl(var(--secondary));
             cursor: pointer;
         }
-
         .logo-icon {
             width: 24px;
             height: 24px;
             fill: hsl(var(--primary));
         }
-
         .nav-icons {
             display: flex;
             align-items: center;
             gap: 1.25rem;
         }
-
         .nav-icons .icon {
             color: hsl(var(--foreground));
             font-size: 1.25rem;
             cursor: pointer;
             transition: var(--transition-smooth);
         }
-
         .nav-icons .icon:hover {
             color: hsl(var(--primary));
         }
-
         .profile-avatar {
             width: 32px;
             height: 32px;
@@ -113,11 +102,9 @@
             cursor: pointer;
             display: none;
         }
-
         .profile-avatar.logged-in {
             display: block;
         }
-
         .btn {
             background-color: hsl(var(--secondary));
             color: hsl(var(--secondary-foreground));
@@ -129,37 +116,30 @@
             font-weight: 500;
             transition: var(--transition-smooth);
         }
-
         .btn:hover {
             background-color: hsl(var(--primary));
         }
-
         .btn-primary {
             background-color: hsl(var(--primary));
             color: hsl(var(--primary-foreground));
         }
-
         .btn-secondary {
             background-color: hsl(var(--card));
             color: hsl(var(--foreground));
             border: 1px solid hsl(var(--border));
         }
-
         section {
             display: none;
             padding: 2rem 0;
             width: 100%;
         }
-
         section.active {
             display: block;
         }
-
         .hero {
             text-align: center;
             padding: 2rem 0;
         }
-
         .tag {
             background-color: hsl(var(--muted));
             color: hsl(var(--accent));
@@ -169,20 +149,17 @@
             display: inline-block;
             margin-bottom: 1rem;
         }
-
         .hero h1 {
             font-size: clamp(1.75rem, 4vw, 2.5rem);
             margin-bottom: 1rem;
             color: hsl(var(--secondary));
             font-weight: 700;
         }
-
         .hero .gradient-text {
             background: linear-gradient(135deg, hsl(var(--secondary)), hsl(var(--primary)));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
-
         .description {
             font-size: 1rem;
             color: hsl(var(--muted-foreground));
@@ -191,21 +168,18 @@
             margin-left: auto;
             margin-right: auto;
         }
-
         .cta-buttons {
             display: flex;
             gap: 1rem;
             justify-content: center;
             flex-wrap: wrap;
         }
-
         .work-cards {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 1.25rem;
             margin: 2rem 0;
         }
-
         .card {
             border-radius: var(--radius);
             overflow: hidden;
@@ -213,7 +187,6 @@
             transition: var(--transition-smooth);
             background-color: hsl(var(--card));
         }
-
         .card-image {
             height: 150px;
             background-size: cover;
@@ -226,40 +199,32 @@
             font-size: 1.25rem;
             font-weight: 600;
         }
-
         .card-report {
             background: linear-gradient(135deg, #FF6B35, #F7931E);
         }
-
         .card-police {
             background: linear-gradient(135deg, #2E5BFF, #1A369C);
         }
-
         .card-community {
             background: linear-gradient(135deg, #FFD93D, #FFB800);
         }
-
         .card-neighborhood {
             background: linear-gradient(135deg, #6BCCF4, #4EA9D3);
         }
-
         .card-content {
             padding: 1.25rem;
             text-align: left;
         }
-
         .card-content h4 {
             margin-bottom: 0.625rem;
             color: hsl(var(--secondary));
             font-weight: 600;
         }
-
         .card-content p {
             color: hsl(var(--muted-foreground));
             line-height: 1.5;
             font-size: 0.9rem;
         }
-
         .step-number {
             background-color: hsl(var(--secondary));
             color: hsl(var(--secondary-foreground));
@@ -274,19 +239,16 @@
             font-size: 0.9rem;
             flex-shrink: 0;
         }
-
         .stakeholder-section {
             text-align: center;
             padding: 2rem 0;
         }
-
         .stakeholder-cards {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
             gap: 1.25rem;
             margin-top: 1.5rem;
         }
-
         .stakeholder-card {
             background: white;
             border: 1px solid hsl(var(--border));
@@ -299,25 +261,21 @@
             position: relative;
             box-shadow: var(--shadow-card);
         }
-
         .stakeholder-card:hover {
             box-shadow: 0 6px 12px rgba(46, 91, 255, 0.15);
             transform: translateY(-2px);
         }
-
         .stakeholder-card h3 {
             color: hsl(var(--secondary));
             margin-bottom: 0.625rem;
             font-weight: 600;
             font-size: 1.1rem;
         }
-
         .stakeholder-card p {
             color: hsl(var(--muted-foreground));
             margin-bottom: 1rem;
             font-size: 0.9rem;
         }
-
         .stakeholder-card .arrow {
             position: absolute;
             bottom: 1rem;
@@ -325,7 +283,6 @@
             font-size: 1.25rem;
             color: hsl(var(--secondary));
         }
-
         .login-form, .register-form, .report-form {
             background-color: hsl(var(--card));
             padding: 1.5rem;
@@ -335,11 +292,9 @@
             max-width: 450px;
             margin: 0 auto;
         }
-
         .form-group {
             margin-bottom: 1.25rem;
         }
-
         .form-group label {
             display: block;
             margin-bottom: 0.5rem;
@@ -347,7 +302,6 @@
             color: hsl(var(--foreground));
             font-size: 0.9rem;
         }
-
         .form-group input, .form-group textarea, .form-group select {
             width: 100%;
             padding: 0.75rem;
@@ -357,12 +311,10 @@
             font-size: 0.9rem;
             transition: var(--transition-smooth);
         }
-
         .form-group input:focus, .form-group textarea:focus, .form-group select:focus {
             outline: 2px solid hsl(var(--primary));
             border-color: transparent;
         }
-
         .incident-list {
             background-color: hsl(var(--card));
             border-radius: var(--radius);
@@ -370,7 +322,6 @@
             overflow: hidden;
             margin-top: 1.5rem;
         }
-
         .incident-header {
             display: grid;
             grid-template-columns: 2fr 1fr 1fr 1fr;
@@ -380,7 +331,6 @@
             font-weight: 600;
             font-size: 0.9rem;
         }
-
         .incident-item {
             display: grid;
             grid-template-columns: 2fr 1fr 1fr 1fr;
@@ -388,11 +338,9 @@
             border-bottom: 1px solid hsl(var(--border));
             font-size: 0.9rem;
         }
-
         .incident-item:last-child {
             border-bottom: none;
         }
-
         footer {
             background-color: hsl(var(--card));
             text-align: center;
@@ -400,7 +348,6 @@
             border-top: 1px solid hsl(var(--border));
             margin-top: 2rem;
         }
-
         .footer-logo {
             display: flex;
             align-items: center;
@@ -410,7 +357,6 @@
             font-weight: 600;
             color: hsl(var(--secondary));
         }
-
         .footer-links {
             display: flex;
             justify-content: center;
@@ -418,7 +364,6 @@
             margin-bottom: 1rem;
             flex-wrap: wrap;
         }
-
         .footer-links a {
             color: hsl(var(--muted-foreground));
             text-decoration: none;
@@ -426,24 +371,20 @@
             transition: var(--transition-smooth);
             font-size: 0.9rem;
         }
-
         .footer-links a:hover {
             color: hsl(var(--primary));
         }
-
         /* About Section */
         .about {
             padding: 1.5rem 0;
             text-align: center;
         }
-
         .about h2 {
             font-size: clamp(1.75rem, 5vw, 2.25rem);
             font-weight: 700;
             margin-bottom: 1rem;
             color: var(--foreground-color);
         }
-
         .about .subtitle {
             font-size: 1rem;
             color: #6B7280;
@@ -452,34 +393,29 @@
             margin-left: auto;
             margin-right: auto;
         }
-
         .mission {
             text-align: left;
             max-width: 800px;
             margin: 0 auto 2rem;
         }
-
         .mission h3 {
             font-size: clamp(1.25rem, 4vw, 1.75rem);
             font-weight: 700;
             margin-bottom: 1rem;
             color: var(--foreground-color);
         }
-
         .mission p {
             font-size: 0.95rem;
             color: #6B7280;
             margin-bottom: 1rem;
             line-height: 1.65;
         }
-
         .how-it-works {
             background: linear-gradient(135deg, #FEF3C7 0%, #F59E0B 100%);
             border-radius: var(--radius);
             padding: 1.5rem;
             margin: 2rem 0;
         }
-
         .how-it-works h3 {
             font-size: clamp(1.5rem, 4vw, 2rem);
             font-weight: 700;
@@ -487,52 +423,44 @@
             margin-bottom: 1.5rem;
             color: var(--foreground-color);
         }
-
         .steps {
             max-width: 100%;
             margin: 0 auto;
         }
-
         .step {
             display: flex;
             gap: 0.75rem;
             margin-bottom: 1.25rem;
             text-align: left;
         }
-
         .step-content h4 {
             font-size: 1.1rem;
             font-weight: 600;
             margin-bottom: 0.5rem;
             color: var(--foreground-color);
         }
-
         .step-content p {
             color: #6B7280;
             line-height: 1.55;
             margin: 0;
             font-size: 0.9rem;
         }
-
         .values {
             padding: 1.5rem 0;
             text-align: center;
         }
-
         .values h3 {
             font-size: clamp(1.5rem, 4vw, 2rem);
             font-weight: 700;
             margin-bottom: 1.5rem;
             color: var(--foreground-color);
         }
-
         .value-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 1.25rem;
             margin-top: 1rem;
         }
-
         .value {
             background-color: white;
             border: 1px solid #E5E7EB;
@@ -541,58 +469,47 @@
             box-shadow: var(--shadow-card);
             text-align: center;
         }
-
         .value-icon {
             width: 40px;
             height: 40px;
             margin: 0 auto 1rem;
             fill: var(--secondary-color);
         }
-
         .value h4 {
             font-size: 1.1rem;
             font-weight: 600;
             margin-bottom: 0.75rem;
             color: var(--foreground-color);
         }
-
         .value p {
             color: #6B7280;
             line-height: 1.55;
             font-size: 0.9rem;
         }
-
         @media (max-width: 768px) {
             .hero h1 {
                 font-size: 1.75rem;
             }
-
             .about h2 {
                 font-size: 1.75rem;
             }
-
             .mission h3 {
                 font-size: 1.25rem;
             }
-
             .how-it-works {
                 padding: 1rem;
             }
-
             .step {
                 flex-direction: row;
                 align-items: flex-start;
             }
-
             .value-grid {
                 grid-template-columns: 1fr;
             }
-
             .cta-buttons {
                 flex-direction: column;
                 align-items: center;
             }
-
             .incident-header, .incident-item {
                 grid-template-columns: 1fr;
                 gap: 0.5rem;
@@ -697,20 +614,51 @@
                 </div>
             </div>
         </section>
-
         <!-- About Section -->
         <section id="about">
             <div class="about">
                 <h2>About PowerBack</h2>
                 <p class="subtitle">A comprehensive platform connecting communities with safety and justice systems</p>
-
                 <div class="mission">
                     <h3>Our Mission</h3>
                     <p>PowerBack was created to bridge the gap between citizens and the institutions designed to protect them. We believe that effective public safety requires transparency, accountability, and seamless communication between all stakeholders.</p>
                     <p>By providing a secure, efficient platform for incident reporting and response, we empower communities to take an active role in their own safety while ensuring law enforcement and support organizations have the tools they need to serve effectively.</p>
                 </div>
             </div>
- <div class="values">
+            <div class="how-it-works">
+                <h3>How It Works</h3>
+                <div class="steps">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h4>Report</h4>
+                            <p>Citizens report incidents with photos, videos, and location data through our secure platform.</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h4>Respond</h4>
+                            <p>Law enforcement receives real-time alerts and can assign, track, and update incident status.</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h4>Support</h4>
+                            <p>NGOs provide resources and assistance to victims with appropriate privacy protections.</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <h4>Inform</h4>
+                            <p>Community watch groups keep neighborhoods informed and engaged in local safety efforts.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="values">
                 <h3>Our Values</h3>
                 <div class="value-grid">
                     <div class="value">
@@ -744,41 +692,6 @@
                 </div>
             </div>
         </section>
-
-         <div class="how-it-works">
-                <h3>How It Works</h3>
-                <div class="steps">
-                    <div class="step">
-                        <div class="step-number">1</div>
-                        <div class="step-content">
-                            <h4>Report</h4>
-                            <p>Citizens report incidents with photos, videos, and location data through our secure platform.</p>
-                        </div>
-                    </div>
-                    <div class="step">
-                        <div class="step-number">2</div>
-                        <div class="step-content">
-                            <h4>Respond</h4>
-                            <p>Law enforcement receives real-time alerts and can assign, track, and update incident status.</p>
-                        </div>
-                    </div>
-                    <div class="step">
-                        <div class="step-number">3</div>
-                        <div class="step-content">
-                            <h4>Support</h4>
-                            <p>NGOs provide resources and assistance to victims with appropriate privacy protections.</p>
-                        </div>
-                    </div>
-                    <div class="step">
-                        <div class="step-number">4</div>
-                        <div class="step-content">
-                            <h4>Inform</h4>
-                            <p>Community watch groups keep neighborhoods informed and engaged in local safety efforts.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
         <!-- Login Section -->
         <section id="login">
             <div class="login">
@@ -805,7 +718,6 @@
                 </div>
             </div>
         </section>
-
         <!-- Register Section -->
         <section id="register">
             <div class="register">
@@ -850,7 +762,6 @@
                 </div>
             </div>
         </section>
-
         <!-- Report Incident Section -->
         <section id="report">
             <div class="report">
@@ -888,7 +799,6 @@
                 </div>
             </div>
         </section>
-
         <!-- Dashboard Section -->
         <section id="dashboard">
             <div class="dashboard">
@@ -944,7 +854,6 @@
                 </div>
             </div>
         </section>
-
         <!-- Logout Section -->
         <section id="logout">
             <div style="display: flex; justify-content: center; padding: 3rem 0;">
@@ -980,14 +889,12 @@
                 section.classList.remove('active');
             });
             document.getElementById(sectionId).classList.add('active');
-
             const profileAvatar = document.getElementById('profileAvatar');
             if (sectionId === 'dashboard' || sectionId === 'report') {
                 profileAvatar.classList.add('logged-in');
             } else {
                 profileAvatar.classList.remove('logged-in');
             }
-
             const navIcons = document.querySelector('.nav-icons');
             if (sectionId === 'dashboard' || sectionId === 'report') {
                 navIcons.innerHTML = `
@@ -1001,7 +908,6 @@
                     <div class="profile-avatar" id="profileAvatar"></div>
                 `;
             }
-
             const footerLinks = document.getElementById('footerLinks');
             if (sectionId === 'about') {
                 footerLinks.style.display = 'none';
@@ -1009,14 +915,12 @@
                 footerLinks.style.display = 'flex';
             }
         }
-
         document.querySelectorAll('form').forEach(form => {
             form.addEventListener('submit', function(e) {
                 e.preventDefault();
                 alert('Form submitted!');
             });
         });
-
         showSection('home');
     </script>
 </body>
