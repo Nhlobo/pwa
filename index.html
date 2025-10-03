@@ -763,6 +763,13 @@
         <i class="fas fa-download"></i> Install PowerBack
     </div>
     <script>
+        // Register Service Worker
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/pwa/sw.js')
+                .then(reg => console.log('Service Worker registered:', reg.scope))
+                .catch(err => console.error('Service Worker registration failed:', err));
+        }
+        
         // Dark Mode Toggle
         document.querySelector('.dark-mode-toggle').addEventListener('click', () => {
             document.body.classList.toggle('dark-mode');
@@ -827,24 +834,34 @@
 
         // PWA Install Prompt
         let deferredPrompt;
+        const installPromptElement = document.getElementById('installPrompt');
+        
         window.addEventListener('beforeinstallprompt', (e) => {
             e.preventDefault();
             deferredPrompt = e;
-            document.getElementById('installPrompt').style.display = 'block';
+            if (installPromptElement) {
+                installPromptElement.style.display = 'block';
+            }
         });
 
-        document.getElementById('installPrompt').addEventListener('click', () => {
-            deferredPrompt.prompt();
-            deferredPrompt.userChoice.then((choiceResult) => {
-                if (choiceResult.outcome === 'accepted') {
-                    console.log('User accepted the install prompt');
-                } else {
-                    console.log('User dismissed the install prompt');
+        if (installPromptElement) {
+            installPromptElement.addEventListener('click', () => {
+                if (deferredPrompt) {
+                    deferredPrompt.prompt();
+                    deferredPrompt.userChoice.then((choiceResult) => {
+                        if (choiceResult.outcome === 'accepted') {
+                            console.log('User accepted the install prompt');
+                        } else {
+                            console.log('User dismissed the install prompt');
+                        }
+                        deferredPrompt = null;
+                        if (installPromptElement) {
+                            installPromptElement.style.display = 'none';
+                        }
+                    });
                 }
-                deferredPrompt = null;
-                document.getElementById('installPrompt').style.display = 'none';
             });
-        });
+        }
 
         // Initialize
         showSection('home');
