@@ -1,0 +1,68 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  # Frontend Build and Deploy to GitHub Pages
+  frontend:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+      
+      - name: Validate PWA files
+        run: |
+          echo "Checking PWA structure..."
+          test -f manifest.json
+          test -f sw.js
+          test -f index.html
+          test -d assets
+          test -d dashboard
+      
+      - name: Deploy to GitHub Pages
+        if: github.ref == 'refs/heads/main'
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./
+          exclude_assets: '.github,backend,.git'
+
+  # Backend Build, Test and Deploy
+  backend:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./backend
+    
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+          cache: maven
+      
+      - name: Build with Maven
+        run: mvn clean package -DskipTests
+      
+      - name: Run tests
+        run: mvn test
+      
+      - name: Build Docker image
+        if: github.ref == 'refs/heads/main'
+        run: docker build -t powerback-backend:latest .
+      
+      # PLACEHOLDER: Configure Render deployment
+      # Add your Render deployment configuration here
+      # You can use Render's GitHub integration or deploy via API
+      # See: https://render.com/docs/deploy-from-github
