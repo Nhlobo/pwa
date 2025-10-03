@@ -1,20 +1,40 @@
 {
-  "name": "PowerBack",
+  "name": "PowerBack - Community Safety Platform",
   "short_name": "PowerBack",
+  "description": "Empowering communities through transparent incident reporting",
   "start_url": "/pwa/",
+  "scope": "/pwa/",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#2E5BFF",
+  "orientation": "portrait-primary",
   "icons": [
     {
       "src": "/pwa/assets/images/icon-192x192.png",
       "sizes": "192x192",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any maskable"
     },
     {
       "src": "/pwa/assets/images/icon-512x512.png",
       "sizes": "512x512",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["social", "utilities"],
+  "shortcuts": [
+    {
+      "name": "Report Incident",
+      "short_name": "Report",
+      "description": "Quickly report a new incident",
+      "url": "/pwa/index.html#report",
+      "icons": [
+        {
+          "src": "/pwa/assets/images/icon-192x192.png",
+          "sizes": "192x192"
+        }
+      ]
     }
   ]
 }

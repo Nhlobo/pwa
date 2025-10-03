@@ -1,7 +1,8 @@
 // Register Service Worker (adjusted for GitHub Pages)
 if ("serviceWorker" in navigator) {
-  navigator.serviceWorker.register("/pwa/service-worker.js")
-    .then(() => console.log("Service Worker registered"));
+  navigator.serviceWorker.register("/pwa/sw.js")
+    .then(() => console.log("Service Worker registered"))
+    .catch(err => console.error("Service Worker registration failed:", err));
 }
 
 // PWA Install Prompt
@@ -11,16 +12,24 @@ const installPrompt = document.getElementById("installPrompt");
 window.addEventListener("beforeinstallprompt", (e) => {
   e.preventDefault();
   deferredPrompt = e;
-  installPrompt.style.display = "block";
+  if (installPrompt) {
+    installPrompt.style.display = "block";
+  }
 });
 
-installPrompt.addEventListener("click", async () => {
-  installPrompt.style.display = "none";
-  deferredPrompt.prompt();
-  const { outcome } = await deferredPrompt.userChoice;
-  console.log("User choice:", outcome);
-  deferredPrompt = null;
-});
+if (installPrompt) {
+  installPrompt.addEventListener("click", async () => {
+    if (installPrompt) {
+      installPrompt.style.display = "none";
+    }
+    if (deferredPrompt) {
+      deferredPrompt.prompt();
+      const { outcome } = await deferredPrompt.userChoice;
+      console.log("User choice:", outcome);
+      deferredPrompt = null;
+    }
+  });
+}
 
 const BACKEND_URL = "https://your-backend-url.onrender.com/api"; // PLACEHOLDER: Replace with your Render backend URL
 
