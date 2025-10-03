@@ -4,8 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>PowerBack - Empowering Communities, Supporting Justice</title>
+    <link rel="manifest" href="manifest.json">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
     <style>
         :root {
             --primary: 26 83% 55%;
@@ -32,7 +34,7 @@
             --ring: 217 91% 25%;
             --radius: 0.75rem;
             --shadow-card: 0 4px 6px -1px rgba(46, 91, 255, 0.1);
-            --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-smooth: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
         }
         * {
             box-sizing: border-box;
@@ -46,6 +48,16 @@
             background-color: hsl(var(--background));
             overflow-x: hidden;
             width: 100%;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        body.dark-mode {
+            --background: 222 47% 11%;
+            --foreground: 0 0% 100%;
+            --foreground-color: #FFFFFF;
+            --card: 222 47% 11%;
+            --card-foreground: 0 0% 100%;
+            --muted: 215 16% 47%;
+            --border: 215 27% 31%;
         }
         .container {
             max-width: 1200px;
@@ -60,8 +72,6 @@
             position: sticky;
             top: 0;
             z-index: 100;
-        }
-        nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -104,6 +114,14 @@
         }
         .profile-avatar.logged-in {
             display: block;
+        }
+        .dark-mode-toggle {
+            background: none;
+            border: none;
+            color: hsl(var(--foreground));
+            font-size: 1.25rem;
+            cursor: pointer;
+            padding: 0.5rem;
         }
         .btn {
             background-color: hsl(var(--secondary));
@@ -375,7 +393,6 @@
         .footer-links a:hover {
             color: hsl(var(--primary));
         }
-        /* About Section */
         .about {
             padding: 1.5rem 0;
             text-align: center;
@@ -487,6 +504,19 @@
             line-height: 1.55;
             font-size: 0.9rem;
         }
+        .install-prompt {
+            position: fixed;
+            bottom: 1rem;
+            right: 1rem;
+            background: hsl(var(--secondary));
+            color: white;
+            padding: 0.75rem 1.25rem;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-card);
+            display: none;
+            z-index: 1000;
+            cursor: pointer;
+        }
         @media (max-width: 768px) {
             .hero h1 {
                 font-size: 1.75rem;
@@ -520,19 +550,20 @@
 </head>
 <body>
     <header>
-        <nav class="container">
-            <div class="logo" onclick="showSection('home')">
-                <svg class="logo-icon" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M12 2L4 5v6.09c0 5.05 3.41 9.76 8 10.91 4.59-1.15 8-5.86 8-10.91V5l-8-3z"/>
-                </svg>
-                <span>PowerBack</span>
-            </div>
-            <div class="nav-icons">
-                <i class="fas fa-bell icon"></i>
-                <i class="fas fa-user icon" onclick="showSection('login')"></i>
-                <div class="profile-avatar" id="profileAvatar"></div>
-            </div>
-        </nav>
+        <div class="logo" onclick="showSection('home')">
+            <svg class="logo-icon" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2L4 5v6.09c0 5.05 3.41 9.76 8 10.91 4.59-1.15 8-5.86 8-10.91V5l-8-3z"/>
+            </svg>
+            <span>PowerBack</span>
+        </div>
+        <div class="nav-icons">
+            <button class="dark-mode-toggle" aria-label="Toggle dark mode">
+                <i class="fas fa-moon"></i>
+            </button>
+            <i class="fas fa-bell icon"></i>
+            <i class="fas fa-user icon" onclick="showSection('login')"></i>
+            <div class="profile-avatar" id="profileAvatar"></div>
+        </div>
     </header>
     <main class="container">
         <!-- Home Section -->
@@ -553,7 +584,7 @@
                 <div class="work-cards">
                     <div class="card">
                         <div class="card-image card-report">
-                            <img src="report-incidents.jpg" alt="Report Incidents" style="width: 100%; height: 100%; object-fit: cover;">
+                            <img src="assets/images/report-incidents.jpg" alt="Report Incidents" style="width: 100%; height: 100%; object-fit: cover;">
                         </div>
                         <div class="card-content">
                             <h4>Report Incidents</h4>
@@ -562,7 +593,7 @@
                     </div>
                     <div class="card">
                         <div class="card-image card-police">
-                            <img src="police-response.jpg" alt="Police Response" style="width: 100%; height: 100%; object-fit: cover;">
+                            <img src="assets/images/police-response.jpg" alt="Police Response" style="width: 100%; height: 100%; object-fit: cover;">
                         </div>
                         <div class="card-content">
                             <h4>Police Response</h4>
@@ -571,7 +602,7 @@
                     </div>
                     <div class="card">
                         <div class="card-image card-community">
-                            <img src="community-support (1).jpg" alt="Community Support" style="width: 100%; height: 100%; object-fit: cover;">
+                            <img src="assets/images/community-support.jpg" alt="Community Support" style="width: 100%; height: 100%; object-fit: cover;">
                         </div>
                         <div class="card-content">
                             <h4>Community Support</h4>
@@ -580,7 +611,7 @@
                     </div>
                     <div class="card">
                         <div class="card-image card-neighborhood">
-                            <img src="neighborhood-watch.jpg" alt="Neighborhood Watch" style="width: 100%; height: 100%; object-fit: cover;">
+                            <img src="assets/images/neighborhood-watch.jpg" alt="Neighborhood Watch" style="width: 100%; height: 100%; object-fit: cover;">
                         </div>
                         <div class="card-content">
                             <h4>Neighborhood Watch</h4>
@@ -800,61 +831,6 @@
                 </div>
             </div>
         </section>
-        <!-- Dashboard Section -->
-        <section id="dashboard">
-            <div class="dashboard">
-                <div class="dashboard-content">
-                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
-                        <h2>Dashboard</h2>
-                        <button onclick="showSection('report')" class="btn btn-primary">Report New Incident</button>
-                    </div>
-                    <div class="dashboard-cards">
-                        <div class="dashboard-card">
-                            <h4>Total Incidents</h4>
-                            <p>124</p>
-                        </div>
-                        <div class="dashboard-card">
-                            <h4>Open Cases</h4>
-                            <p>34</p>
-                        </div>
-                        <div class="dashboard-card">
-                            <h4>Resolved Cases</h4>
-                            <p>90</p>
-                        </div>
-                        <div class="dashboard-card">
-                            <h4>Your Reports</h4>
-                            <p>12</p>
-                        </div>
-                    </div>
-                    <div class="incident-list">
-                        <div class="incident-header">
-                            <div>Incident</div>
-                            <div>Category</div>
-                            <div>Status</div>
-                            <div>Date</div>
-                        </div>
-                        <div class="incident-item">
-                            <div>Theft on Main St</div>
-                            <div>Theft</div>
-                            <div>Open</div>
-                            <div>2025-09-28</div>
-                        </div>
-                        <div class="incident-item">
-                            <div>Vandalism at Park</div>
-                            <div>Vandalism</div>
-                            <div>Resolved</div>
-                            <div>2025-09-27</div>
-                        </div>
-                        <div class="incident-item">
-                            <div>Suspicious Activity</div>
-                            <div>Other</div>
-                            <div>Open</div>
-                            <div>2025-09-26</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
         <!-- Logout Section -->
         <section id="logout">
             <div style="display: flex; justify-content: center; padding: 3rem 0;">
@@ -884,47 +860,9 @@
         </div>
         <p>© 2025 PowerBack. All rights reserved.</p>
     </footer>
-    <script>
-        function showSection(sectionId) {
-            document.querySelectorAll('section').forEach(section => {
-                section.classList.remove('active');
-            });
-            document.getElementById(sectionId).classList.add('active');
-            // Scroll to the very top of the page
-            window.scrollTo(0, 0);
-            const profileAvatar = document.getElementById('profileAvatar');
-            if (sectionId === 'dashboard' || sectionId === 'report') {
-                profileAvatar.classList.add('logged-in');
-            } else {
-                profileAvatar.classList.remove('logged-in');
-            }
-            const navIcons = document.querySelector('.nav-icons');
-            if (sectionId === 'dashboard' || sectionId === 'report') {
-                navIcons.innerHTML = `
-                    <i class="fas fa-bell icon"></i>
-                    <div class="profile-avatar logged-in" id="profileAvatar"></div>
-                `;
-            } else {
-                navIcons.innerHTML = `
-                    <i class="fas fa-bell icon"></i>
-                    <i class="fas fa-user icon" onclick="showSection('login')"></i>
-                    <div class="profile-avatar" id="profileAvatar"></div>
-                `;
-            }
-            const footerLinks = document.getElementById('footerLinks');
-            if (sectionId === 'about') {
-                footerLinks.style.display = 'none';
-            } else {
-                footerLinks.style.display = 'flex';
-            }
-        }
-        document.querySelectorAll('form').forEach(form => {
-            form.addEventListener('submit', function(e) {
-                e.preventDefault();
-                alert('Form submitted!');
-            });
-        });
-        showSection('home');
-    </script>
+    <div class="install-prompt" id="installPrompt">
+        <i class="fas fa-download"></i> Install PowerBack
+    </div>
+    <script src="assets/js/app.js"></script>
 </body>
 </html>
