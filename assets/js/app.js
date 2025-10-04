@@ -91,17 +91,22 @@ function updateUIForSection(sectionId) {
 }
 
 // Form Submission Handling
-document.querySelectorAll('form').forEach(form => {
-    form.addEventListener('submit', async function(e) {
-        e.preventDefault();
-        
-        const sectionId = form.closest('section').id;
-        
-        if (sectionId === 'login') {
-            await handleLogin(form);
-        } else if (sectionId === 'register') {
-            await handleRegister(form);
-        }
+document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('form').forEach(form => {
+        form.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const section = form.closest('section');
+            if (!section) return;
+            
+            const sectionId = section.id;
+            
+            if (sectionId === 'login') {
+                await handleLogin(form);
+            } else if (sectionId === 'register') {
+                await handleRegister(form);
+            }
+        });
     });
 });
 
