@@ -5,6 +5,15 @@ let pendingIncidents = [];
 let myIncidents = [];
 let currentIncident = null;
 
+// Mock data for demonstration (Frontend-only)
+function getMockIncidents() {
+    const stored = localStorage.getItem('incidents');
+    if (stored) {
+        return JSON.parse(stored);
+    }
+    return [];
+}
+
 // Section navigation
 function showSection(sectionId) {
     document.querySelectorAll('.section').forEach(section => {
@@ -27,7 +36,6 @@ function showSection(sectionId) {
     
     // Load data for the section
     loadSectionData(sectionId);
-    Analytics.track('section_view', { section: sectionId });
 }
 
 // Setup navigation
@@ -67,22 +75,26 @@ async function loadSectionData(sectionId) {
 // Load overview
 async function loadOverview() {
     try {
-        const [all, pending, assigned] = await Promise.all([
-            API.get('/incidents'),
-            API.get('/incidents/pending'),
-            API.get('/incidents/assigned')
-        ]);
+        const all = getMockIncidents();
+        const pending = all.filter(i => i.status === 'PENDING');
+        const assigned = all.filter(i => i.status === 'ASSIGNED');
         
         allIncidents = all;
         pendingIncidents = pending;
         myIncidents = assigned;
         
         // Update stats
-        document.getElementById('totalIncidents').textContent = all.length;
-        document.getElementById('pendingCount').textContent = pending.length;
-        document.getElementById('assignedCount').textContent = assigned.length;
-        document.getElementById('resolvedCount').textContent = 
-            all.filter(i => i.status === 'RESOLVED' || i.status === 'CLOSED').length;
+        const totalElement = document.getElementById('totalIncidents');
+        const pendingElement = document.getElementById('pendingCount');
+        const assignedElement = document.getElementById('assignedCount');
+        const resolvedElement = document.getElementById('resolvedCount');
+        
+        if (totalElement) totalElement.textContent = all.length;
+        if (pendingElement) pendingElement.textContent = pending.length;
+        if (assignedElement) assignedElement.textContent = assigned.length;
+        if (resolvedElement) {
+            resolvedElement.textContent = all.filter(i => i.status === 'RESOLVED' || i.status === 'CLOSED').length;
+        }
         
         // Show high priority incidents
         const highPriority = all
@@ -131,10 +143,14 @@ function renderHighPriority(incidents) {
 // Load pending cases
 async function loadPendingCases() {
     const tbody = document.getElementById('pendingCasesBody');
-    tbody.innerHTML = '<tr><td colspan="8" class="empty-state">Loading...</td></tr>';
+    if (tbody) {
+        tbody.innerHTML = '<tr><td colspan="8" class="empty-state">Loading...</td></tr>';
+    }
     
     try {
-        pendingIncidents = await API.get('/incidents/pending');
+        pendingIncidents = getMockIncidents().filter(i => i.status === 'PENDING');
+        
+        if (!tbody) return;
         
         if (pendingIncidents.length === 0) {
             tbody.innerHTML = '<tr><td colspan="8" class="empty-state">No pending cases</td></tr>';
@@ -148,7 +164,7 @@ async function loadPendingCases() {
                 <td>${incident.title}</td>
                 <td><span class="badge badge-${incident.priority.toLowerCase()}">${incident.priority}</span></td>
                 <td>${incident.address}</td>
-                <td>${incident.reporterName}</td>
+                <td>${incident.reporterName || 'Anonymous'}</td>
                 <td>${formatDate(incident.createdAt)}</td>
                 <td>
                     <button class="btn btn-primary" onclick="assignToMe(${incident.id})" style="padding: 0.375rem 0.75rem;">
@@ -159,17 +175,23 @@ async function loadPendingCases() {
         `).join('');
     } catch (error) {
         console.error('Error loading pending cases:', error);
-        tbody.innerHTML = '<tr><td colspan="8" class="empty-state">Error loading cases</td></tr>';
+        if (tbody) {
+            tbody.innerHTML = '<tr><td colspan="8" class="empty-state">Error loading cases</td></tr>';
+        }
     }
 }
 
 // Load my cases
 async function loadMyCases() {
     const tbody = document.getElementById('myCasesBody');
-    tbody.innerHTML = '<tr><td colspan="7" class="empty-state">Loading...</td></tr>';
+    if (tbody) {
+        tbody.innerHTML = '<tr><td colspan="7" class="empty-state">Loading...</td></tr>';
+    }
     
     try {
-        myIncidents = await API.get('/incidents/assigned');
+        myIncidents = getMockIncidents().filter(i => i.status === 'ASSIGNED');
+        
+        if (!tbody) return;
         
         if (myIncidents.length === 0) {
             tbody.innerHTML = '<tr><td colspan="7" class="empty-state">No cases assigned to you</td></tr>';
@@ -200,10 +222,14 @@ async function loadMyCases() {
 // Load all incidents
 async function loadAllIncidents() {
     const tbody = document.getElementById('allIncidentsBody');
-    tbody.innerHTML = '<tr><td colspan="8" class="empty-state">Loading...</td></tr>';
+    if (tbody) {
+        tbody.innerHTML = '<tr><td colspan="8" class="empty-state">Loading...</td></tr>';
+    }
     
     try {
-        allIncidents = await API.get('/incidents');
+        allIncidents = getMockIncidents();
+        
+        if (!tbody) return;
         
         tbody.innerHTML = allIncidents.map(incident => `
             <tr>
@@ -223,7 +249,9 @@ async function loadAllIncidents() {
         `).join('');
     } catch (error) {
         console.error('Error loading all incidents:', error);
-        tbody.innerHTML = '<tr><td colspan="8" class="empty-state">Error loading incidents</td></tr>';
+        if (tbody) {
+            tbody.innerHTML = '<tr><td colspan="8" class="empty-state">Error loading incidents</td></tr>';
+        }
     }
 }
 
@@ -231,10 +259,16 @@ async function loadAllIncidents() {
 async function assignToMe(incidentId) {
     try {
         const userData = Auth.getUserData();
-        await API.put(`/incidents/${incidentId}/assign`, { officerId: userData.userId });
+        const incidents = getMockIncidents();
+        const incident = incidents.find(i => i.id === incidentId);
+        
+        if (incident) {
+            incident.status = 'ASSIGNED';
+            incident.assignedOfficerName = userData.fullName;
+            localStorage.setItem('incidents', JSON.stringify(incidents));
+        }
         
         showToast('Success', 'Case assigned to you', 'success');
-        Analytics.track('incident_assigned', { incidentId });
         
         // Refresh data
         loadOverview();
@@ -248,9 +282,17 @@ async function assignToMe(incidentId) {
 // View incident details
 async function viewIncident(incidentId) {
     try {
-        currentIncident = await API.get(`/incidents/${incidentId}`);
+        const incidents = getMockIncidents();
+        currentIncident = incidents.find(i => i.id === incidentId);
+        
+        if (!currentIncident) {
+            showToast('Error', 'Incident not found', 'error');
+            return;
+        }
         
         const modalBody = document.getElementById('incidentModalBody');
+        if (!modalBody) return;
+        
         modalBody.innerHTML = `
             <div style="margin-bottom: 1rem;">
                 <strong>Type:</strong>
@@ -328,14 +370,23 @@ async function viewIncident(incidentId) {
 async function updateIncident() {
     if (!currentIncident) return;
     
-    const status = document.getElementById('statusSelect').value;
-    const notes = document.getElementById('notesTextarea').value;
+    const status = document.getElementById('statusSelect')?.value;
+    const notes = document.getElementById('notesTextarea')?.value;
     
     try {
-        await API.put(`/incidents/${currentIncident.id}/status`, { status, notes });
+        const incidents = getMockIncidents();
+        const incident = incidents.find(i => i.id === currentIncident.id);
+        
+        if (incident) {
+            incident.status = status;
+            incident.officerNotes = notes;
+            if (status === 'RESOLVED' || status === 'CLOSED') {
+                incident.resolvedAt = new Date().toISOString();
+            }
+            localStorage.setItem('incidents', JSON.stringify(incidents));
+        }
         
         showToast('Success', 'Incident updated successfully', 'success');
-        Analytics.track('incident_updated', { incidentId: currentIncident.id, status });
         
         closeModal();
         loadOverview();
@@ -347,34 +398,31 @@ async function updateIncident() {
 
 // Close modal
 function closeModal() {
-    document.getElementById('incidentModal').classList.remove('show');
+    const modal = document.getElementById('incidentModal');
+    if (modal) modal.classList.remove('show');
     currentIncident = null;
-}
-
-// Handle incoming incident updates
-function onIncidentUpdate(incident) {
-    // Refresh the current view
-    const activeSection = document.querySelector('.nav-item.active')?.getAttribute('data-section');
-    if (activeSection) {
-        loadSectionData(activeSection);
-    }
-    
-    showToast('Update', 'New incident update received', 'info');
 }
 
 // Load analytics
 async function loadAnalytics() {
     const container = document.getElementById('analyticsContent');
+    if (!container) return;
     
     try {
-        const stats = await API.get('/analytics/dashboard');
+        const incidents = getMockIncidents();
+        const now = new Date();
+        const thirtyDaysAgo = new Date(now.getTime() - 30 * 24 * 60 * 60 * 1000);
+        const sevenDaysAgo = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000);
+        
+        const stats = {
+            totalUsers: 0, // Not tracked in frontend-only version
+            totalIncidents: incidents.length,
+            incidentsLast30Days: incidents.filter(i => new Date(i.createdAt) >= thirtyDaysAgo).length,
+            incidentsLast7Days: incidents.filter(i => new Date(i.createdAt) >= sevenDaysAgo).length
+        };
         
         container.innerHTML = `
             <div class="stats-grid">
-                <div class="stat-card">
-                    <h3>Total Users</h3>
-                    <div class="stat-value">${stats.totalUsers}</div>
-                </div>
                 <div class="stat-card">
                     <h3>Total Incidents</h3>
                     <div class="stat-value">${stats.totalIncidents}</div>

@@ -22,8 +22,6 @@ installPrompt.addEventListener("click", async () => {
   deferredPrompt = null;
 });
 
-const BACKEND_URL = "https://your-backend-url.onrender.com/api"; // PLACEHOLDER: Replace with your Render backend URL
-
 // Dark Mode Toggle
 document.querySelector('.dark-mode-toggle').addEventListener('click', () => {
     document.body.classList.toggle('dark-mode');
@@ -93,21 +91,26 @@ function updateUIForSection(sectionId) {
 }
 
 // Form Submission Handling
-document.querySelectorAll('form').forEach(form => {
-    form.addEventListener('submit', async function(e) {
-        e.preventDefault();
-        
-        const sectionId = form.closest('section').id;
-        
-        if (sectionId === 'login') {
-            await handleLogin(form);
-        } else if (sectionId === 'register') {
-            await handleRegister(form);
-        }
+document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('form').forEach(form => {
+        form.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const section = form.closest('section');
+            if (!section) return;
+            
+            const sectionId = section.id;
+            
+            if (sectionId === 'login') {
+                await handleLogin(form);
+            } else if (sectionId === 'register') {
+                await handleRegister(form);
+            }
+        });
     });
 });
 
-// Handle login
+// Handle login (Frontend only - for demonstration)
 async function handleLogin(form) {
     const email = form.querySelector('#email')?.value;
     const password = form.querySelector('#password')?.value;
@@ -117,35 +120,23 @@ async function handleLogin(form) {
         return;
     }
     
-    try {
-        const response = await fetch(`${BACKEND_URL}/auth/login`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ email, password })
-        });
-        
-        if (!response.ok) throw new Error('Login failed');
-        
-        const data = await response.json();
-        
-        // Store token and user data
-        localStorage.setItem('authToken', data.token);
-        localStorage.setItem('userData', JSON.stringify({
-            userId: data.userId,
-            email: data.email,
-            fullName: data.fullName,
-            role: data.role
-        }));
-        
-        // Redirect to appropriate dashboard
-        window.location.href = `dashboard/${data.role.toLowerCase()}.html`;
-    } catch (error) {
-        console.error('Login error:', error);
-        alert('Login failed. Please check your credentials.');
-    }
+    // Frontend-only demo: Store user data locally
+    // In a real application, this would authenticate with a backend
+    const userData = {
+        userId: 'demo-user-' + Date.now(),
+        email: email,
+        fullName: email.split('@')[0],
+        role: 'CITIZEN'
+    };
+    
+    localStorage.setItem('authToken', 'demo-token-' + Date.now());
+    localStorage.setItem('userData', JSON.stringify(userData));
+    
+    // Redirect to citizen dashboard
+    window.location.href = 'dashboard/citizen.html';
 }
 
-// Handle registration
+// Handle registration (Frontend only - for demonstration)
 async function handleRegister(form) {
     const fullName = form.querySelector('#fullname')?.value;
     const email = form.querySelector('#regemail')?.value;
@@ -158,38 +149,20 @@ async function handleRegister(form) {
         return;
     }
     
-    try {
-        const response = await fetch(`${BACKEND_URL}/auth/register`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                fullName,
-                email,
-                password,
-                phone,
-                role: role.toUpperCase()
-            })
-        });
-        
-        if (!response.ok) throw new Error('Registration failed');
-        
-        const data = await response.json();
-        
-        // Store token and user data
-        localStorage.setItem('authToken', data.token);
-        localStorage.setItem('userData', JSON.stringify({
-            userId: data.userId,
-            email: data.email,
-            fullName: data.fullName,
-            role: data.role
-        }));
-        
-        // Redirect to appropriate dashboard
-        window.location.href = `dashboard/${data.role.toLowerCase()}.html`;
-    } catch (error) {
-        console.error('Registration error:', error);
-        alert('Registration failed. Please try again.');
-    }
+    // Frontend-only demo: Store user data locally
+    // In a real application, this would register with a backend
+    const userData = {
+        userId: 'demo-user-' + Date.now(),
+        email: email,
+        fullName: fullName,
+        role: role.toUpperCase()
+    };
+    
+    localStorage.setItem('authToken', 'demo-token-' + Date.now());
+    localStorage.setItem('userData', JSON.stringify(userData));
+    
+    // Redirect to appropriate dashboard
+    window.location.href = `dashboard/${role.toLowerCase()}.html`;
 }
 
 // Initialize

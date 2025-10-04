@@ -3,6 +3,19 @@
 let myIncidents = [];
 let stats = { total: 0, pending: 0, resolved: 0 };
 
+// Mock data for demonstration (Frontend-only)
+function getMockIncidents() {
+    const stored = localStorage.getItem('incidents');
+    if (stored) {
+        return JSON.parse(stored);
+    }
+    return [];
+}
+
+function saveMockIncidents(incidents) {
+    localStorage.setItem('incidents', JSON.stringify(incidents));
+}
+
 // Section navigation
 function showSection(sectionId) {
     document.querySelectorAll('.section').forEach(section => {
@@ -29,8 +42,6 @@ function showSection(sectionId) {
     } else if (sectionId === 'overview') {
         loadOverview();
     }
-    
-    Analytics.track('section_view', { section: sectionId });
 }
 
 // Setup navigation
@@ -49,7 +60,7 @@ document.addEventListener('DOMContentLoaded', () => {
 // Load overview data
 async function loadOverview() {
     try {
-        const incidents = await API.get('/incidents/my');
+        const incidents = getMockIncidents();
         myIncidents = incidents;
         
         // Calculate stats
@@ -58,9 +69,13 @@ async function loadOverview() {
         stats.resolved = incidents.filter(i => i.status === 'RESOLVED' || i.status === 'CLOSED').length;
         
         // Update stats display
-        document.getElementById('totalIncidents').textContent = stats.total;
-        document.getElementById('pendingIncidents').textContent = stats.pending;
-        document.getElementById('resolvedIncidents').textContent = stats.resolved;
+        const totalElement = document.getElementById('totalIncidents');
+        const pendingElement = document.getElementById('pendingIncidents');
+        const resolvedElement = document.getElementById('resolvedIncidents');
+        
+        if (totalElement) totalElement.textContent = stats.total;
+        if (pendingElement) pendingElement.textContent = stats.pending;
+        if (resolvedElement) resolvedElement.textContent = stats.resolved;
         
         // Show recent incidents (last 5)
         renderRecentIncidents(incidents.slice(0, 5));
@@ -105,11 +120,15 @@ function renderRecentIncidents(incidents) {
 // Load my incidents
 async function loadMyIncidents() {
     const tbody = document.getElementById('myIncidentsBody');
-    tbody.innerHTML = '<tr><td colspan="7" class="empty-state">Loading...</td></tr>';
+    if (tbody) {
+        tbody.innerHTML = '<tr><td colspan="7" class="empty-state">Loading...</td></tr>';
+    }
     
     try {
-        const incidents = await API.get('/incidents/my');
+        const incidents = getMockIncidents();
         myIncidents = incidents;
+        
+        if (!tbody) return;
         
         if (incidents.length === 0) {
             tbody.innerHTML = `
@@ -143,57 +162,68 @@ async function loadMyIncidents() {
         `).join('');
     } catch (error) {
         console.error('Error loading incidents:', error);
-        tbody.innerHTML = `
-            <tr>
-                <td colspan="7" class="empty-state">
-                    <i class="fas fa-exclamation-circle"></i>
-                    <p>Error loading incidents</p>
-                </td>
-            </tr>
-        `;
+        if (tbody) {
+            tbody.innerHTML = `
+                <tr>
+                    <td colspan="7" class="empty-state">
+                        <i class="fas fa-exclamation-circle"></i>
+                        <p>Error loading incidents</p>
+                    </td>
+                </tr>
+            `;
+        }
     }
 }
 
 // Report form submission
-document.getElementById('reportForm')?.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    
-    const submitBtn = e.target.querySelector('button[type="submit"]');
-    submitBtn.disabled = true;
-    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Submitting...';
-    
-    try {
-        const formData = {
-            type: document.getElementById('incidentType').value,
-            title: document.getElementById('incidentTitle').value,
-            description: document.getElementById('incidentDescription').value,
-            address: document.getElementById('incidentAddress').value,
-            latitude: parseFloat(document.getElementById('latitude').value) || 0,
-            longitude: parseFloat(document.getElementById('longitude').value) || 0,
-            mediaUrls: [] // In production, upload media to cloud storage first
-        };
+const reportForm = document.getElementById('reportForm');
+if (reportForm) {
+    reportForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
         
-        const incident = await API.post('/incidents', formData);
+        const submitBtn = e.target.querySelector('button[type="submit"]');
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Submitting...';
         
-        showToast('Success', 'Incident reported successfully', 'success');
-        Analytics.track('incident_reported', { type: formData.type });
-        
-        // Reset form
-        e.target.reset();
-        document.getElementById('latitude').value = '';
-        document.getElementById('longitude').value = '';
-        
-        // Refresh overview and switch to it
-        loadOverview();
-        showSection('overview');
-    } catch (error) {
-        console.error('Error submitting report:', error);
-        showToast('Error', 'Failed to submit report. Please try again.', 'error');
-    } finally {
-        submitBtn.disabled = false;
-        submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Submit Report';
-    }
-});
+        try {
+            const incident = {
+                id: Date.now(),
+                type: document.getElementById('incidentType').value,
+                title: document.getElementById('incidentTitle').value,
+                description: document.getElementById('incidentDescription').value,
+                address: document.getElementById('incidentAddress').value,
+                latitude: parseFloat(document.getElementById('latitude').value) || 0,
+                longitude: parseFloat(document.getElementById('longitude').value) || 0,
+                status: 'PENDING',
+                priority: 'MEDIUM',
+                createdAt: new Date().toISOString(),
+                mediaUrls: []
+            };
+            
+            // Save to local storage
+            const incidents = getMockIncidents();
+            incidents.unshift(incident);
+            saveMockIncidents(incidents);
+            
+            showToast('Success', 'Incident reported successfully', 'success');
+            
+            // Reset form
+            e.target.reset();
+            document.getElementById('latitude').value = '';
+            document.getElementById('longitude').value = '';
+            
+            // Refresh overview and switch to it
+            loadOverview();
+            showSection('overview');
+        } catch (error) {
+            console.error('Error submitting report:', error);
+            showToast('Error', 'Failed to submit report. Please try again.', 'error');
+        } finally {
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Submit Report';
+        }
+    });
+}
 
 // Get current location
 function getCurrentLocation() {
@@ -228,9 +258,17 @@ function getCurrentLocation() {
 // View incident details
 async function viewIncident(incidentId) {
     try {
-        const incident = await API.get(`/incidents/${incidentId}`);
+        const incidents = getMockIncidents();
+        const incident = incidents.find(i => i.id === incidentId);
+        
+        if (!incident) {
+            showToast('Error', 'Incident not found', 'error');
+            return;
+        }
         
         const modalBody = document.getElementById('incidentModalBody');
+        if (!modalBody) return;
+        
         modalBody.innerHTML = `
             <div style="margin-bottom: 1rem;">
                 <strong>Type:</strong>
@@ -286,7 +324,8 @@ async function viewIncident(incidentId) {
             ` : ''}
         `;
         
-        document.getElementById('incidentModal').classList.add('show');
+        const modal = document.getElementById('incidentModal');
+        if (modal) modal.classList.add('show');
     } catch (error) {
         console.error('Error loading incident details:', error);
         showToast('Error', 'Failed to load incident details', 'error');
@@ -299,26 +338,13 @@ function closeIncidentModal() {
 }
 
 // Close modal when clicking outside
-document.getElementById('incidentModal')?.addEventListener('click', (e) => {
-    if (e.target.id === 'incidentModal') {
-        closeIncidentModal();
-    }
-});
-
-// Handle incoming incident updates via WebSocket
-function onIncidentUpdate(incident) {
-    // Check if this is one of user's incidents
-    const myIncident = myIncidents.find(i => i.id === incident.id);
-    if (myIncident) {
-        // Update local data
-        Object.assign(myIncident, incident);
-        
-        // Refresh display
-        loadOverview();
-        
-        // Show notification
-        showToast('Update', `Incident #${incident.id} has been updated`, 'info');
-    }
+const incidentModal = document.getElementById('incidentModal');
+if (incidentModal) {
+    incidentModal.addEventListener('click', (e) => {
+        if (e.target.id === 'incidentModal') {
+            closeIncidentModal();
+        }
+    });
 }
 
 // Utility functions
